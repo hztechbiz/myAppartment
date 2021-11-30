@@ -244,7 +244,7 @@ const Confirmation = (props) => {
             source={require('../images/Hotel360-assets/hotel-logo.png')}
             style={{resizeMode: 'contain', width: '30%'}}
           />
-          <Text style={{textAlign: 'center', color: '#6a6a6b', paddingHorizontal: 40, fontSize: 11}}>Add the Hotel Code from your Booking Confirmation or Welcome Letter. If you know your Apartment/Room number please enter it where indicated.</Text>
+          <Text style={{textAlign: 'center', color: '#6a6a6b', paddingHorizontal: 40, fontSize: 11}}>Add the Appartment Code from your Booking Confirmation or Welcome Letter. If you know your Apartment/Room number please enter it where indicated.</Text>
           <View style={{
             flexDirection: 'row',
             alignItems: 'flex-start'
@@ -310,11 +310,11 @@ CODE`}
                 <ActivityIndicator animating={true} color="#FFF" />
               </View>
             ) : (
-              <Text style={{color: '#FFF'}}>GO TO HOTEL</Text>
+              <Text style={{color: '#FFF'}}>GO TO APPARTMENT</Text>
             )}
           </TouchableOpacity>
           <TouchableOpacity disabled={true} style={styles.btn2} uppercase={false} color="#a1a3a6" contentStyle={{}} onPress={() => {}}>
-            <Text style={{fontSize: 12, color:'#717273', textAlign: 'center'}}>{"If you don't have a Hotel Code, \nPlease contact Reception."}</Text>
+            <Text style={{fontSize: 12, color:'#717273', textAlign: 'center'}}>{"If you don't have a Appartment Code, \nPlease contact Reception."}</Text>
           </TouchableOpacity>
           
         </View>

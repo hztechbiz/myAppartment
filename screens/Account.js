@@ -14,7 +14,7 @@ const Account = ({navigation}) => {
 
       <View style={styles.textview}>
         <Text style={{textAlign: 'center', color: '#606060'}}>
-        {"KUMAIL In addition to finding out all you need to know about your hotel, resort or motel, you can explore a comprehensive selection of restaurants, experiences, retail and things to do, all local to where you are staying. Look out for special offers and promotions, and businesses that accept our 360 Pass for a discount.\n The App is free to you to use. Just tap 'Create Account' and follow the prompts to enjoy what YourHotel has to offer, straight away."}
+        {"In addition to finding out all you need to know about your appartment, you can explore a comprehensive selection of restaurants, experiences, retail and things to do, all local to where you are staying. Look out for special offers and promotions, and businesses that accept our 360 Pass for a discount.\n The App is free to you to use. Just tap 'Create Account' and follow the prompts to enjoy what MyAppartment has to offer, straight away."}
         </Text>
       </View>
 

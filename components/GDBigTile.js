@@ -37,7 +37,7 @@ const Tile = (props) => {
     <LinearGradient
     start={{x: 0, y: 0}}
     end={{x: 1, y: 0}}
-    colors={['#D3D3D3', '#e57b0d']}
+    colors={['#D3D3D3', '#6697D2']}
       style={{ borderRadius: 10, marginBottom: 15, marginRight: 10}}>
       <TouchableHighlight
         style={isPress ? styles.tilePressed : styles.tileNormal}

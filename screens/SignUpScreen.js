@@ -199,7 +199,7 @@ const SignUpScreen = (props) => {
               source={require('../images/Hotel360-assets/hotel-logo.png')}
               style={{resizeMode: 'contain', width: '30%'}}
             />
-            <Title style={styles.heading}>Welcome To Your Hotel</Title>
+            <Title style={styles.heading}>Welcome To My Appartment</Title>
             <Text
               style={{
                 textAlign: 'center',
