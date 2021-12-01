@@ -7,22 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint .",
-    "addIos": "npx cap add ios",
-    "capacitorCopyIos": "ionic capacitor copy ios",
-    "iosGenerateResource": "cordova-res ios --skip-config --copy",
-    "iosLiveReload": "ionic capacitor run ios --livereload --external",
-    "addAndroid": "npx cap add android",
-    "androidGenerateResource": "cordova-res android --skip-config --copy",
-    "capacitorCopyAndroid": "ionic capacitor copy android",
-    "androidLiveReload": "ionic capacitor run android --livereload --external",
-    "openProjectInAndroidStudio": "npx cap open android",
-    "seeGradleInstructions": "./gradlew task",
-    "generateBundleFile ": "./gradlew bundle",
-    "capSync": "npx cap sync",
-    "ionicServeWithPort": "ionic serve -p 8100",
-    "generateResources": "capacitor-resources",
-    "makeBuild": "ionic build --prod --release"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.13.2",
