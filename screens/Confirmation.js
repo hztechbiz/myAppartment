@@ -91,13 +91,13 @@ const Confirmation = (props) => {
         saveData(hotel_key);
         get_hotel(res.data.data.hotel_id);
       }else{
-        props.setFeedback('YourHotel', 'Incorrect Key', true , '')
+        props.setFeedback('MyAppartment', 'Incorrect Key', true , '')
       }
       setLoader(false);
     })
     .catch((error) => {
       console.log(error, 'rest api');
-      props.setFeedback('YourHotel', 'Something Went with hotel Key Wrong...', true , '')
+      props.setFeedback('MyAppartment', 'Something Went with appartment Key Wrong...', true , '')
       setLoader(false);
     });
   }
@@ -276,7 +276,7 @@ Room Number`}
             style={[styles.input , { marginLeft: 3 }]}
             onChangeText={(text) => onChangeText3(text)}
             value={value3}
-            placeholder={`HOTEL
+            placeholder={`APPARTMENT
 CODE`}
             placeholderTextColor="#9ca5b1"
             theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
