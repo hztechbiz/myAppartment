@@ -1,5 +1,5 @@
 {
-  "name": "YourHotelApp",
+  "name": "MyApartment",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -30,6 +30,7 @@
     "react-native-paper": "^4.3.0",
     "react-native-pdf": "^6.2.2",
     "react-native-reanimated": "^1.13.1",
+    "react-native-rename": "^2.9.0",
     "react-native-render-html": "^5.0.1",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-safe-area-view": "^1.1.1",

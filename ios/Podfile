@@ -5,7 +5,7 @@ platform :ios, '10.0'
 
 
 
-target 'YourHotelApp' do
+target 'MyApartment' do
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => '../node_modules/react-native-maps'
   pod 'GoogleMaps'
@@ -15,7 +15,7 @@ target 'YourHotelApp' do
 
   use_react_native!(:path => config["reactNativePath"])
 
-  target 'YourHotelAppTests' do
+  target 'MyApartmentTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -32,10 +32,10 @@ target 'YourHotelApp' do
   end
 end
 
-target 'YourHotelApp-tvOS' do
-  # Pods for YourHotelApp-tvOS
+target 'MyApartment-tvOS' do
+  # Pods for MyApartment-tvOS
 
-  target 'YourHotelApp-tvOSTests' do
+  target 'MyApartment-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

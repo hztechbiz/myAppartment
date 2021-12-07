@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* YourHotelAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* YourHotelAppTests.m */; };
+		00E356F31AD99517003FC87E /* MyApartmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MyApartmentTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* YourHotelAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* YourHotelAppTests.m */; };
-		513C1337F8B78251F5B0652D /* libPods-YourHotelApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 676B136B0957C2D2D502DC0C /* libPods-YourHotelApp-tvOS.a */; };
-		797046F6B1A575AA8276F7EB /* libPods-YourHotelApp-YourHotelAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DAA80CC5F6A9B1865B3F1E4 /* libPods-YourHotelApp-YourHotelAppTests.a */; };
-		AFA9F819A43D9ED4A9169641 /* libPods-YourHotelApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AF2FA6E7CB5E695F8DD476 /* libPods-YourHotelApp.a */; };
-		FB981EFB765B408C23914D99 /* libPods-YourHotelApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0F32C84CBD803E9B9B7159 /* libPods-YourHotelApp-tvOSTests.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* MyApartmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MyApartmentTests.m */; };
+		513C1337F8B78251F5B0652D /* libPods-MyApartment-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 676B136B0957C2D2D502DC0C /* libPods-MyApartment-tvOS.a */; };
+		797046F6B1A575AA8276F7EB /* libPods-MyApartment-MyApartmentTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DAA80CC5F6A9B1865B3F1E4 /* libPods-MyApartment-MyApartmentTests.a */; };
+		AFA9F819A43D9ED4A9169641 /* libPods-MyApartment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AF2FA6E7CB5E695F8DD476 /* libPods-MyApartment.a */; };
+		FB981EFB765B408C23914D99 /* libPods-MyApartment-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0F32C84CBD803E9B9B7159 /* libPods-MyApartment-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,34 +27,34 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = YourHotelApp;
+			remoteInfo = MyApartment;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "YourHotelApp-tvOS";
+			remoteInfo = "MyApartment-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* YourHotelAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YourHotelAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* MyApartmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyApartmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* YourHotelAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YourHotelAppTests.m; sourceTree = "<group>"; };
-		05AF2FA6E7CB5E695F8DD476 /* libPods-YourHotelApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YourHotelApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0B9470DE8FD9575346F0518B /* Pods-YourHotelApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourHotelApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-YourHotelApp-tvOS/Pods-YourHotelApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		130FEAAD321F4CE790D91DEB /* Pods-YourHotelApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourHotelApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-YourHotelApp-tvOSTests/Pods-YourHotelApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* YourHotelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourHotelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = YourHotelApp/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = YourHotelApp/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = YourHotelApp/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = YourHotelApp/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = YourHotelApp/main.m; sourceTree = "<group>"; };
-		150612E9B6C54C387D0BD1B9 /* Pods-YourHotelApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourHotelApp.debug.xcconfig"; path = "Target Support Files/Pods-YourHotelApp/Pods-YourHotelApp.debug.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* YourHotelApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YourHotelApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* YourHotelApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "YourHotelApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* MyApartmentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyApartmentTests.m; sourceTree = "<group>"; };
+		05AF2FA6E7CB5E695F8DD476 /* libPods-MyApartment.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApartment.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B9470DE8FD9575346F0518B /* Pods-MyApartment-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApartment-tvOS.release.xcconfig"; path = "Target Support Files/Pods-MyApartment-tvOS/Pods-MyApartment-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		130FEAAD321F4CE790D91DEB /* Pods-MyApartment-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApartment-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-MyApartment-tvOSTests/Pods-MyApartment-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* MyApartment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApartment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MyApartment/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = MyApartment/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MyApartment/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MyApartment/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MyApartment/main.m; sourceTree = "<group>"; };
+		150612E9B6C54C387D0BD1B9 /* Pods-MyApartment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApartment.debug.xcconfig"; path = "Target Support Files/Pods-MyApartment/Pods-MyApartment.debug.xcconfig"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* MyApartment-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MyApartment-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* MyApartment-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MyApartment-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		448F4E3125E3F00D005E5C2D /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		448F4E3225E3F00D005E5C2D /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		448F4E3325E3F00D005E5C2D /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
@@ -71,15 +71,15 @@
 		448F4E3E25E3F00D005E5C2D /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
 		448F4E3F25E3F00D005E5C2D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		448F4E4025E3F00D005E5C2D /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
-		48CB5FD9907CAAE312C4D106 /* Pods-YourHotelApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourHotelApp.release.xcconfig"; path = "Target Support Files/Pods-YourHotelApp/Pods-YourHotelApp.release.xcconfig"; sourceTree = "<group>"; };
-		4DAA80CC5F6A9B1865B3F1E4 /* libPods-YourHotelApp-YourHotelAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YourHotelApp-YourHotelAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		532535A2089F22A700D2CF76 /* Pods-YourHotelApp-YourHotelAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourHotelApp-YourHotelAppTests.release.xcconfig"; path = "Target Support Files/Pods-YourHotelApp-YourHotelAppTests/Pods-YourHotelApp-YourHotelAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		676B136B0957C2D2D502DC0C /* libPods-YourHotelApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YourHotelApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E0F32C84CBD803E9B9B7159 /* libPods-YourHotelApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YourHotelApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = YourHotelApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A02355B35982FCAFBB5FCE02 /* Pods-YourHotelApp-YourHotelAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourHotelApp-YourHotelAppTests.debug.xcconfig"; path = "Target Support Files/Pods-YourHotelApp-YourHotelAppTests/Pods-YourHotelApp-YourHotelAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D7D61CFF071E694FA2BC0654 /* Pods-YourHotelApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourHotelApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-YourHotelApp-tvOS/Pods-YourHotelApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		DDD88131B5EEAE98CC1F9AF1 /* Pods-YourHotelApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourHotelApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-YourHotelApp-tvOSTests/Pods-YourHotelApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		48CB5FD9907CAAE312C4D106 /* Pods-MyApartment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApartment.release.xcconfig"; path = "Target Support Files/Pods-MyApartment/Pods-MyApartment.release.xcconfig"; sourceTree = "<group>"; };
+		4DAA80CC5F6A9B1865B3F1E4 /* libPods-MyApartment-MyApartmentTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApartment-MyApartmentTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		532535A2089F22A700D2CF76 /* Pods-MyApartment-MyApartmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApartment-MyApartmentTests.release.xcconfig"; path = "Target Support Files/Pods-MyApartment-MyApartmentTests/Pods-MyApartment-MyApartmentTests.release.xcconfig"; sourceTree = "<group>"; };
+		676B136B0957C2D2D502DC0C /* libPods-MyApartment-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApartment-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0F32C84CBD803E9B9B7159 /* libPods-MyApartment-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyApartment-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MyApartment/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A02355B35982FCAFBB5FCE02 /* Pods-MyApartment-MyApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApartment-MyApartmentTests.debug.xcconfig"; path = "Target Support Files/Pods-MyApartment-MyApartmentTests/Pods-MyApartment-MyApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D7D61CFF071E694FA2BC0654 /* Pods-MyApartment-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApartment-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-MyApartment-tvOS/Pods-MyApartment-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		DDD88131B5EEAE98CC1F9AF1 /* Pods-MyApartment-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyApartment-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-MyApartment-tvOSTests/Pods-MyApartment-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -89,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				797046F6B1A575AA8276F7EB /* libPods-YourHotelApp-YourHotelAppTests.a in Frameworks */,
+				797046F6B1A575AA8276F7EB /* libPods-MyApartment-MyApartmentTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFA9F819A43D9ED4A9169641 /* libPods-YourHotelApp.a in Frameworks */,
+				AFA9F819A43D9ED4A9169641 /* libPods-MyApartment.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,7 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				513C1337F8B78251F5B0652D /* libPods-YourHotelApp-tvOS.a in Frameworks */,
+				513C1337F8B78251F5B0652D /* libPods-MyApartment-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,20 +113,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB981EFB765B408C23914D99 /* libPods-YourHotelApp-tvOSTests.a in Frameworks */,
+				FB981EFB765B408C23914D99 /* libPods-MyApartment-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* YourHotelAppTests */ = {
+		00E356EF1AD99517003FC87E /* MyApartmentTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* YourHotelAppTests.m */,
+				00E356F21AD99517003FC87E /* MyApartmentTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = YourHotelAppTests;
+			path = MyApartmentTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -137,7 +137,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* YourHotelApp */ = {
+		13B07FAE1A68108700A75B9A /* MyApartment */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -148,20 +148,20 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = YourHotelApp;
+			name = MyApartment;
 			sourceTree = "<group>";
 		};
 		1A87524FDE72614681832D35 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				150612E9B6C54C387D0BD1B9 /* Pods-YourHotelApp.debug.xcconfig */,
-				48CB5FD9907CAAE312C4D106 /* Pods-YourHotelApp.release.xcconfig */,
-				A02355B35982FCAFBB5FCE02 /* Pods-YourHotelApp-YourHotelAppTests.debug.xcconfig */,
-				532535A2089F22A700D2CF76 /* Pods-YourHotelApp-YourHotelAppTests.release.xcconfig */,
-				D7D61CFF071E694FA2BC0654 /* Pods-YourHotelApp-tvOS.debug.xcconfig */,
-				0B9470DE8FD9575346F0518B /* Pods-YourHotelApp-tvOS.release.xcconfig */,
-				130FEAAD321F4CE790D91DEB /* Pods-YourHotelApp-tvOSTests.debug.xcconfig */,
-				DDD88131B5EEAE98CC1F9AF1 /* Pods-YourHotelApp-tvOSTests.release.xcconfig */,
+				150612E9B6C54C387D0BD1B9 /* Pods-MyApartment.debug.xcconfig */,
+				48CB5FD9907CAAE312C4D106 /* Pods-MyApartment.release.xcconfig */,
+				A02355B35982FCAFBB5FCE02 /* Pods-MyApartment-MyApartmentTests.debug.xcconfig */,
+				532535A2089F22A700D2CF76 /* Pods-MyApartment-MyApartmentTests.release.xcconfig */,
+				D7D61CFF071E694FA2BC0654 /* Pods-MyApartment-tvOS.debug.xcconfig */,
+				0B9470DE8FD9575346F0518B /* Pods-MyApartment-tvOS.release.xcconfig */,
+				130FEAAD321F4CE790D91DEB /* Pods-MyApartment-tvOSTests.debug.xcconfig */,
+				DDD88131B5EEAE98CC1F9AF1 /* Pods-MyApartment-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -171,10 +171,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				05AF2FA6E7CB5E695F8DD476 /* libPods-YourHotelApp.a */,
-				4DAA80CC5F6A9B1865B3F1E4 /* libPods-YourHotelApp-YourHotelAppTests.a */,
-				676B136B0957C2D2D502DC0C /* libPods-YourHotelApp-tvOS.a */,
-				7E0F32C84CBD803E9B9B7159 /* libPods-YourHotelApp-tvOSTests.a */,
+				05AF2FA6E7CB5E695F8DD476 /* libPods-MyApartment.a */,
+				4DAA80CC5F6A9B1865B3F1E4 /* libPods-MyApartment-MyApartmentTests.a */,
+				676B136B0957C2D2D502DC0C /* libPods-MyApartment-tvOS.a */,
+				7E0F32C84CBD803E9B9B7159 /* libPods-MyApartment-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,9 +214,9 @@
 			isa = PBXGroup;
 			children = (
 				448F4E3025E3F00D005E5C2D /* Fonts */,
-				13B07FAE1A68108700A75B9A /* YourHotelApp */,
+				13B07FAE1A68108700A75B9A /* MyApartment */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* YourHotelAppTests */,
+				00E356EF1AD99517003FC87E /* MyApartmentTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				1A87524FDE72614681832D35 /* Pods */,
@@ -229,10 +229,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* YourHotelApp.app */,
-				00E356EE1AD99517003FC87E /* YourHotelAppTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* YourHotelApp-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* YourHotelApp-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* MyApartment.app */,
+				00E356EE1AD99517003FC87E /* MyApartmentTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* MyApartment-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* MyApartment-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,9 +240,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* YourHotelAppTests */ = {
+		00E356ED1AD99517003FC87E /* MyApartmentTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "YourHotelAppTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MyApartmentTests" */;
 			buildPhases = (
 				84704714F87ADE8AEC873CF7 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -256,14 +256,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = YourHotelAppTests;
-			productName = YourHotelAppTests;
-			productReference = 00E356EE1AD99517003FC87E /* YourHotelAppTests.xctest */;
+			name = MyApartmentTests;
+			productName = MyApartmentTests;
+			productReference = 00E356EE1AD99517003FC87E /* MyApartmentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* YourHotelApp */ = {
+		13B07F861A680F5B00A75B9A /* MyApartment */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "YourHotelApp" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MyApartment" */;
 			buildPhases = (
 				FF3805BDBD300D2D66A23608 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -278,14 +278,14 @@
 			);
 			dependencies = (
 			);
-			name = YourHotelApp;
-			productName = YourHotelApp;
-			productReference = 13B07F961A680F5B00A75B9A /* YourHotelApp.app */;
+			name = MyApartment;
+			productName = MyApartment;
+			productReference = 13B07F961A680F5B00A75B9A /* MyApartment.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* YourHotelApp-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* MyApartment-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "YourHotelApp-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "MyApartment-tvOS" */;
 			buildPhases = (
 				C051417152E3A8AD7709767E /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -298,14 +298,14 @@
 			);
 			dependencies = (
 			);
-			name = "YourHotelApp-tvOS";
-			productName = "YourHotelApp-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* YourHotelApp-tvOS.app */;
+			name = "MyApartment-tvOS";
+			productName = "MyApartment-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* MyApartment-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* YourHotelApp-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* MyApartment-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "YourHotelApp-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "MyApartment-tvOSTests" */;
 			buildPhases = (
 				FAD47E2C159CB02FF70B2E00 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -317,9 +317,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "YourHotelApp-tvOSTests";
-			productName = "YourHotelApp-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* YourHotelApp-tvOSTests.xctest */;
+			name = "MyApartment-tvOSTests";
+			productName = "MyApartment-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* MyApartment-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -349,7 +349,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "YourHotelApp" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "MyApartment" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -362,10 +362,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* YourHotelApp */,
-				00E356ED1AD99517003FC87E /* YourHotelAppTests */,
-				2D02E47A1E0B4A5D006451C7 /* YourHotelApp-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* YourHotelApp-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* MyApartment */,
+				00E356ED1AD99517003FC87E /* MyApartmentTests */,
+				2D02E47A1E0B4A5D006451C7 /* MyApartment-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* MyApartment-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -424,7 +424,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YourHotelApp-YourHotelAppTests/Pods-YourHotelApp-YourHotelAppTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MyApartment-MyApartmentTests/Pods-MyApartment-MyApartmentTests-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
@@ -467,7 +467,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YourHotelApp-YourHotelAppTests/Pods-YourHotelApp-YourHotelAppTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyApartment-MyApartmentTests/Pods-MyApartment-MyApartmentTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
@@ -490,7 +490,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YourHotelApp/Pods-YourHotelApp-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MyApartment/Pods-MyApartment-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
@@ -533,7 +533,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YourHotelApp/Pods-YourHotelApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyApartment/Pods-MyApartment-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		70B26E2DA43D2D36117FB8A5 /* [CP] Embed Pods Frameworks */ = {
@@ -542,7 +542,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YourHotelApp-YourHotelAppTests/Pods-YourHotelApp-YourHotelAppTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MyApartment-MyApartmentTests/Pods-MyApartment-MyApartmentTests-frameworks.sh",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -551,7 +551,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YourHotelApp-YourHotelAppTests/Pods-YourHotelApp-YourHotelAppTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyApartment-MyApartmentTests/Pods-MyApartment-MyApartmentTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		84704714F87ADE8AEC873CF7 /* [CP] Check Pods Manifest.lock */ = {
@@ -569,7 +569,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YourHotelApp-YourHotelAppTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-MyApartment-MyApartmentTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -582,7 +582,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YourHotelApp/Pods-YourHotelApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MyApartment/Pods-MyApartment-frameworks.sh",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -591,7 +591,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YourHotelApp/Pods-YourHotelApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyApartment/Pods-MyApartment-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C051417152E3A8AD7709767E /* [CP] Check Pods Manifest.lock */ = {
@@ -609,7 +609,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YourHotelApp-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-MyApartment-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -631,7 +631,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YourHotelApp-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-MyApartment-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -691,7 +691,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YourHotelApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-MyApartment-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -705,7 +705,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* YourHotelAppTests.m in Sources */,
+				00E356F31AD99517003FC87E /* MyApartmentTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +731,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* YourHotelAppTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* MyApartmentTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,12 +740,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* YourHotelApp */;
+			target = 13B07F861A680F5B00A75B9A /* MyApartment */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* YourHotelApp-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* MyApartment-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -753,14 +753,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A02355B35982FCAFBB5FCE02 /* Pods-YourHotelApp-YourHotelAppTests.debug.xcconfig */;
+			baseConfigurationReference = A02355B35982FCAFBB5FCE02 /* Pods-MyApartment-MyApartmentTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = YourHotelAppTests/Info.plist;
+				INFOPLIST_FILE = MyApartmentTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -770,17 +770,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YourHotelApp.app/YourHotelApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyApartment.app/MyApartment";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 532535A2089F22A700D2CF76 /* Pods-YourHotelApp-YourHotelAppTests.release.xcconfig */;
+			baseConfigurationReference = 532535A2089F22A700D2CF76 /* Pods-MyApartment-MyApartmentTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = YourHotelAppTests/Info.plist;
+				INFOPLIST_FILE = MyApartmentTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -790,20 +790,20 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YourHotelApp.app/YourHotelApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyApartment.app/MyApartment";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 150612E9B6C54C387D0BD1B9 /* Pods-YourHotelApp.debug.xcconfig */;
+			baseConfigurationReference = 150612E9B6C54C387D0BD1B9 /* Pods-MyApartment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = Y6C9H5BQQW;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = YourHotelApp/Info.plist;
+				INFOPLIST_FILE = MyApartment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 3.2;
 				OTHER_LDFLAGS = (
@@ -812,7 +812,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.clubhotel;
-				PRODUCT_NAME = YourHotelApp;
+				PRODUCT_NAME = MyApartment;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -821,13 +821,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48CB5FD9907CAAE312C4D106 /* Pods-YourHotelApp.release.xcconfig */;
+			baseConfigurationReference = 48CB5FD9907CAAE312C4D106 /* Pods-MyApartment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = Y6C9H5BQQW;
-				INFOPLIST_FILE = YourHotelApp/Info.plist;
+				INFOPLIST_FILE = MyApartment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 3.2;
 				OTHER_LDFLAGS = (
@@ -836,7 +836,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.clubhotel;
-				PRODUCT_NAME = YourHotelApp;
+				PRODUCT_NAME = MyApartment;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -844,7 +844,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7D61CFF071E694FA2BC0654 /* Pods-YourHotelApp-tvOS.debug.xcconfig */;
+			baseConfigurationReference = D7D61CFF071E694FA2BC0654 /* Pods-MyApartment-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -855,14 +855,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "YourHotelApp-tvOS/Info.plist";
+				INFOPLIST_FILE = "MyApartment-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.YourHotelApp-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.MyApartment-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -872,7 +872,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B9470DE8FD9575346F0518B /* Pods-YourHotelApp-tvOS.release.xcconfig */;
+			baseConfigurationReference = 0B9470DE8FD9575346F0518B /* Pods-MyApartment-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -883,14 +883,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "YourHotelApp-tvOS/Info.plist";
+				INFOPLIST_FILE = "MyApartment-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.YourHotelApp-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.MyApartment-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -900,7 +900,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 130FEAAD321F4CE790D91DEB /* Pods-YourHotelApp-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 130FEAAD321F4CE790D91DEB /* Pods-MyApartment-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -910,24 +910,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "YourHotelApp-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "MyApartment-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.YourHotelApp-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.MyApartment-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YourHotelApp-tvOS.app/YourHotelApp-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyApartment-tvOS.app/MyApartment-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DDD88131B5EEAE98CC1F9AF1 /* Pods-YourHotelApp-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = DDD88131B5EEAE98CC1F9AF1 /* Pods-MyApartment-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -937,17 +937,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "YourHotelApp-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "MyApartment-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.YourHotelApp-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.MyApartment-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YourHotelApp-tvOS.app/YourHotelApp-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyApartment-tvOS.app/MyApartment-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1070,7 +1070,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "YourHotelAppTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MyApartmentTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1079,7 +1079,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "YourHotelApp" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MyApartment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1088,7 +1088,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "YourHotelApp-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "MyApartment-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1097,7 +1097,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "YourHotelApp-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "MyApartment-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1106,7 +1106,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "YourHotelApp" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "MyApartment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
