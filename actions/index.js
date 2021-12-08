@@ -160,3 +160,15 @@ export const setOthersServices = (data) => {
         payload: data
     };
 };
+export const setCarouselTotalIndex = (data) => {
+    return {
+        type: 'SET_CAROUSEL_TOTAL_INDEX',
+        payload: data
+    };
+};
+export const setCarouselCurrentIndex = (data) => {
+    return {
+        type: 'SET_CAROUSEL_CURRENT_INDEX',
+        payload: data
+    };
+};

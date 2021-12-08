@@ -85,11 +85,11 @@ const MyCoupons = (props) => {
     return (
       <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
         <View style={{width: '48%', marginBottom: 8}}>
-          <Tile title="All" nav="Restaurants" isAll={true} screenName="Restaurants" />
+          <Tile title="All" nav="Restaurants" isAll={true} screenName="Restaurants" previousIndex={currentIndex} />
         </View>
 
         <View style={{width: '48%', marginBottom: 8}}>
-          <Tile title="Style/Cuisine" nav="Restaurants" isAll={false} />
+          <Tile title="Style/Cuisine" nav="Restaurants" isAll={false} previousIndex={currentIndex} />
         </View>
       </View>
     );
@@ -140,6 +140,7 @@ const MyCoupons = (props) => {
                 });
               }
             });
+            // props.setCarouselIndex(featuredPromotion.length, currentIndex);
           }else {
             sliderImages.push(require('../images/Placeholder.png'));
             featuredPromotion.push({
@@ -238,17 +239,18 @@ const MyCoupons = (props) => {
           }}>
             {item?.tagline != "" ? 
             <Text style={{
-              fontSize: 30,
+              fontSize: 20,
               fontWeight: 'bold',
+              fontStyle: 'italic',
               position: 'absolute',
               // bottom: 0,
               // top: '50%',
               // left: '50%',
               zIndex: 2,
-              color: 'white',
+              color: '#6697D2',
               paddingHorizontal: 15,
               paddingVertical: 5,
-              backgroundColor: 'rgba(000,000,000,0.6)'
+              backgroundColor: 'rgba(000,000,000,0)'
             }}>
             {item?.tagline}
             </Text>
@@ -345,7 +347,7 @@ const MyCoupons = (props) => {
             textTransform: 'capitalize',
             marginTop: 0,
           }]}>
-            {featuredPromotion[currentIndex]?.name} 
+            {featuredPromotion[props.carouselCurrentIndex]?.name} 
           </Text>
           <View>
           <Carousel
@@ -355,6 +357,8 @@ const MyCoupons = (props) => {
             sliderWidth={screenWidth}
             itemWidth={screenWidth}
             renderItem={_renderItem}
+            // currentIndex={`2`}
+            firstItem={props.carouselCurrentIndex}
             onSnapToItem = { index => setCurrentIndex(index) } />
             <PaginationComp/>
           </View>
@@ -435,6 +439,7 @@ const MyCoupons = (props) => {
 const mapStateToProps = (state) => ({
   token: state.LoginDetails.token,
   userid: state.LoginDetails.userId,
+  carouselCurrentIndex: state.CarouselIndex.carouselCurrentIndex,
 });
 
 const mapDispatchToProps = (dispatch) => ({

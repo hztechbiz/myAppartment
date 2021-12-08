@@ -3,6 +3,8 @@ import { TouchableHighlight, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { StyleSheet } from 'react-native';
 import { CommonActions, useNavigation } from '@react-navigation/native';
+import {connect} from 'react-redux';
+import {setCarouselCurrentIndex} from '../actions';
 
 const Tile = (props) => {
   var [isPress, setIsPress] = React.useState(false);
@@ -29,7 +31,7 @@ const Tile = (props) => {
     <LinearGradient
     start={{x: 0, y: 0}}
     end={{x: 1, y: 0}}
-      colors={['#D3D3D3', '#e57b0d']}
+      colors={['#D3D3D3', '#6697D2']}
       style={{ height: 90, width: 150, borderRadius: 10, marginRight: 10 }}>
       <TouchableHighlight
         style={isPress ? styles.tilePressed : styles.tileNormal}
@@ -37,6 +39,8 @@ const Tile = (props) => {
         underlayColor="#fff"
         onPress={() => {
           setIsPress(true);
+          console.log('previousIndex', props.previousIndex);
+          props.setCarouselCurrentIndex(props.previousIndex);
           setTimeout(() => {
             setIsPress(false);
             props.isAll 
@@ -59,7 +63,21 @@ const Tile = (props) => {
   );
 };
 
-export default Tile;
+const mapStateToProps = (state) => ({
+  carouselCurrentIndex: state.CarouselIndex.carouselCurrentIndex,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCarouselCurrentIndex: (carouselCurrentIndex) => {
+    const data = {
+      carouselCurrentIndex: carouselCurrentIndex,
+    };
+    dispatch(setCarouselCurrentIndex(data));
+  },
+});
+
+// export default Tile;
+export default connect(mapStateToProps, mapDispatchToProps)(Tile);
 
 const styles = StyleSheet.create({
   tileNormal: {

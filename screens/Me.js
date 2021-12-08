@@ -303,7 +303,7 @@ const Me = (props) => {
             style={{
               fontSize: 18,
               textAlign: 'center',
-              color: '#e57b0d',
+              color: '#6697D2',
             }}>
             {msgTitle}
           </Title>

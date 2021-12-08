@@ -21,6 +21,7 @@ import feedbackmsg from "./feedbackmsg";
 import others from "./others";
 import childOthers from "./childOthers";
 import othersServices from "./othersServices";
+import carouselIndex from "./carouselIndex";
 import {combineReducers} from 'redux';
 
 const allReducers = combineReducers({
@@ -46,6 +47,7 @@ const allReducers = combineReducers({
     Feedbackmsg: feedbackmsg,
     Others: others,
     ChildOthers: childOthers,
+    CarouselIndex: carouselIndex,
     OthersServices: othersServices,
 });
 
