@@ -23,6 +23,7 @@ import {setChildExperience, setChildGD, setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import {SliderBox} from 'react-native-image-slider-box';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import {useNavigation} from '@react-navigation/native';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -39,6 +40,7 @@ const GuestDirectory = (props) => {
   const [featuredserviceid, setFeaturedServiceId] = useState([]);
   const [featuredservicetitle, setFeaturedServiceTitle] = useState([]);
   const [sliderImages, setSliderImages] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (!isFocused) {
@@ -232,7 +234,7 @@ const GuestDirectory = (props) => {
               <>
                   <Text style={styles.featuredPromotion}>Featured Promotions</Text>
                   <Text style={[styles.featuredPromotion, {
-                    fontSize: 22,
+                    fontSize: 18,
                     // alignSelf: 'center',
                     textTransform: 'capitalize',
                     marginTop: 0,
@@ -338,6 +340,7 @@ const mapStateToProps = (state) => ({
   token: state.LoginDetails.token,
   suburb: state.HotelDetails.suburb,
   area: state.HotelDetails.hotel.area,
+  carouselCurrentIndex: state.CarouselIndexAll.carouselCurrentIndexAll,
 });
 
 const mapDispatchToProps = (dispatch) => ({

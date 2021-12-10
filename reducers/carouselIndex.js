@@ -1,19 +1,23 @@
 const initialState = {
-    carouselTotalIndex: null,
+    carouselTotalIndex: 0,
     carouselCurrentIndex: 0,
 };
 
 const carouselIndex = (state = initialState, action) => {
     switch ( action.type ){
         case 'SET_CAROUSEL_TOTAL_INDEX':
-            let carouselTotalIndex = action.payload.carouselTotalIndex;
-            console.log('carouselTotalIndex', carouselTotalIndex);
-            return { ...state , carouselTotalIndex: carouselTotalIndex };
+            console.log('carouselTotalIndex', action.payload);
+            return { ...state , carouselTotalIndex: action.payload };
 
         case 'SET_CAROUSEL_CURRENT_INDEX':
-            let carouselCurrentIndex = action.payload.carouselCurrentIndex+1;
-            console.log('carouselCurrentIndex', carouselCurrentIndex+1);
-            return { ...state , carouselCurrentIndex: carouselCurrentIndex+1 };
+            // let carouselCurrentIndex = action.payload.carouselCurrentIndex+1;
+            if(state.carouselTotalIndex <= state.carouselCurrentIndex + 1){
+                return { ...state , carouselCurrentIndex: 0 };
+            }else{
+                console.log('carouselCurrentIndex', state.carouselCurrentIndex + 1 );
+                return { ...state , carouselCurrentIndex: state.carouselCurrentIndex + 1 };
+            }
+            
 
         default:
             return state;

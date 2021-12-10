@@ -20,11 +20,14 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {connect} from 'react-redux';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
-import {setChildCategory, setRoute} from '../actions';
+import {setCarouselCurrentIndexAll, setCarouselTotalIndexAll, setChildCategory, setRoute} from '../actions';
 import {setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import {SliderBox} from 'react-native-image-slider-box';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import HTML from 'react-native-render-html';
+import {useNavigation} from '@react-navigation/native';
+
 import _ from 'lodash';
 
 const screenWidth = Dimensions.get('window').width;
@@ -38,11 +41,23 @@ const Restaurants = (props) => {
   const [featuredserviceid, setFeaturedServiceId] = useState([]);
   const [featuredservicetitle, setFeaturedServiceTitle] = useState([]);
   const [sliderImages, setSliderImages] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     fetchChildCategories();
     fetchFeaturedPromotion();
   }, [props]);
+
+  useEffect(() => {
+    setCurrentIndex(props.carouselCurrentIndex)
+    navigation.addListener ('focus', async () =>{
+      if(!loader2){
+        setLoader2(true)
+        setTimeout(() => setLoader2(false), 500)
+        console.log("willFocus runs") // calling it here to make sure it is logged at every time screen is focused after initial start
+      }
+    });
+  }, [props])
 
   const fetchChildCategories = (parentID) => {
      console.log(props.suburb);
@@ -103,6 +118,10 @@ const Restaurants = (props) => {
   };
 
   const fetchFeaturedPromotion = () => {
+    sliderImages.length = 0
+    featuredPromotion.length = 0
+    featuredserviceid.length = 0
+    featuredservicetitle.length = 0
     const url = `${apiActiveURL}/feature_promotion?area=${props.area}&subrub=${props.suburb}`;
     // if (props.ChildCatId !== 0) {
     //   url = `${apiActiveURL}/featured_promotion/${5}/${props.ChildCatId}`;
@@ -153,6 +172,7 @@ const Restaurants = (props) => {
                 });
               }
             });
+            props.setCarouselTotalIndexAll(featuredPromotion.length);
           }else {
             sliderImages.push(require('../images/Placeholder.png'));
           }
@@ -256,21 +276,41 @@ const Restaurants = (props) => {
           marginVertical: 10,
           }}>
             {item?.tagline != "" ? 
-            <Text style={{
-              fontSize: 30,
-              fontWeight: 'bold',
-              position: 'absolute',
-              // bottom: 0,
-              // top: '50%',
-              // left: '50%',
-              zIndex: 2,
-              color: 'white',
-              paddingHorizontal: 15,
-              paddingVertical: 5,
-              backgroundColor: 'rgba(000,000,000,0.6)'
-            }}>
-            {item?.tagline}
-            </Text>
+              item?.tagline.charAt(0) == '<' ?
+                <HTML
+                  tagsStyles={{
+                    p: {
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                      fontStyle: 'italic',
+                      position: 'absolute',
+                      left: '-50%',
+                      top: 50,
+                      zIndex: 2,
+                      color: '#6697D2',
+                      paddingHorizontal: 15,
+                      paddingVertical: 5,
+                      backgroundColor: 'rgba(000,000,000,0)'
+                    },
+                  }}
+                  source={{html: item?.tagline == '' ? '<p></p>' : item?.tagline}}
+                /> :
+                <Text style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  position: 'absolute',
+                  // bottom: 0,
+                  // top: '50%',
+                  // left: '50%',
+                  zIndex: 2,
+                  color: '#6697D2',
+                  paddingHorizontal: 15,
+                  paddingVertical: 5,
+                  backgroundColor: 'rgba(000,000,000,0)'
+                }}>
+                  {item?.tagline}
+                </Text>
            : <></>}
           <Text style={{
             position: 'absolute',
@@ -371,7 +411,7 @@ const Restaurants = (props) => {
               <>
                   <Text style={styles.featuredPromotion}>Featured Promotions</Text>
                   <Text style={[styles.featuredPromotion, {
-                    fontSize: 22,
+                    fontSize: 18,
                     // alignSelf: 'center',
                     textTransform: 'capitalize',
                     marginTop: 0,
@@ -385,6 +425,8 @@ const Restaurants = (props) => {
                     sliderWidth={screenWidth}
                     itemWidth={screenWidth}
                     renderItem={_renderItem}
+                    initialScrollIndex={props.carouselCurrentIndex}  
+                    onScrollToIndexFailed={()=>{}}                
                     onSnapToItem = { index => setCurrentIndex(index) } />
             <PaginationComp/>
                 </>
@@ -492,6 +534,7 @@ const mapStateToProps = (state) => ({
   parentID: state.Services.parentID,
   suburb: state.HotelDetails.suburb,
   area: state.HotelDetails.hotel.area,
+  carouselCurrentIndex: state.CarouselIndexAll.carouselCurrentIndexAll,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -520,6 +563,12 @@ const mapDispatchToProps = (dispatch) => ({
       parentID: parentID,
     };
     dispatch(setRoute(data));
+  },
+  setCarouselCurrentIndexAll: () => {
+    dispatch(setCarouselCurrentIndexAll());
+  },
+  setCarouselTotalIndexAll: (data) => {
+    dispatch(setCarouselTotalIndexAll(data));
   },
 });
 

@@ -332,6 +332,7 @@ const mapStateToProps = (state) => ({
   hotelId: state.HotelDetails.hotel.id,
   suburb: state.HotelDetails.suburb,
   area: state.HotelDetails.hotel.area,
+  carouselCurrentIndex: state.CarouselIndexAll.carouselCurrentIndexAll,
 });
 
 const mapDispatchToProps = (dispatch) => ({

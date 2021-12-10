@@ -23,6 +23,7 @@ import childOthers from "./childOthers";
 import othersServices from "./othersServices";
 import carouselIndex from "./carouselIndex";
 import {combineReducers} from 'redux';
+import carouselIndexAll from './carouselIndexAll';
 
 const allReducers = combineReducers({
     //counter: counterReducer,
@@ -48,6 +49,7 @@ const allReducers = combineReducers({
     Others: others,
     ChildOthers: childOthers,
     CarouselIndex: carouselIndex,
+    CarouselIndexAll: carouselIndexAll,
     OthersServices: othersServices,
 });
 

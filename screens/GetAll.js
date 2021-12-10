@@ -22,15 +22,16 @@ import {
 import BackgroundLayout from '../components/BackgroundLayout';
 import {connect} from 'react-redux';
 import Axios from 'axios';
-import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
 import Tile from '../components/AllTile';
-import {setFeedback} from '../actions';
+import {setCarouselCurrentIndex, setCarouselTotalIndex, setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import {SliderBox} from 'react-native-image-slider-box';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import HTML from 'react-native-render-html';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -50,6 +51,7 @@ const MyCoupons = (props) => {
     marginHorizontal: 20,
   };
   const isFocused = useIsFocused();
+  const navigation = useNavigation();
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
@@ -73,6 +75,17 @@ const MyCoupons = (props) => {
     fetchFeaturedPromotion();
   }, [props]);
 
+  useEffect(() => {
+    setCurrentIndex(props.carouselCurrentIndex)
+    navigation.addListener ('focus', async () =>{
+      if(!loader2){
+        setLoader2(true)
+        setTimeout(() => setLoader2(false), 500)
+        console.log("willFocus runs") // calling it here to make sure it is logged at every time screen is focused after initial start
+      }
+    });
+  }, [props])
+
   const _keyboardDidShow = () => {
     setSView('28%');
   };
@@ -85,17 +98,21 @@ const MyCoupons = (props) => {
     return (
       <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
         <View style={{width: '48%', marginBottom: 8}}>
-          <Tile title="All" nav="Restaurants" isAll={true} screenName="Restaurants" previousIndex={currentIndex} />
+          <Tile title="All" nav="Restaurants" isAll={true} screenName="Restaurants" />
         </View>
 
         <View style={{width: '48%', marginBottom: 8}}>
-          <Tile title="Style/Cuisine" nav="Restaurants" isAll={false} previousIndex={currentIndex} />
+          <Tile title="Style/Cuisine" nav="Restaurants" isAll={false} />
         </View>
       </View>
     );
   };
 
   const fetchFeaturedPromotion = () => {
+    sliderImages.length = 0
+    featuredPromotion.length = 0
+    featuredserviceid.length = 0
+    featuredservicetitle.length = 0
     const url = `${apiActiveURL}/feature_promotion`;
     const options = {
       method: 'GET',
@@ -140,7 +157,7 @@ const MyCoupons = (props) => {
                 });
               }
             });
-            // props.setCarouselIndex(featuredPromotion.length, currentIndex);
+            props.setCarouselTotalIndex(featuredPromotion.length);
           }else {
             sliderImages.push(require('../images/Placeholder.png'));
             featuredPromotion.push({
@@ -238,22 +255,41 @@ const MyCoupons = (props) => {
           marginVertical: 10,
           }}>
             {item?.tagline != "" ? 
-            <Text style={{
-              fontSize: 20,
-              fontWeight: 'bold',
-              fontStyle: 'italic',
-              position: 'absolute',
-              // bottom: 0,
-              // top: '50%',
-              // left: '50%',
-              zIndex: 2,
-              color: '#6697D2',
-              paddingHorizontal: 15,
-              paddingVertical: 5,
-              backgroundColor: 'rgba(000,000,000,0)'
-            }}>
-            {item?.tagline}
-            </Text>
+              item?.tagline.charAt(0) == '<' ?
+                <HTML
+                  tagsStyles={{
+                    p: {
+                      fontSize: 20,
+                      fontWeight: 'bold',
+                      fontStyle: 'italic',
+                      position: 'absolute',
+                      left: '-50%',
+                      top: 50,
+                      zIndex: 2,
+                      color: '#6697D2',
+                      paddingHorizontal: 15,
+                      paddingVertical: 5,
+                      backgroundColor: 'rgba(000,000,000,0)'
+                    },
+                  }}
+                  source={{html: item?.tagline == '' ? '<p></p>' : item?.tagline}}
+                /> :
+                <Text style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  fontStyle: 'italic',
+                  position: 'absolute',
+                  // bottom: 0,
+                  // top: '50%',
+                  // left: '50%',
+                  zIndex: 2,
+                  color: '#6697D2',
+                  paddingHorizontal: 15,
+                  paddingVertical: 5,
+                  backgroundColor: 'rgba(000,000,000,0)'
+                }}>
+                  {item?.tagline}
+                </Text>
            : <></>}
           <Text style={{
             position: 'absolute',
@@ -347,7 +383,7 @@ const MyCoupons = (props) => {
             textTransform: 'capitalize',
             marginTop: 0,
           }]}>
-            {featuredPromotion[props.carouselCurrentIndex]?.name} 
+            {featuredPromotion[currentIndex]?.name} 
           </Text>
           <View>
           <Carousel
@@ -357,8 +393,8 @@ const MyCoupons = (props) => {
             sliderWidth={screenWidth}
             itemWidth={screenWidth}
             renderItem={_renderItem}
-            // currentIndex={`2`}
-            firstItem={props.carouselCurrentIndex}
+            initialScrollIndex={props.carouselCurrentIndex}  
+            onScrollToIndexFailed={()=>{}}
             onSnapToItem = { index => setCurrentIndex(index) } />
             <PaginationComp/>
           </View>
@@ -451,6 +487,12 @@ const mapDispatchToProps = (dispatch) => ({
       mynav: mynav,
     };
     dispatch(setFeedback(data));
+  },
+  setCarouselCurrentIndex: () => {
+    dispatch(setCarouselCurrentIndex());
+  },
+  setCarouselTotalIndex: (data) => {
+    dispatch(setCarouselTotalIndex(data));
   },
 });
 

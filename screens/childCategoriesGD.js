@@ -237,7 +237,7 @@ const childCategoriesGD = (props) => {
               <>
                   <Text style={styles.featuredPromotion}>Featured Promotions</Text>
                   <Text style={[styles.featuredPromotion, {
-                    fontSize: 22,
+                    fontSize: 18,
                     // alignSelf: 'center',
                     textTransform: 'capitalize',
                     marginTop: 0,
@@ -342,6 +342,7 @@ const mapStateToProps = (state) => ({
   ChildProName: state.ChildGuestD.name,
   suburb: state.HotelDetails.suburb,
   area: state.HotelDetails.hotel.area,
+  carouselCurrentIndex: state.CarouselIndexAll.carouselCurrentIndexAll,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import { connect } from 'react-redux';
-import { setChildExperience, setChildPromotion, setPromotion } from '../actions';
+import { setCarouselCurrentIndexAll, setChildExperience, setChildPromotion, setPromotion } from '../actions';
 
 const childExTile = (props) => {
   var [isPress, setIsPress] = React.useState(false);
@@ -26,6 +26,7 @@ const childExTile = (props) => {
           setIsPress(true);
           setTimeout(() => {
             setIsPress(false);
+            props.setCarouselCurrentIndexAll();
             props.setChildExperience(props.id, props.title);
             props.haschild === true
             ? "" : navigation.navigate('ExServices');
@@ -53,6 +54,9 @@ const mapDispatchToProps = (dispatch) => ({
       name: name,
     };
     dispatch(setChildExperience(data));
+  },
+  setCarouselCurrentIndexAll: () => {
+    dispatch(setCarouselCurrentIndexAll());
   },
 });
 

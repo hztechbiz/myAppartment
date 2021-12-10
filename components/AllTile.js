@@ -39,10 +39,10 @@ const Tile = (props) => {
         underlayColor="#fff"
         onPress={() => {
           setIsPress(true);
-          console.log('previousIndex', props.previousIndex);
-          props.setCarouselCurrentIndex(props.previousIndex);
+          // console.log('previousIndex', props.previousIndex);
           setTimeout(() => {
             setIsPress(false);
+            props.setCarouselCurrentIndex();
             props.isAll 
             ? 
             handleNavigation()
@@ -68,11 +68,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCarouselCurrentIndex: (carouselCurrentIndex) => {
-    const data = {
-      carouselCurrentIndex: carouselCurrentIndex,
-    };
-    dispatch(setCarouselCurrentIndex(data));
+  setCarouselCurrentIndex: () => {
+    dispatch(setCarouselCurrentIndex());
   },
 });
 

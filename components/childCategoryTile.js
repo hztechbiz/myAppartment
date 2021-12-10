@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import { connect } from 'react-redux';
-import { setCategory, setChildCategory, setRoute, setServices } from '../actions';
+import { setCarouselCurrentIndexAll, setCategory, setChildCategory, setRoute, setServices } from '../actions';
 
 const Tile = (props) => {
   var [isPress, setIsPress] = React.useState(false);
@@ -26,6 +26,7 @@ const Tile = (props) => {
           setIsPress(true);
           setTimeout(() => {
             setIsPress(false);
+            props.setCarouselCurrentIndexAll();
             props.setChildCategory(props.id, props.title); 
             props.haschild === true
               ? "" : navigation.navigate('Services');
@@ -61,6 +62,9 @@ const mapDispatchToProps = (dispatch) => ({
       parentID: parentID,
     };
     dispatch(setRoute(data));
+  },
+  setCarouselCurrentIndexAll: () => {
+    dispatch(setCarouselCurrentIndexAll());
   },
 });
 

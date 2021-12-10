@@ -172,3 +172,15 @@ export const setCarouselCurrentIndex = (data) => {
         payload: data
     };
 };
+export const setCarouselTotalIndexAll = (data) => {
+    return {
+        type: 'SET_CAROUSEL_TOTAL_INDEX_ALL',
+        payload: data
+    };
+};
+export const setCarouselCurrentIndexAll = (data) => {
+    return {
+        type: 'SET_CAROUSEL_CURRENT_INDEX_ALL',
+        payload: data
+    };
+};

@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import { connect } from 'react-redux';
-import { setOthers, setPromotion, setWhatsOn } from '../actions';
+import { setCarouselCurrentIndexAll, setOthers, setPromotion, setWhatsOn } from '../actions';
 
 const OthersTile = (props) => {
   var [isPress, setIsPress] = React.useState(false);
@@ -26,6 +26,7 @@ const OthersTile = (props) => {
           setIsPress(true);
           setTimeout(() => {
             setIsPress(false);
+            props.setCarouselCurrentIndexAll();
             props.setOthers(props.id, props.title);
             navigation.navigate('childCategoriesOthers');
           }, 500);
@@ -52,6 +53,9 @@ const mapDispatchToProps = (dispatch) => ({
       name: name,
     };
     dispatch(setOthers(data));
+  },
+  setCarouselCurrentIndexAll: () => {
+    dispatch(setCarouselCurrentIndexAll());
   },
 });
 

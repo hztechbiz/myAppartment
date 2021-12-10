@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import { connect } from 'react-redux';
-import { setChildPromotion, setPromotion } from '../actions';
+import { setCarouselCurrentIndexAll, setChildPromotion, setPromotion } from '../actions';
 
 const PromtionTile = (props) => {
   var [isPress, setIsPress] = React.useState(false);
@@ -26,6 +26,7 @@ const PromtionTile = (props) => {
           setIsPress(true);
           setTimeout(() => {
             setIsPress(false);
+            props.setCarouselCurrentIndexAll();
             props.setChildPromotion(props.id, props.title);
             props.haschild === true
             ? navigation.navigate('childCategoriesPromo') : navigation.navigate('PromotionServices');
@@ -53,6 +54,9 @@ const mapDispatchToProps = (dispatch) => ({
       name: name,
     };
     dispatch(setChildPromotion(data));
+  },
+  setCarouselCurrentIndexAll: () => {
+    dispatch(setCarouselCurrentIndexAll());
   },
 });
 
