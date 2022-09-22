@@ -3,11 +3,11 @@ import {TouchableHighlight, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import { connect } from 'react-redux';
-import { setPromotionServices, setServices } from '../actions';
+import {connect} from 'react-redux';
+import {setPromotionServices, setServices} from '../actions';
 import HTML from 'react-native-render-html';
 import Axios from 'axios';
-import { apiActiveURL, appId, appKey } from '../ApiBaseURL';
+import {apiActiveURL, appId, appKey} from '../ApiBaseURL';
 
 const Tile = (props) => {
   var [isPress, setIsPress] = React.useState(false);
@@ -22,7 +22,7 @@ const Tile = (props) => {
       navigation.navigate('Promotion Business', {
         promoid: props.services.id,
         promotitle: props.services.title,
-        screen: 'promotion'
+        screen: 'promotion',
       });
     }, 0);
   };
@@ -49,18 +49,17 @@ const Tile = (props) => {
 
   return (
     <LinearGradient
-    start={{x: 0, y: 0}}
-    end={{x: 1, y: 0}}
-    colors={['#D3D3D3', '#e57b0d']}
-      style={{ borderRadius: 10, marginBottom: 15, marginRight: 10}}>
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 0}}
+      colors={['#D3D3D3', '#6697D2']}
+      style={{borderRadius: 10, marginBottom: 15, marginRight: 10}}>
       <TouchableHighlight
         style={isPress ? styles.tilePressed : styles.tileNormal}
         activeOpacity={1}
         underlayColor="#fff"
         //onHideUnderlay={() => setIsPress(false)}
         //onShowUnderlay={() => setIsPress(true)}
-        onPress={handleNavigation}
-          >
+        onPress={handleNavigation}>
         <View style={{paddingHorizontal: 5}}>
           <Text
             style={isPress ? styles.tileTextPressed : styles.tileTextNormal}>
@@ -114,7 +113,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tile);
 
-
 const styles = StyleSheet.create({
   tileNormal: {
     height: 140,
@@ -142,7 +140,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 14,
     fontWeight: '700',
-    color: '#e57b0d',
+    color: '#6697D2',
   },
   tileTextPressed: {
     textAlign: 'center',
@@ -160,10 +158,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '100',
-    color: '#000'
+    color: '#000',
   },
 });
-
 
 // import React from 'react';
 // import {TouchableHighlight, Text, View} from 'react-native';
@@ -179,7 +176,7 @@ const styles = StyleSheet.create({
 //     <LinearGradient
 //       start={{x: 0, y: 0}}
 //       end={{x: 1, y: 0}}
-//       colors={['#D3D3D3', '#e57b0d']}
+//       colors={['#D3D3D3', '#6697D2']}
 //       style={{height: 140, borderRadius: 10, marginBottom: 15}}>
 //       <TouchableHighlight
 //         style={isPress ? styles.tilePressed : styles.tileNormal}

@@ -14,16 +14,30 @@ import {
   SafeAreaView,
   Keyboard,
 } from 'react-native';
-import {Button, Modal, Title, Text, Portal, ActivityIndicator, Dialog} from 'react-native-paper';
+import {
+  Button,
+  Modal,
+  Title,
+  Text,
+  Portal,
+  ActivityIndicator,
+  Dialog,
+} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import {connect} from 'react-redux';
-import {checkOut, setIsAll, setListingType, setSuburb, signOut} from '../actions';
+import {
+  checkOut,
+  setIsAll,
+  setListingType,
+  setSuburb,
+  signOut,
+} from '../actions';
 import {useIsFocused, CommonActions} from '@react-navigation/native';
 import {apiActiveURL, appId, appKey} from '../ApiBaseURL';
 import Axios from 'axios';
 import Pdf from 'react-native-pdf';
-import PoweredBy from "../components/PoweredBy";
+import PoweredBy from '../components/PoweredBy';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -38,7 +52,7 @@ const Me = (props) => {
   const [visibleSuburb, setVisibleSuburb] = useState(false);
   const [suburbid, setSuburbID] = useState('');
   const isFocused = useIsFocused();
-  const [visibleLogOut , setVisibleLogOut] = useState(false);
+  const [visibleLogOut, setVisibleLogOut] = useState(false);
   const [pdfuri, setPdfUri] = useState({uri: ''});
   const [pdfmodal, setPdfModal] = useState(false);
   const [pdfloader, setPdfLoader] = useState(false);
@@ -60,7 +74,7 @@ const Me = (props) => {
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
 
     // console.log(props.isAll, 'isAll');
-    props.isAll ? "" : props.suburb ? "" : handleSuburbId(props.hotelSubrub);
+    props.isAll ? '' : props.suburb ? '' : handleSuburbId(props.hotelSubrub);
     // cleanup function
     return () => {
       Keyboard.removeListener('keyboardDidShow', _keyboardDidShow);
@@ -133,8 +147,14 @@ const Me = (props) => {
               Are You Sure You Want To LOGOUT?
             </Title>
             <Dialog.Actions style={{marginBottom: -10}}>
-              <Button onPress={() => hidelogOut()}><Text style={{color: '#D3D3D3', fontWeight: 'bold'}}>Cancel</Text></Button>
-              <Button onPress={() => handleLogout()}><Text style={{color: '#D3D3D3', fontWeight: 'bold'}}>Yes</Text></Button>
+              <Button onPress={() => hidelogOut()}>
+                <Text style={{color: '#D3D3D3', fontWeight: 'bold'}}>
+                  Cancel
+                </Text>
+              </Button>
+              <Button onPress={() => handleLogout()}>
+                <Text style={{color: '#D3D3D3', fontWeight: 'bold'}}>Yes</Text>
+              </Button>
             </Dialog.Actions>
           </ScrollView>
         </Modal>
@@ -150,27 +170,27 @@ const Me = (props) => {
     );
   };
   const handleNavigation = (categoryname) => {
-    if(categoryname == 'Restaurants'){
+    if (categoryname == 'Restaurants') {
       props.navigation.dispatch(
         CommonActions.reset({
-          routes: [{name: 'Restaurants', params: { screenName: 'GetAll' }}],
+          routes: [{name: 'Restaurants', params: {screenName: 'GetAll'}}],
         }),
       );
-    }else if(categoryname != 'PromoCategories'){
+    } else if (categoryname != 'PromoCategories') {
       props.navigation.dispatch(
         CommonActions.reset({
           routes: [{name: categoryname}],
         }),
       );
-    }else{
-      props.navigation.navigate('Promotions' , {screen: categoryname})
+    } else {
+      props.navigation.navigate('Promotions', {screen: categoryname});
     }
   };
 
   const showModalSuburb = () => {
     setLoader(true);
     setVisibleSuburb(true);
-    setMsgTitle('YourHotel');
+    setMsgTitle('MyApartment');
     fetchSuburb();
   };
 
@@ -190,7 +210,7 @@ const Me = (props) => {
         console.log(Object.values(res.data.data).sort(), 'subrubs api');
         if (res.data.code === 200) {
           setMsgTitle('Select Suburb/Town');
-          if(res.data.data){
+          if (res.data.data) {
             let defaultvalue = {All: 'All'};
             let objset = Object.assign(defaultvalue, res.data.data);
             setSuburbs(objset);
@@ -198,13 +218,13 @@ const Me = (props) => {
           setLoader(false);
         } else {
           setLoader(false);
-          setMsgTitle('YourHotel');
+          setMsgTitle('MyApartment');
           setMsgBody('Something Went Wrong...');
         }
       })
       .catch((error) => {
         setLoader(false);
-        setMsgTitle('YourHotel');
+        setMsgTitle('MyApartment');
         setMsgBody('Something Went Wrong...');
         console.log(error, 'subrubs api');
       });
@@ -221,59 +241,62 @@ const Me = (props) => {
         <Modal
           visible={visibleSuburb}
           onDismiss={hideSuburbModal}
-          contentContainerStyle={containerStyle}
-          >
-            <ScrollView>
-          <Title
-            style={{
-              fontSize: 18,
-              textAlign: 'center',
-              color: '#6697D2',
-              paddingBottom: 15,
-            }}>
-            {msgTitle}
-          </Title>
-          <>
-            {loader === true ? (
-              <View
-                style={{
-                  marginTop: 10,
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <ActivityIndicator animating={true} color="#6697D2" />
-              </View>
-            ) : (
-              <>
-                {msgTitle === 'Select Suburb/Town' ? (
-                  Object.values(suburbs).sort().map((suburb, index) => (
-                    <TouchableOpacity
-                      key={index}
-                      style={styles.arealist}
-                      onPress={() => handleSuburbId(suburb)}>
-                      <Text
-                        style={{textTransform: 'capitalize', color: 'black'}}>
-                        {' '}
-                        {suburb}{' '}
-                      </Text>
-                    </TouchableOpacity>
-                  ))
-                ) : (
-                  <Text style={{textAlign: 'center'}}>{msgBody}</Text>
-                )}
-              </>
-            )}
-          </>
+          contentContainerStyle={containerStyle}>
+          <ScrollView>
+            <Title
+              style={{
+                fontSize: 18,
+                textAlign: 'center',
+                color: '#6697D2',
+                paddingBottom: 15,
+              }}>
+              {msgTitle}
+            </Title>
+            <>
+              {loader === true ? (
+                <View
+                  style={{
+                    marginTop: 10,
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <ActivityIndicator animating={true} color="#6697D2" />
+                </View>
+              ) : (
+                <>
+                  {msgTitle === 'Select Suburb/Town' ? (
+                    Object.values(suburbs)
+                      .sort()
+                      .map((suburb, index) => (
+                        <TouchableOpacity
+                          key={index}
+                          style={styles.arealist}
+                          onPress={() => handleSuburbId(suburb)}>
+                          <Text
+                            style={{
+                              textTransform: 'capitalize',
+                              color: 'black',
+                            }}>
+                            {' '}
+                            {suburb}{' '}
+                          </Text>
+                        </TouchableOpacity>
+                      ))
+                  ) : (
+                    <Text style={{textAlign: 'center'}}>{msgBody}</Text>
+                  )}
+                </>
+              )}
+            </>
           </ScrollView>
         </Modal>
-
       </Portal>
     );
   };
   const handleSuburbId = (suburb) => {
     setSuburbID(suburb);
-    props.setIsAll(suburb == 'All' ? true : false)
+    props.setIsAll(suburb == 'All' ? true : false);
     props.setSuburb(suburb == 'All' ? '' : suburb);
     setVisibleSuburb(false);
     setMsgTitle('');
@@ -284,7 +307,7 @@ const Me = (props) => {
     setPdfLoader(true);
     setPdfUri(url);
     setPdfModal(true);
-    setPdfLoader(false)
+    setPdfLoader(false);
   };
 
   const hideModalPDF = () => {
@@ -294,58 +317,57 @@ const Me = (props) => {
   const showPDF = () => {
     return (
       <Portal>
-      <Modal
-        visible={pdfmodal}
-        onDismiss={hideModalPDF}
-        contentContainerStyle={containerStyle}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-        <Title
-            style={{
-              fontSize: 18,
-              textAlign: 'center',
-              color: '#6697D2',
-            }}>
-            {msgTitle}
-          </Title>
+        <Modal
+          visible={pdfmodal}
+          onDismiss={hideModalPDF}
+          contentContainerStyle={containerStyle}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Title
+              style={{
+                fontSize: 18,
+                textAlign: 'center',
+                color: '#6697D2',
+              }}>
+              {msgTitle}
+            </Title>
 
-      {pdfloader === true ? (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <ActivityIndicator animating={true} color="#6697D2" />
-        </View>
-      ) : (
-        
-          <Pdf
-        source={pdfuri}
-        onLoadComplete={(numberOfPages,filePath)=>{
-          console.log(`number of pages: ${numberOfPages}`);
-        }}
-        onPageChanged={(page,numberOfPages)=>{
-            console.log(`current page: ${page}`);
-        }}
-        onError={(error)=>{
-            console.log(error);
-        }}
-        onPressLink={(uri)=>{
-            console.log(`Link presse: ${uri}`)
-        }}
-        // singlePage={false}
-        // page={4}
-        style={styles.pdf}/>
-      )}
-        </ScrollView>
-        <Dialog.Actions>  
-          <Button onPress={hideModalPDF}>Close</Button>
-        </Dialog.Actions>
-      </Modal>
-    </Portal>
+            {pdfloader === true ? (
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <ActivityIndicator animating={true} color="#6697D2" />
+              </View>
+            ) : (
+              <Pdf
+                source={pdfuri}
+                onLoadComplete={(numberOfPages, filePath) => {
+                  console.log(`number of pages: ${numberOfPages}`);
+                }}
+                onPageChanged={(page, numberOfPages) => {
+                  console.log(`current page: ${page}`);
+                }}
+                onError={(error) => {
+                  console.log(error);
+                }}
+                onPressLink={(uri) => {
+                  console.log(`Link presse: ${uri}`);
+                }}
+                // singlePage={false}
+                // page={4}
+                style={styles.pdf}
+              />
+            )}
+          </ScrollView>
+          <Dialog.Actions>
+            <Button onPress={hideModalPDF}>Close</Button>
+          </Dialog.Actions>
+        </Modal>
+      </Portal>
     );
   };
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -358,7 +380,11 @@ const Me = (props) => {
       <View style={styles.logo_row}>
         <View style={styles.logo_row_col_1}>
           <Image
-            source={props.logo ? { uri: props.logo} : require('../images/Hotel360-assets/hotel-logo.png')}
+            source={
+              props.logo
+                ? {uri: props.logo}
+                : require('../images/Hotel360-assets/hotel-logo.png')
+            }
             style={styles.logo_css}
           />
         </View>
@@ -371,68 +397,75 @@ const Me = (props) => {
                 textAlignVertical: 'center',
                 textTransform: 'uppercase',
                 textAlign: 'right',
-                paddingBottom: 5
+                paddingBottom: 5,
               }}>
               {props.hotelName ? props.hotelName : 'SELECT HOTEL NAME'}
             </Text>
-           
+
             <TouchableOpacity onPress={showModalSuburb}>
-            {props.suburb ? (
-              <>
-                <Text
-              style={{
-                fontWeight: '700',
-                color: '#5a5a5a',
-                textAlignVertical: 'center',
-                textTransform: 'uppercase',
-                textAlign: 'right',
-              }}>
-              {`AREA: ${props.cityName}`}
-            </Text>
-            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end'}}>
-            <Icon name='eye' size={14} color='#5a5a5a'/>
-            <Text
-              style={{
-                fontWeight: '700',
-                color: '#5a5a5a',
-                textAlignVertical: 'center',
-                textTransform: 'uppercase',
-                textAlign: 'right',
-              }}>
-              {` ${props.suburb}`}
-            </Text>
-            </View>
-              </>
-            ) : (
-              <>
-              <Text
-              style={{
-                fontWeight: '700',
-                color: '#5a5a5a',
-                textAlignVertical: 'center',
-                textTransform: 'uppercase',
-                textAlign: 'right',
-              }}>
-              {`AREA: ${props.cityName}`}
-            </Text>
-            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end'}}>
-            <Icon name='eye' size={14} color='#5a5a5a'/>
-            <Text
-              style={{
-                fontWeight: '700',
-                color: '#5a5a5a',
-                textAlignVertical: 'center',
-                textTransform: 'uppercase',
-                textAlign: 'right',
-              }}>
-              {` ALL`}
-            </Text>
-            
-            </View>
-            
-              </>
-            )}
-            
+              {props.suburb ? (
+                <>
+                  <Text
+                    style={{
+                      fontWeight: '700',
+                      color: '#5a5a5a',
+                      textAlignVertical: 'center',
+                      textTransform: 'uppercase',
+                      textAlign: 'right',
+                    }}>
+                    {`AREA: ${props.cityName}`}
+                  </Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'flex-end',
+                    }}>
+                    <Icon name="eye" size={14} color="#5a5a5a" />
+                    <Text
+                      style={{
+                        fontWeight: '700',
+                        color: '#5a5a5a',
+                        textAlignVertical: 'center',
+                        textTransform: 'uppercase',
+                        textAlign: 'right',
+                      }}>
+                      {` ${props.suburb}`}
+                    </Text>
+                  </View>
+                </>
+              ) : (
+                <>
+                  <Text
+                    style={{
+                      fontWeight: '700',
+                      color: '#5a5a5a',
+                      textAlignVertical: 'center',
+                      textTransform: 'uppercase',
+                      textAlign: 'right',
+                    }}>
+                    {`AREA: ${props.cityName}`}
+                  </Text>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      justifyContent: 'flex-end',
+                    }}>
+                    <Icon name="eye" size={14} color="#5a5a5a" />
+                    <Text
+                      style={{
+                        fontWeight: '700',
+                        color: '#5a5a5a',
+                        textAlignVertical: 'center',
+                        textTransform: 'uppercase',
+                        textAlign: 'right',
+                      }}>
+                      {` ALL`}
+                    </Text>
+                  </View>
+                </>
+              )}
             </TouchableOpacity>
           </View>
           {showSuburbModal()}
@@ -484,16 +517,23 @@ const Me = (props) => {
           </View>
         </View>
       </View>
-      <View style={{marginTop: 10, marginHorizontal: '5.55%', height: SView}}>
+      <View
+        style={{
+          marginTop: 10,
+          marginHorizontal: '5.55%',
+          height: SView,
+        }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{flexDirection: 'row'}}>
             <View style={styles.contentScroll_view_1}>
-            <TouchableOpacity
-                style={[styles.touchableBox_left, {backgroundColor: '#6697D2', height: 40, marginTop: 0}]}
+              <TouchableOpacity
+                style={[
+                  styles.touchableBox_left,
+                  {backgroundColor: '#6697D2', height: 40, marginTop: 0},
+                ]}
                 onPress={() => {
                   props.navigation.navigate('Weather');
-                }}
-                >
+                }}>
                 {/* <Image
                   source={require('../images/Hotel360-assets/guest-directory-icon.png')}
                   style={{height: '38.31%', resizeMode: 'contain'}}
@@ -504,7 +544,7 @@ const Me = (props) => {
                     lineHeight: 12,
                     textAlign: 'center',
                     marginVertical: '8.42%',
-                    color: '#FFF'
+                    color: '#FFF',
                   }}>
                   LOCAL WEATHER
                 </Title>
@@ -526,20 +566,37 @@ const Me = (props) => {
                     textAlign: 'center',
                     marginTop: '8.42%',
                   }}>
-                  PROPERTY{'\n'}INFORMATION
+                  Property{'\n'}Information
                 </Title>
               </TouchableOpacity>
               <TouchableOpacity
+                style={styles.touchableBox_left}
+                onPress={() => {
+                  props.setListingType(7);
+                  handleNavigation('Promotions');
+                }}>
+                <Image
+                  source={require('../images/Hotel360-assets/promotions.png')}
+                  style={{height: '38.31%', resizeMode: 'contain'}}
+                />
+                <Title
+                  style={{
+                    fontSize: 14,
+                    lineHeight: 14,
+                    textAlign: 'center',
+                    marginTop: '8.42%',
+                  }}>
+                  Experiences, Offers{'\n'}& Promotions
+                </Title>
+              </TouchableOpacity>
+              {/* <TouchableOpacity
                 style={[styles.touchableBox_left, {backgroundColor: '#6697D2', height: 80}]}
                 onPress={() => {
                   
                   handleShowPDF(Platform.OS == 'ios' ? require('./../assets/pdfs/Learn_all_about_YourHotel.pdf') : {uri:'bundle-assets://Learn_all_about_YourHotel.pdf', cache: true} , 'Learn About YourHotel')
                 }}
                 >
-                {/* <Image
-                  source={require('../images/Hotel360-assets/guest-directory-icon.png')}
-                  style={{height: '38.31%', resizeMode: 'contain'}}
-                /> */}
+              
                 <Title
                   style={{
                     fontSize: 14,
@@ -550,7 +607,7 @@ const Me = (props) => {
                   }}>
                   LEARN ABOUT{'\n'}YOURHOTEL
                 </Title>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
               <TouchableOpacity
                 style={styles.touchableBox_left}
                 onPress={() => {
@@ -568,7 +625,7 @@ const Me = (props) => {
                     textAlign: 'center',
                     marginTop: '8.42%',
                   }}>
-                  WHAT'S ON
+                  What's on
                 </Title>
               </TouchableOpacity>
               <TouchableOpacity
@@ -588,20 +645,20 @@ const Me = (props) => {
                     textAlign: 'center',
                     marginTop: '8.42%',
                   }}>
-                  MY VOUCHERS {'\n'}& COUPONS
+                  My vouchers & coupons
                 </Title>
               </TouchableOpacity>
             </View>
             <View style={styles.contentScroll_view_2}>
-            <Title
-              style={{
-                fontSize: 12,
-                lineHeight: 14,
-                textAlign: 'center',
-                marginTop: '5%',
-              }}>
-              Select a Suburb/Town first
-            </Title>
+              <Title
+                style={{
+                  fontSize: 12,
+                  lineHeight: 14,
+                  textAlign: 'center',
+                  marginTop: '5%',
+                }}>
+                Select a Suburb/Town first
+              </Title>
               <TouchableOpacity
                 style={styles.touchableBox_right_first}
                 onPress={() => {
@@ -619,7 +676,7 @@ const Me = (props) => {
                     textAlign: 'center',
                     marginTop: '8.42%',
                   }}>
-                  RESTAURANTS{'\n'}& EATERIES
+                  Restaurants, Bars & Eateries
                 </Title>
               </TouchableOpacity>
               <TouchableOpacity
@@ -639,7 +696,7 @@ const Me = (props) => {
                     textAlign: 'center',
                     marginTop: '8.42%',
                   }}>
-                  EXPERIENCES
+                  Tours, Activities & Attractions
                 </Title>
               </TouchableOpacity>
               <TouchableOpacity
@@ -659,34 +716,14 @@ const Me = (props) => {
                     textAlign: 'center',
                     marginTop: '8.42%',
                   }}>
-                  RETAIL & OTHER
-                </Title>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.touchableBox_right_last}
-                onPress={() => {
-                  props.setListingType(7);
-                  handleNavigation('Promotions');
-                }}>
-                <Image
-                  source={require('../images/Hotel360-assets/promotions.png')}
-                  style={{height: '38.31%', resizeMode: 'contain'}}
-                />
-                <Title
-                  style={{
-                    fontSize: 14,
-                    lineHeight: 14,
-                    textAlign: 'center',
-                    marginTop: '8.42%',
-                  }}>
-                  SPECIAL PROMOTIONS{'\n'}& OFFERS
+                  Beauty, Retail & Other
                 </Title>
               </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
       </View>
-      <PoweredBy/>
+      <PoweredBy />
     </SafeAreaView>
   );
 };
@@ -741,7 +778,7 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.33,
     height: screenHeight * 0.12,
     resizeMode: 'contain',
-    marginLeft: '5.55%'
+    marginLeft: '5.55%',
   },
 
   background_image: {
@@ -770,7 +807,7 @@ const styles = StyleSheet.create({
     paddingRight: '4.67%',
     alignContent: 'flex-start',
     maxHeight: '100%',
-    marginBottom: 15
+    marginBottom: 15,
   },
 
   contentScroll_view_1_row: {
@@ -782,11 +819,11 @@ const styles = StyleSheet.create({
   contentScroll_view_2: {
     justifyContent: 'center',
     width: '50%',
-    height: '100%',
+    height: '80%',
     paddingLeft: '2%',
     paddingRight: '2%',
     borderRadius: 10,
-    backgroundColor: '#ced5e0'
+    backgroundColor: '#ced5e0',
   },
 
   touchableBox_left: {
@@ -795,7 +832,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 110,
     backgroundColor: '#fff',
-    marginTop: '15%',
+    marginTop: '7%',
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
@@ -826,7 +863,7 @@ const styles = StyleSheet.create({
   },
 
   touchableBox_right_last: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: '#cac8c8',
     borderRadius: 10,
     height: 110,
@@ -835,14 +872,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
-    marginBottom: 15
+    borderColor: '#f59936',
+    // marginBottom: 5
   },
   pdf: {
     // flex:1,
     alignSelf: 'center',
-    width:Dimensions.get('window').width,
-    height:Dimensions.get('window').height * 0.55,
-  }
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height * 0.55,
+  },
 });
 
 const mapStateToProps = (state) => ({

@@ -1,11 +1,25 @@
 import React, {useState} from 'react';
-import {Image, Linking, ScrollView, TouchableHighlight, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Linking,
+  ScrollView,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {setFeedback, setServiceDetail, setServices} from '../actions';
-import {ActivityIndicator, Button, Modal, Portal, Text, Title} from 'react-native-paper';
+import {
+  ActivityIndicator,
+  Button,
+  Modal,
+  Portal,
+  Text,
+  Title,
+} from 'react-native-paper';
 import {apiActiveURL, appId, appKey} from '../ApiBaseURL';
 import axios from 'axios';
 
@@ -137,12 +151,12 @@ const Tile = (props) => {
           }
           setLoader2(false);
         } else {
-          props.setFeedback('YourHotel', 'No Data Found...', true, '');
+          props.setFeedback('MyApartment', 'No Data Found...', true, '');
           setLoader2(false);
         }
       })
       .catch((e) => {
-        props.setFeedback('YourHotel', 'No Data Found...', true, '');
+        props.setFeedback('MyApartment', 'No Data Found...', true, '');
         setLoader2(false);
         console.log(e, 'service api');
       });
@@ -165,7 +179,7 @@ const Tile = (props) => {
       Linking.openURL(phoneNumber);
     } else {
       setVisible(false);
-      props.setFeedback('YourHotel', 'No Phone Booking', true, '');
+      props.setFeedback('MyApartment', 'No Phone Booking', true, '');
     }
   };
 
@@ -174,7 +188,7 @@ const Tile = (props) => {
       Linking.openURL(servicebookingurl);
     } else {
       setVisible(false);
-      props.setFeedback('YourHotel', 'No Online Booking', true, '');
+      props.setFeedback('MyApartment', 'No Online Booking', true, '');
     }
   };
 
@@ -206,19 +220,19 @@ const Tile = (props) => {
         console.log(res, 'coupon delete');
         if (res.data.code === 200) {
           props.setFeedback(
-            'YourHotel',
+            'MyApartment',
             'Coupon deleted successfully',
             true,
             '',
           );
           props.fetchCouponServices();
         } else {
-          props.setFeedback('YourHotel', 'Something went Wrong ..', true, '');
+          props.setFeedback('MyApartment', 'Something went Wrong ..', true, '');
           setLoader(true);
         }
       })
       .catch((error) => {
-        props.setFeedback('YourHotel', 'Something went Wrong ..', true, '');
+        props.setFeedback('MyApartment', 'Something went Wrong ..', true, '');
         console.log(error, 'rest api');
       });
   };
@@ -229,14 +243,14 @@ const Tile = (props) => {
       <LinearGradient
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
-        colors={['#D3D3D3', '#e57b0d']}
+        colors={['#D3D3D3', '#6697D2']}
         style={{height: 110, width: 150, borderRadius: 10, marginRight: 10}}>
         <TouchableHighlight
           style={isPress ? styles.tilePressed : styles.tileNormal}
           activeOpacity={1}
           underlayColor="#fff"
           onPress={() => handleNavigation()}>
-         <>
+          <>
             <TouchableOpacity
               style={styles.removebtn}
               onPress={() => handleDeleteCoupon(props.couponid)}>
@@ -249,42 +263,46 @@ const Tile = (props) => {
 
             <View style={styles.btnscontainer}>
               <View style={styles.item}>
-              <TouchableOpacity
-                  style={[styles.bookNowBtn , {}]}
+                <TouchableOpacity
+                  style={[styles.bookNowBtn, {}]}
                   onPress={() => showModal(props.id, props.title)}>
                   <Text style={styles.booknowtext}>Book{'\n'}Now</Text>
                 </TouchableOpacity>
               </View>
-              
+
               {props.passindicator ? (
                 <>
-                <View style={styles.item2}>
-                <Text style={{
-                  fontSize: 11,
-                  textAlign: 'center',
-                  alignSelf: 'flex-end',
-                  color: '#9e1b95',
-                  borderWidth: 1,
-                  borderColor: '#D3D3D3',
-                  textAlignVertical: 'center',
-                  padding: 2,
-                  borderRadius: 10
-                }}>360{'\n'}Pass</Text>
-              </View>
+                  <View style={styles.item2}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        textAlign: 'center',
+                        alignSelf: 'flex-end',
+                        color: '#9e1b95',
+                        borderWidth: 1,
+                        borderColor: '#D3D3D3',
+                        textAlignVertical: 'center',
+                        padding: 2,
+                        borderRadius: 10,
+                      }}>
+                      360{'\n'}Pass
+                    </Text>
+                  </View>
 
-              <View style={styles.item3}>
-                <Image
-                  style={{width: 20, height: 20, marginLeft: 5}}
-                  source={
-                    props.weekendindicator === true
-                      ? require('../images/wi.png')
-                      : require('../images/wid.png')
-                  }
-                />
-              </View>
+                  <View style={styles.item3}>
+                    <Image
+                      style={{width: 20, height: 20, marginLeft: 5}}
+                      source={
+                        props.weekendindicator === true
+                          ? require('../images/wi.png')
+                          : require('../images/wid.png')
+                      }
+                    />
+                  </View>
                 </>
-              ) : (<></>)}
-              
+              ) : (
+                <></>
+              )}
             </View>
           </>
         </TouchableHighlight>
@@ -311,7 +329,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },
@@ -348,14 +366,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
     color: '#000',
-    paddingBottom: 15
+    paddingBottom: 15,
   },
   tileTextPressed: {
     textAlign: 'center',
     fontSize: 14,
     fontWeight: '700',
     color: '#D3D3D3',
-    paddingBottom: 15
+    paddingBottom: 15,
   },
   btnscontainer: {
     flex: 1,
@@ -365,7 +383,7 @@ const styles = StyleSheet.create({
     bottom: 8,
     left: 4,
     right: 2,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   item: {
     width: '35%',
@@ -384,7 +402,7 @@ const styles = StyleSheet.create({
     padding: 1,
     position: 'absolute',
     top: 5,
-    right: 7
+    right: 7,
   },
   removetext: {
     textAlign: 'center',
@@ -397,7 +415,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     borderRadius: 5,
     padding: 1,
-    marginLeft: 5
+    marginLeft: 5,
   },
   booknowtext: {
     textAlign: 'center',
@@ -424,7 +442,7 @@ const styles = StyleSheet.create({
 //     <LinearGradient
 //       start={{x: 0, y: 0}}
 //       end={{x: 1, y: 0}}
-//       colors={['#D3D3D3', '#e57b0d']}
+//       colors={['#D3D3D3', '#6697D2']}
 //       style={{height: 90, width: 150, borderRadius: 10, marginRight: 10}}>
 //       <TouchableHighlight
 //         style={isPress ? styles.tilePressed : styles.tileNormal}

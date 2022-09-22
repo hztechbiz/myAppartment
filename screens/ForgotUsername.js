@@ -1,4 +1,4 @@
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {
@@ -12,12 +12,18 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import {Button, Title, Text, TextInput, ActivityIndicator} from 'react-native-paper';
+import {
+  Button,
+  Title,
+  Text,
+  TextInput,
+  ActivityIndicator,
+} from 'react-native-paper';
 import Icon_FA from 'react-native-vector-icons/FontAwesome';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import { connect } from 'react-redux';
-import { setFeedback } from '../actions';
-import { apiActiveURL } from '../ApiBaseURL';
+import {connect} from 'react-redux';
+import {setFeedback} from '../actions';
+import {apiActiveURL} from '../ApiBaseURL';
 import FeedbackModal from '../components/FeedbackModal';
 
 const screenHeight = Dimensions.get('window').height;
@@ -41,10 +47,9 @@ const ForgotUsername = (props) => {
   const [loader, setLoader] = React.useState(false);
   const [loader2, setLoader2] = React.useState(false);
 
- 
   const authenticate = (name, number) => {
-    if(!name || !number){
-      props.setFeedback('YourHotel', 'All Fields are Required.', true , '');
+    if (!name || !number) {
+      props.setFeedback('MyApartment', 'All Fields are Required.', true, '');
       return;
     }
     setLoader(true);
@@ -66,24 +71,29 @@ const ForgotUsername = (props) => {
     Axios(options)
       .then((res) => {
         console.log(res, 'res');
-        //props.setFeedback('YourHotel', 'Registration Successfully!', true , nav);
+        //props.setFeedback('MyApartment', 'Registration Successfully!', true , nav);
         //props.navigation.navigate('ConfirmCode', { email: email });
-        if(res.data.code == 200){
-          props.setFeedback('YourHotel', 'A Customer Support Representative will be in touch with you as soon as possible during business hours.', true , '');
+        if (res.data.code == 200) {
+          props.setFeedback(
+            'MyApartment',
+            'A Customer Support Representative will be in touch with you as soon as possible during business hours.',
+            true,
+            '',
+          );
           props.navigation.navigate('SignInScreen');
           //console.log('You were right');
-        }else{
-          props.setFeedback('YourHotel', res.data.message, true , '');
+        } else {
+          props.setFeedback('MyApartment', res.data.message, true, '');
         }
-        
+
         setLoader(false);
       })
       .catch((error) => {
-        //props.setFeedback('YourHotel', 'Something Went Wrong!', true , '');
+        //props.setFeedback('MyApartment', 'Something Went Wrong!', true , '');
         console.log(error);
         setLoader(false);
       });
-    
+
     // Axios
     //   .post(url, {
     //     email: props.route.params.email,
@@ -99,13 +109,13 @@ const ForgotUsername = (props) => {
     //     }else{
     //       setLoader2(false);
     //     }
-        
+
     //     if (response.data.status) {
-    //       props.setFeedback('YourHotel', 'Registration Successfully!', true , nav);
+    //       props.setFeedback('MyApartment', 'Registration Successfully!', true , nav);
     //     }else{
-    //       props.setFeedback('YourHotel', response.data.message, true , 'SignUpScreen');
+    //       props.setFeedback('MyApartment', response.data.message, true , 'SignUpScreen');
     //     }
-        
+
     //     //handleInput(response);
     //   })
     //   .catch(function (error) {
@@ -116,7 +126,7 @@ const ForgotUsername = (props) => {
     //     }
     //     console.log(error);
     //   });
-  }; 
+  };
 
   return (
     <SafeAreaView
@@ -126,84 +136,95 @@ const ForgotUsername = (props) => {
         justifyContent: 'center',
         backgroundColor: '#fff',
       }}>
-        <FeedbackModal/>
+      <FeedbackModal />
       <Image
         source={require('../images/Hotel360-assets/BG-SignIn.png')}
         style={styles.background_image}
       />
-      <View style={{height: '70%',  justifyContent: 'center'}}>
-      <ScrollView >
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            //minHeight: 550,
-            zIndex: 2,
+      <View style={{height: '70%', justifyContent: 'center'}}>
+        <ScrollView>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              //minHeight: 550,
+              zIndex: 2,
 
-            width: '100%',
-            //marginTop: 10,
-            //borderColor: '#f00', borderWidth: 1,
-            //marginTop: -80,
-          }}>
-          <Image
-            source={require('../images/Hotel360-assets/hotel-logo.png')}
-            style={{resizeMode: 'contain', width: '30%'}}
-          />
-          <Text style={{textAlign: 'center', color: '#6a6a6b', paddingHorizontal: 40, fontSize: 11}}>Forgot your UserName? No Issues, Just</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => onChangeText3(text)}
-            value={value3}
-            placeholder="Enter Your Name:"
-            placeholderTextColor="#9ca5b1"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
-            // right={
-            //   <TextInput.Icon
-            //     name={() => <Icon_FA name={'user'} size={15} color="#D3D3D3" />}
-            //   />
-            // }
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => setNumber(text)}
-            value={number}
-            placeholder="Enter Your Phone Number:"
-            placeholderTextColor="#9ca5b1"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
-            // right={
-            //   <TextInput.Icon
-            //     name={() => <Icon_FA name={'user'} size={15} color="#D3D3D3" />}
-            //   />
-            // }
-          />
-          
-          {/* <Button style={styles.btn} color="#fff" contentStyle={{}} onPress={() => navigation.navigate('Username')}>
+              width: '100%',
+              //marginTop: 10,
+              //borderColor: '#f00', borderWidth: 1,
+              //marginTop: -80,
+            }}>
+            <Image
+              source={require('../images/Hotel360-assets/hotel-logo.png')}
+              style={{resizeMode: 'contain', width: '30%'}}
+            />
+            <Text
+              style={{
+                textAlign: 'center',
+                color: '#6a6a6b',
+                paddingHorizontal: 40,
+                fontSize: 11,
+              }}>
+              Forgot your UserName? No Issues, Just
+            </Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => onChangeText3(text)}
+              value={value3}
+              placeholder="Enter Your Name:"
+              placeholderTextColor="#9ca5b1"
+              theme={{
+                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+              }}
+              // right={
+              //   <TextInput.Icon
+              //     name={() => <Icon_FA name={'user'} size={15} color="#D3D3D3" />}
+              //   />
+              // }
+            />
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => setNumber(text)}
+              value={number}
+              placeholder="Enter Your Phone Number:"
+              placeholderTextColor="#9ca5b1"
+              theme={{
+                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+              }}
+              // right={
+              //   <TextInput.Icon
+              //     name={() => <Icon_FA name={'user'} size={15} color="#D3D3D3" />}
+              //   />
+              // }
+            />
+
+            {/* <Button style={styles.btn} color="#fff" contentStyle={{}} onPress={() => navigation.navigate('Username')}>
             SIGN IN
           </Button> */}
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              authenticate(value3, number);
-              
-            }}>
-            {loader === true ? (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <ActivityIndicator animating={true} color="#fff" />
-              </View>
-            ) : (
-              <Text style={{color: '#fff'}}>Send</Text>
-            )}
-          </TouchableOpacity>
-          {/* <Button style={styles.btn2} color="#a1a3a6" contentStyle={{}} onPress={() => navigation.navigate('SignInScreen')}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                authenticate(value3, number);
+              }}>
+              {loader === true ? (
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <ActivityIndicator animating={true} color="#fff" />
+                </View>
+              ) : (
+                <Text style={{color: '#fff'}}>Send</Text>
+              )}
+            </TouchableOpacity>
+            {/* <Button style={styles.btn2} color="#a1a3a6" contentStyle={{}} onPress={() => navigation.navigate('SignInScreen')}>
             LATER
           </Button> */}
-          {/* <TouchableOpacity
+            {/* <TouchableOpacity
             style={styles.btn2}
             onPress={() => {
               authenticate(value3, 'Account');
@@ -222,9 +243,8 @@ const ForgotUsername = (props) => {
               <Text style={{color: '#a1a3a6'}}>LATER</Text>
             )}
           </TouchableOpacity> */}
-          
-        </View>
-      </ScrollView>
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -241,7 +261,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },
@@ -259,7 +279,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    marginBottom: 5
+    marginBottom: 5,
   },
   btn2: {
     backgroundColor: '#e2e6ec',

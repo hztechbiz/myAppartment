@@ -25,13 +25,12 @@ import {useIsFocused} from '@react-navigation/native';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import {setFeedback,} from '../actions';
+import {setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import axios from 'axios';
 import Icon_FA from 'react-native-vector-icons/FontAwesome';
 
 const MyDetails = (props) => {
-
   const [SView, setSView] = React.useState('57%');
   const [loader, setLoader] = React.useState(true);
   const [loader2, setLoader2] = React.useState(true);
@@ -67,12 +66,12 @@ const MyDetails = (props) => {
   }, []);
 
   const _keyboardDidShow = () => {
-   setSView('30%');
- };
+    setSView('30%');
+  };
 
- const _keyboardDidHide = () => {
-   setSView('57%');
- };
+  const _keyboardDidHide = () => {
+    setSView('57%');
+  };
 
   const [isPress, setIsPress] = React.useState(false);
   const [isPress2, setIsPress2] = React.useState(false);
@@ -80,11 +79,11 @@ const MyDetails = (props) => {
   const toggleEye = () => {
     setIsPress(!isPress);
     Keyboard.dismiss();
-  }
+  };
   const toggleEye2 = () => {
     setIsPress2(!isPress2);
     Keyboard.dismiss();
-  }
+  };
 
   const fetchUser = () => {
     const url = `${apiActiveURL}/get_user/${props.userid}`;
@@ -102,24 +101,24 @@ const MyDetails = (props) => {
         console.log('userId', res);
         if (res.data.code === 200) {
           //setUserDetails(res.data.data);
-          if(res.data.data.username){
+          if (res.data.data.username) {
             onChangeText(res.data.data.username);
           }
-          if(res.data.data.email){
+          if (res.data.data.email) {
             onChangeText3(res.data.data.email);
           }
-          if(res.data.data.phone){
+          if (res.data.data.phone) {
             onChangeText2(res.data.data.phone);
           }
           setLoader2(false);
         } else {
           console.log('userId', res);
-          props.setFeedback('YourHotel', 'No Data Found', true , '');
+          props.setFeedback('MyApartment', 'No Data Found', true, '');
           setLoader2(false);
         }
       })
       .catch((error) => {
-        props.setFeedback('YourHotel', 'No Data Found', true , '');
+        props.setFeedback('MyApartment', 'No Data Found', true, '');
         console.log('userId', error);
         setLoader2(false);
       });
@@ -138,7 +137,7 @@ const MyDetails = (props) => {
       headers: {
         AppKey: appKey,
         Token: props.token,
-        AppId: appId
+        AppId: appId,
       },
       data: ApiParamForUpdateUser,
       url,
@@ -147,61 +146,69 @@ const MyDetails = (props) => {
       .then((res) => {
         console.log(res, 'user');
         if (res.data.code === 200) {
-          props.setFeedback('YourHotel', 'Form Submitted Successfully', true , '');
+          props.setFeedback(
+            'MyApartment',
+            'Form Submitted Successfully',
+            true,
+            '',
+          );
         } else {
           console.log(res, 'user else');
 
-          props.setFeedback('YourHotel', res.data.message , true , '');
+          props.setFeedback('MyApartment', res.data.message, true, '');
         }
         setLoader(true);
       })
       .catch((error) => {
-        props.setFeedback('YourHotel', 'Something Went Wrong', true , '');
+        props.setFeedback('MyApartment', 'Something Went Wrong', true, '');
         console.log(error, 'user');
         setLoader(true);
       });
   };
 
-  const changePassword = (password , cpassword) => {
+  const changePassword = (password, cpassword) => {
     setLoader3(false);
     const url = `${apiActiveURL}/forgotuserpassword/${props.userid}`;
     if (password == cpassword) {
       let ApiParamForUpdateUser = {
-        password: password
+        password: password,
       };
       const options = {
         method: 'POST',
         headers: {
           AppKey: appKey,
           Token: props.token,
-          AppId: appId
+          AppId: appId,
         },
         data: ApiParamForUpdateUser,
         url,
       };
       Axios(options)
-      .then((res) => {
-        console.log(res, 'user');
-        if (res.data.code === 200) {
-          props.setFeedback('YourHotel', 'Password Reset SuccessFul!', true , '');
-        } else {
-          console.log(res, 'user else');
+        .then((res) => {
+          console.log(res, 'user');
+          if (res.data.code === 200) {
+            props.setFeedback(
+              'MyApartment',
+              'Password Reset SuccessFul!',
+              true,
+              '',
+            );
+          } else {
+            console.log(res, 'user else');
 
-          props.setFeedback('YourHotel', res.data.message , true , '');
-        }
-        setLoader3(true);
-      })
-      .catch((error) => {
-        props.setFeedback('YourHotel', 'Something Went Wrong', true , '');
-        console.log(error, 'user');
-        setLoader3(true);
-      });
-    }else{
-      props.setFeedback('YourHotel', 'Confirm Password Incorrect!', true , '');
+            props.setFeedback('MyApartment', res.data.message, true, '');
+          }
+          setLoader3(true);
+        })
+        .catch((error) => {
+          props.setFeedback('MyApartment', 'Something Went Wrong', true, '');
+          console.log(error, 'user');
+          setLoader3(true);
+        });
+    } else {
+      props.setFeedback('MyApartment', 'Confirm Password Incorrect!', true, '');
     }
-    
-  }
-  
+  };
 
   const showDetails = () => {
     return (
@@ -213,14 +220,16 @@ const MyDetails = (props) => {
         }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Text style={{alignSelf: 'flex-start'}}>Username:</Text>
-        <TextInput
+          <TextInput
             style={styles.input}
             onChangeText={(text) => onChangeText(text)}
             value={value}
             disabled={true}
             placeholder="YOUR USER NAME IS:"
             placeholderTextColor="#9ca5b1"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
             right={
               <TextInput.Icon
                 name={() => <Icon_FA name={'user'} size={15} color="#D3D3D3" />}
@@ -229,36 +238,46 @@ const MyDetails = (props) => {
           />
           <Text style={{alignSelf: 'flex-start'}}>Email:</Text>
           <TextInput
-              style={styles.input}
-              onChangeText={(text) => onChangeText3(text)}
-              value={value3}
-              placeholder="EMAIL ADDRESS"
-              placeholderTextColor="#9ca5b1"
-              theme={{
-                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
-              }}
-              right={
-                <TextInput.Icon
-                  name={() => (
-                    <Icon_FA name={'envelope'} size={15} color="#D3D3D3" />
-                  )}
-                />
-              }
-            />
-            <Text style={{alignSelf: 'flex-start'}}>Phone Number:</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => onChangeText2(text)}
-              value={value2}
-              keyboardType='numeric'
-              placeholder="PHONE NUMBER"
-              placeholderTextColor="#9ca5b1"
-              theme={{
-                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
-              }}
-            />
-            <Text style={{textAlign: 'center', fontSize: 10 , paddingHorizontal: 40, marginTop: 5, color: 'grey'}}>DISCLAIMER: Email and Phone Number CAN'T be changed at the same time.</Text>
-            <TouchableOpacity
+            style={styles.input}
+            onChangeText={(text) => onChangeText3(text)}
+            value={value3}
+            placeholder="EMAIL ADDRESS"
+            placeholderTextColor="#9ca5b1"
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
+            right={
+              <TextInput.Icon
+                name={() => (
+                  <Icon_FA name={'envelope'} size={15} color="#D3D3D3" />
+                )}
+              />
+            }
+          />
+          <Text style={{alignSelf: 'flex-start'}}>Phone Number:</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => onChangeText2(text)}
+            value={value2}
+            keyboardType="numeric"
+            placeholder="PHONE NUMBER"
+            placeholderTextColor="#9ca5b1"
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
+          />
+          <Text
+            style={{
+              textAlign: 'center',
+              fontSize: 10,
+              paddingHorizontal: 40,
+              marginTop: 5,
+              color: 'grey',
+            }}>
+            DISCLAIMER: Email and Phone Number CAN'T be changed at the same
+            time.
+          </Text>
+          <TouchableOpacity
             style={styles.btn}
             onPress={() => {
               update(value3, value2);
@@ -276,47 +295,49 @@ const MyDetails = (props) => {
               <Text style={{color: '#fff'}}>UPDATE</Text>
             )}
           </TouchableOpacity>
-          <Text style={{alignSelf: 'flex-start', paddingTop: 10}}>Change Password:</Text>
+          <Text style={{alignSelf: 'flex-start', paddingTop: 10}}>
+            Change Password:
+          </Text>
           <TextInput
-              style={styles.input}
-              onChangeText={(text) => setPassword(text)}
-              value={password}
-              secureTextEntry={isPress ? false : true}
-              placeholder="PASSWORD"
-              placeholderTextColor="#9ca5b1"
-              theme={{
-                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
-              }}
-              right={
-                <TextInput.Icon
-                  name={() => (
-                    <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />
-                  )}
-                  onPress={toggleEye}
-                />
-              }
-            />
-            <TextInput
-              style={styles.input}  
-              onChangeText={(text) => setCPassword(text)}
-              value={cpassword}
-              secureTextEntry={isPress2 ? false : true}
-              placeholder="CONFIRM PASSWORD"
-              placeholderTextColor="#9ca5b1"
-              theme={{
-                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
-              }}
-              right={
-                <TextInput.Icon
-                  name={() => (
-                    <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />
-                  )}
-                  onPress={toggleEye2}
-                />
-              }
-            />
-            <TouchableOpacity
-            style={[styles.btn , {width: '55%'}]}
+            style={styles.input}
+            onChangeText={(text) => setPassword(text)}
+            value={password}
+            secureTextEntry={isPress ? false : true}
+            placeholder="PASSWORD"
+            placeholderTextColor="#9ca5b1"
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
+            right={
+              <TextInput.Icon
+                name={() => (
+                  <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />
+                )}
+                onPress={toggleEye}
+              />
+            }
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => setCPassword(text)}
+            value={cpassword}
+            secureTextEntry={isPress2 ? false : true}
+            placeholder="CONFIRM PASSWORD"
+            placeholderTextColor="#9ca5b1"
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
+            right={
+              <TextInput.Icon
+                name={() => (
+                  <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />
+                )}
+                onPress={toggleEye2}
+              />
+            }
+          />
+          <TouchableOpacity
+            style={[styles.btn, {width: '55%'}]}
             onPress={() => {
               changePassword(password, cpassword);
             }}>
@@ -337,7 +358,7 @@ const MyDetails = (props) => {
       </View>
     );
   };
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <FeedbackModal />
@@ -412,6 +433,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: 15
+    marginTop: 15,
   },
 });

@@ -8,7 +8,7 @@ import {
   StatusBar,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import BackgroundLayout from '../components/BackgroundLayout';
 import LogoBar from '../components/LogoBar';
@@ -22,7 +22,7 @@ import GDTile from '../components/GDTile';
 import {setChildExperience, setChildGD, setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import {SliderBox} from 'react-native-image-slider-box';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {useNavigation} from '@react-navigation/native';
 
 const screenHeight = Dimensions.get('window').height;
@@ -52,7 +52,6 @@ const GuestDirectory = (props) => {
     fetchCategories();
     fetchFeaturedPromotion();
   }, [props]);
-  
 
   const fetchCategories = () => {
     const url = `${apiActiveURL}/categories?subrub=${props.suburb}&hotel_id=${props.hotelId}&listing_type=1`;
@@ -69,20 +68,21 @@ const GuestDirectory = (props) => {
       .then((res) => {
         if (Object.values(res.data.data).length > 0) {
           //console.log('render', props.catID, res.data.data);
-          let sortCategories = res.data.data.sort((a, b) => a.display_order - b.display_order);
+          let sortCategories = res.data.data.sort(
+            (a, b) => a.display_order - b.display_order,
+          );
           setCategories(sortCategories);
           props.setChildGD(0, '');
           setLoader(true);
         } else {
           console.log(Object.values(res.data.data).length, 'categories');
-          props.setFeedback('YourHotel', 'Something Went Wrong...', true , '');
+          props.setFeedback('MyApartment', 'Something Went Wrong...', true, '');
           setLoader(false);
-          
         }
       })
       .catch((error) => {
         console.log(url, 'rest api');
-        props.setFeedback('YourHotel', 'Something Went Wrong...', true , '');
+        props.setFeedback('MyApartment', 'Something Went Wrong...', true, '');
       });
   };
 
@@ -133,13 +133,18 @@ const GuestDirectory = (props) => {
         } else {
           console.log('featured_promotion', props.listingType, res);
           sliderImages.push(require('../images/Placeholder.png'));
-          props.setFeedback('YourHotel', 'Feature Promotion Image Not Found...', true , '');
+          props.setFeedback(
+            'MyApartment',
+            'Feature Promotion Image Not Found...',
+            true,
+            '',
+          );
           setLoader2(false);
         }
       })
       .catch((error) => {
         //setMsgTitle('ClubLocal');
-        props.setFeedback('YourHotel', 'Something Went Wrong...', true , '');
+        props.setFeedback('MyApartment', 'Something Went Wrong...', true, '');
         //setVisible(true);
         console.log(error, 'featured_promotion api');
         setLoader2(false);
@@ -153,14 +158,13 @@ const GuestDirectory = (props) => {
       });
     } else {
       props.setFeedback(
-        'YourHotel',
+        'MyApartment',
         'Sorry, No Feature Promotions Available',
         true,
         '',
       );
     }
   };
-
 
   const showPromotions = () => {
     return (
@@ -221,112 +225,116 @@ const GuestDirectory = (props) => {
           />
           </TouchableOpacity> */}
           {loader2 === true ? (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: 200,
-                }}>
-                <ActivityIndicator animating={true} color="#D3D3D3" />
-              </View>
-            ) : (
-              <>
-                  <Text style={styles.featuredPromotion}>Featured Promotions</Text>
-                  <Text style={[styles.featuredPromotion, {
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: 200,
+              }}>
+              <ActivityIndicator animating={true} color="#D3D3D3" />
+            </View>
+          ) : (
+            <>
+              <Text style={styles.featuredPromotion}>Featured Promotions</Text>
+              <Text
+                style={[
+                  styles.featuredPromotion,
+                  {
                     fontSize: 18,
                     // alignSelf: 'center',
                     textTransform: 'capitalize',
                     marginTop: 0,
-                  }]}>
-                    {featuredPromotion[currentIndex]?.name} 
-                  </Text>
-                  <SliderBox
-                    underlayColor="transparent"
-                    ImageComponentStyle={{
-                      height: 155,
-                      marginTop: 12,
-                      resizeMode: 'cover',
-                      marginHorizontal: '5.55%',
-                      width: screenWidth * 0.89,
-                    }}
-                    imageLoadingColor="#D3D3D3"
-                    sliderBoxHeight={155}
-                    images={sliderImages}
-                    onCurrentImagePressed={(index) =>
-                      handleNavigatePromoDetail(
-                        featuredserviceid[index],
-                        featuredservicetitle[index],
-                      )
-                    }
-                  />
-                </>
-            )}
+                  },
+                ]}>
+                {featuredPromotion[currentIndex]?.name}
+              </Text>
+              <SliderBox
+                underlayColor="transparent"
+                ImageComponentStyle={{
+                  height: 155,
+                  marginTop: 12,
+                  resizeMode: 'cover',
+                  marginHorizontal: '5.55%',
+                  width: screenWidth * 0.89,
+                }}
+                imageLoadingColor="#D3D3D3"
+                sliderBoxHeight={155}
+                images={sliderImages}
+                onCurrentImagePressed={(index) =>
+                  handleNavigatePromoDetail(
+                    featuredserviceid[index],
+                    featuredservicetitle[index],
+                  )
+                }
+              />
+            </>
+          )}
           <View
+            style={{
+              flexDirection: 'row',
+              marginHorizontal: '5.55%',
+              marginTop: 10,
+              flex: 1,
+            }}>
+            <View
               style={{
-                flexDirection: 'row',
-                marginHorizontal: '5.55%',
-                marginTop: 10,
-                flex: 1,
+                backgroundColor: '#D3D3D3',
+                height: 60,
+                width: '48.5%',
+                borderRadius: 10,
+                marginRight: 5,
+                justifyContent: 'center',
+                alignItems: 'center',
               }}>
-              <View
-                style={{
-                  backgroundColor: '#D3D3D3',
-                  height: 60,
-                  width: '48.5%',
-                  borderRadius: 10,
-                  marginRight: 5,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <TouchableOpacity
-                  onPress={() =>
-                    props.navigation.navigate('MyCoupons', {
-                      screen: 'MyCoupons',
-                      params: {},
-                    })
-                  }>
-                  <Text
-                    style={{
-                      color: '#fff',
-                      textAlign: 'center',
-                      fontSize: 12,
-                      paddingHorizontal: 5,
-                      fontWeight: 'bold'
-                    }}>
-                    MY VOUCHERS &{'\n'} COUPONS
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <View
-                style={{
-                  backgroundColor: '#D3D3D3',
-                  height: 60,
-                  width: '48.5%',
-                  borderRadius: 10,
-                  marginLeft: 5,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <TouchableOpacity
-                  onPress={() =>
-                    props.navigation.navigate('popularServiceRest', {
-                      listingType: 1,
-                    })
-                  }>
-                  <Text
-                    style={{
-                      color: '#fff',
-                      textAlign: 'center',
-                      fontSize: 12,
-                      paddingHorizontal: 5,
-                      fontWeight: 'bold'
-                    }}>
-                    MOST POPULAR
-                  </Text>
-                </TouchableOpacity>
-              </View>
+              <TouchableOpacity
+                onPress={() =>
+                  props.navigation.navigate('MyCoupons', {
+                    screen: 'MyCoupons',
+                    params: {},
+                  })
+                }>
+                <Text
+                  style={{
+                    color: '#fff',
+                    textAlign: 'center',
+                    fontSize: 12,
+                    paddingHorizontal: 5,
+                    fontWeight: 'bold',
+                  }}>
+                  MY VOUCHERS &{'\n'} COUPONS
+                </Text>
+              </TouchableOpacity>
             </View>
+            <View
+              style={{
+                backgroundColor: '#D3D3D3',
+                height: 60,
+                width: '48.5%',
+                borderRadius: 10,
+                marginLeft: 5,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <TouchableOpacity
+                onPress={() =>
+                  props.navigation.navigate('popularServiceRest', {
+                    listingType: 1,
+                  })
+                }>
+                <Text
+                  style={{
+                    color: '#fff',
+                    textAlign: 'center',
+                    fontSize: 12,
+                    paddingHorizontal: 5,
+                    fontWeight: 'bold',
+                  }}>
+                  MOST POPULAR
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -359,7 +367,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },
@@ -373,6 +381,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   featuredPromotion: {
-    marginTop: 8, fontWeight: '700', fontSize: 15, marginHorizontal: '5.55%'
+    marginTop: 8,
+    fontWeight: '700',
+    fontSize: 15,
+    marginHorizontal: '5.55%',
   },
 });

@@ -20,10 +20,15 @@ import {connect} from 'react-redux';
 //import {useIsFocused} from '@react-navigation/native';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
-import {setChildCategory, setChildGD, setChildPromotion, setFeedback} from '../actions';
+import {
+  setChildCategory,
+  setChildGD,
+  setChildPromotion,
+  setFeedback,
+} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import {SliderBox} from 'react-native-image-slider-box';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 import _ from 'lodash';
 
 const screenWidth = Dimensions.get('window').width;
@@ -91,7 +96,7 @@ const childCategoriesGD = (props) => {
         }
       })
       .catch((error) => {
-        props.setFeedback('YourHotel', 'Something Went Wrong...', true , '');
+        props.setFeedback('MyApartment', 'Something Went Wrong...', true, '');
         console.log(url, 'rest api');
       });
   };
@@ -106,7 +111,7 @@ const childCategoriesGD = (props) => {
     let url = '';
     url = `${apiActiveURL}/featured_promotion/${1}/${props.CatId}`;
     // if(props.ChildCatId !== 0){
-    //   url = `${apiActiveURL}/featured_promotion/${1}/${props.ChildCatId}`;  
+    //   url = `${apiActiveURL}/featured_promotion/${1}/${props.ChildCatId}`;
     // }else{
     //   url = `${apiActiveURL}/featured_promotion/${1}/${props.CatId}`;
     // }
@@ -151,7 +156,7 @@ const childCategoriesGD = (props) => {
             let uniqueimages = _.uniqBy(sliderImages, 'uri');
             let uniqueids = _.uniq(featuredserviceid);
             let uniquetitles = _.uniq(featuredservicetitle);
-  
+
             setFeaturedServiceId(uniqueids);
             setFeaturedServiceTitle(uniquetitles);
             setSliderImages(uniqueimages);
@@ -159,13 +164,18 @@ const childCategoriesGD = (props) => {
         } else {
           console.log('featured_promotion', props.listingType, res);
           sliderImages.push(require('../images/Placeholder.png'));
-          props.setFeedback('YourHotel', 'Feature Promotion Image Not Found...', true , '');
+          props.setFeedback(
+            'MyApartment',
+            'Feature Promotion Image Not Found...',
+            true,
+            '',
+          );
           setLoader2(false);
         }
       })
       .catch((error) => {
         //setMsgTitle('ClubLocal');
-        props.setFeedback('YourHotel', 'Something Went Wrong...', true , '');
+        props.setFeedback('MyApartment', 'Something Went Wrong...', true, '');
         //setVisible(true);
         console.log(error, 'featured_promotion api');
         setLoader2(false);
@@ -179,14 +189,13 @@ const childCategoriesGD = (props) => {
       });
     } else {
       props.setFeedback(
-        'YourHotel',
+        'MyApartment',
         'Sorry, No Feature Promotions Available',
         true,
         '',
       );
     }
   };
-
 
   const showCategories = () => {
     return (
@@ -206,7 +215,11 @@ const childCategoriesGD = (props) => {
                 scrollEventThrottle={16}>
                 {getChildCategories(categories).map((category, index) => (
                   <View key={index}>
-                    <Tile title={category.name} id={category.id} haschild={category.hasChild}/>
+                    <Tile
+                      title={category.name}
+                      id={category.id}
+                      haschild={category.hasChild}
+                    />
                   </View>
                 ))}
               </ScrollView>
@@ -235,35 +248,41 @@ const childCategoriesGD = (props) => {
               </View>
             ) : (
               <>
-                  <Text style={styles.featuredPromotion}>Featured Promotions</Text>
-                  <Text style={[styles.featuredPromotion, {
-                    fontSize: 18,
-                    // alignSelf: 'center',
-                    textTransform: 'capitalize',
-                    marginTop: 0,
-                  }]}>
-                    {featuredPromotion[currentIndex]?.name} 
-                  </Text>
-                  <SliderBox
-                    underlayColor="transparent"
-                    ImageComponentStyle={{
-                      height: 155,
-                      marginTop: 12,
-                      resizeMode: 'cover',
-                      marginHorizontal: '5.55%',
-                      width: screenWidth * 0.89,
-                    }}
-                    imageLoadingColor="#6697D2"
-                    sliderBoxHeight={155}
-                    images={sliderImages}
-                    onCurrentImagePressed={(index) =>
-                      handleNavigatePromoDetail(
-                        featuredserviceid[index],
-                        featuredservicetitle[index],
-                      )
-                    }
-                  />
-                </>
+                <Text style={styles.featuredPromotion}>
+                  Featured Promotions
+                </Text>
+                <Text
+                  style={[
+                    styles.featuredPromotion,
+                    {
+                      fontSize: 18,
+                      // alignSelf: 'center',
+                      textTransform: 'capitalize',
+                      marginTop: 0,
+                    },
+                  ]}>
+                  {featuredPromotion[currentIndex]?.name}
+                </Text>
+                <SliderBox
+                  underlayColor="transparent"
+                  ImageComponentStyle={{
+                    height: 155,
+                    marginTop: 12,
+                    resizeMode: 'cover',
+                    marginHorizontal: '5.55%',
+                    width: screenWidth * 0.89,
+                  }}
+                  imageLoadingColor="#6697D2"
+                  sliderBoxHeight={155}
+                  images={sliderImages}
+                  onCurrentImagePressed={(index) =>
+                    handleNavigatePromoDetail(
+                      featuredserviceid[index],
+                      featuredservicetitle[index],
+                    )
+                  }
+                />
+              </>
             )}
             <View
               style={{
@@ -302,9 +321,10 @@ const childCategoriesGD = (props) => {
                 }}
                 labelStyle={{color: '#fff', textAlign: 'center', fontSize: 12}}
                 onPress={() => {
-                  props.navigation.navigate('popularServiceRest', { listingType: 1 })
-                }
-                }>
+                  props.navigation.navigate('popularServiceRest', {
+                    listingType: 1,
+                  });
+                }}>
                 MOST POPULAR
               </Button>
             </View>
@@ -318,7 +338,7 @@ const childCategoriesGD = (props) => {
       <FeedbackModal />
       <BackgroundLayout />
       <LogoBar title={props.hotelName} />
-      <TitleBar title={`GUEST DIRECTORY CATEGORY`}/>
+      <TitleBar title={`GUEST DIRECTORY CATEGORY`} />
 
       {loader === false ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
@@ -361,7 +381,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },
@@ -408,6 +428,9 @@ const styles = StyleSheet.create({
     color: '#6697D2',
   },
   featuredPromotion: {
-    marginTop: 8, fontWeight: '700', fontSize: 15, marginHorizontal: '5.55%'
+    marginTop: 8,
+    fontWeight: '700',
+    fontSize: 15,
+    marginHorizontal: '5.55%',
   },
 });

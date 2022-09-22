@@ -3,8 +3,13 @@ import {TouchableHighlight, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import { connect } from 'react-redux';
-import { setCarouselCurrentIndexAll, setChildExperience, setChildPromotion, setPromotion } from '../actions';
+import {connect} from 'react-redux';
+import {
+  setCarouselCurrentIndexAll,
+  setChildExperience,
+  setChildPromotion,
+  setPromotion,
+} from '../actions';
 
 const childExTile = (props) => {
   var [isPress, setIsPress] = React.useState(false);
@@ -14,7 +19,7 @@ const childExTile = (props) => {
     <LinearGradient
       start={{x: 0, y: 0}}
       end={{x: 1, y: 0}}
-      colors={['#D3D3D3', '#e57b0d']}
+      colors={['#D3D3D3', '#6697D2']}
       style={{height: 90, width: 150, borderRadius: 10, marginRight: 10}}>
       <TouchableHighlight
         style={isPress ? styles.tilePressed : styles.tileNormal}
@@ -28,8 +33,7 @@ const childExTile = (props) => {
             setIsPress(false);
             props.setCarouselCurrentIndexAll();
             props.setChildExperience(props.id, props.title);
-            props.haschild === true
-            ? "" : navigation.navigate('ExServices');
+            props.haschild === true ? '' : navigation.navigate('ExServices');
           }, 0);
         }}>
         <Text style={isPress ? styles.tileTextPressed : styles.tileTextNormal}>
@@ -48,7 +52,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setChildExperience: (id , name) => {
+  setChildExperience: (id, name) => {
     const data = {
       id: id,
       name: name,

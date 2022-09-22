@@ -12,12 +12,12 @@ import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
 import Tile from '../components/childPromotionTile';
 import BigTile from '../components/ProBigTile';
-import { connect } from 'react-redux';
-import { useIsFocused } from '@react-navigation/native';
-import { apiActiveURL, appKey, appId } from '../ApiBaseURL';
+import {connect} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
+import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
-import { setChildPromotion, setFeedback } from '../actions';
-import { ActivityIndicator } from 'react-native-paper';
+import {setChildPromotion, setFeedback} from '../actions';
+import {ActivityIndicator} from 'react-native-paper';
 import FeedbackModal from '../components/FeedbackModal';
 
 const Category = (props) => {
@@ -42,7 +42,6 @@ const Category = (props) => {
     setSView('50%');
   };
 
-
   const [categories, setCategories] = React.useState([]);
   const [services, setServices] = React.useState([]);
   const [loader, setLoader] = React.useState(false);
@@ -63,7 +62,7 @@ const Category = (props) => {
       headers: {
         AppKey: appKey,
         Token: props.token,
-        AppId: appId
+        AppId: appId,
       },
       url,
     };
@@ -73,21 +72,21 @@ const Category = (props) => {
           //console.log('render', props.ProId, res.data.data);
           setCategories(res.data.data);
           //props.setChildCategory(res.data.data[0].id, res.data.data[0].title);
-          if (props.ChildProId == 0){
+          if (props.ChildProId == 0) {
             let sliceData = Object.values(res.data.data);
-          props.setChildPromotion(sliceData[0].id, sliceData[0].title);
+            props.setChildPromotion(sliceData[0].id, sliceData[0].title);
           }
           fetchServices();
           setLoader(true);
         } else {
-          props.setFeedback('YourHotel', 'No Data Found', true , '');
+          props.setFeedback('MyApartment', 'No Data Found', true, '');
           //console.log(Object.values(res.data.data).length, 'categories');
           setLoader(false);
         }
       })
       .catch((error) => {
         console.log(url, 'rest api');
-        props.setFeedback('YourHotel', 'Something Went Wrong...', true , '');
+        props.setFeedback('MyApartment', 'Something Went Wrong...', true, '');
       });
   };
 
@@ -112,7 +111,6 @@ const Category = (props) => {
             ))}
           </ScrollView>
         </View>
-        
       </>
     );
   };
@@ -124,7 +122,7 @@ const Category = (props) => {
       headers: {
         AppKey: appKey,
         Token: props.token,
-        AppId: appId
+        AppId: appId,
       },
       url,
     };
@@ -138,13 +136,13 @@ const Category = (props) => {
           console.log(url, 'rest api');
         } else {
           //console.log(Object.values(res.data.data).length, 'categories');
-          props.setFeedback('YourHotel', 'No Data Found', true , '');
+          props.setFeedback('MyApartment', 'No Data Found', true, '');
           setLoader2(false);
         }
       })
       .catch((error) => {
         console.log(url, 'rest api');
-        props.setFeedback('YourHotel', 'Something Went Wrong...', true , '');
+        props.setFeedback('MyApartment', 'Something Went Wrong...', true, '');
       });
   };
 
@@ -156,7 +154,6 @@ const Category = (props) => {
   const showServices = () => {
     return (
       <>
-        
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
             {getServices(services).map((services, index) => (
@@ -168,15 +165,13 @@ const Category = (props) => {
             ))}
           </View>
         </ScrollView>
-        
-        
       </>
     );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <FeedbackModal/>
+      <FeedbackModal />
       <BackgroundLayout />
       <LogoBar title={props.hotelName} />
       <TitleBar title={`PROMOTION CATEGORY TITLE`} sub={true} />
@@ -188,19 +183,33 @@ const Category = (props) => {
           paddingRight: '5.55%',
         }}>
         {loader === false ? (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: 90, marginBottom: 10}}>
-          <ActivityIndicator animating={true} color="#D3D3D3" />
-        </View>
-      ) : (
-        showChildCategories()
-      )}
-      {loader2 === false ? (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: 90, marginBottom: 10}}>
-          <ActivityIndicator animating={true} color="#D3D3D3" />
-        </View>
-      ) : (
-        showServices()
-      )}
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 90,
+              marginBottom: 10,
+            }}>
+            <ActivityIndicator animating={true} color="#D3D3D3" />
+          </View>
+        ) : (
+          showChildCategories()
+        )}
+        {loader2 === false ? (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 90,
+              marginBottom: 10,
+            }}>
+            <ActivityIndicator animating={true} color="#D3D3D3" />
+          </View>
+        ) : (
+          showServices()
+        )}
       </View>
     </SafeAreaView>
   );
@@ -208,33 +217,33 @@ const Category = (props) => {
 
 const mapStateToProps = (state) => ({
   hotelName: state.HotelDetails.hotel.name,
- // hotelId: state.HotelDetails.hotel.id,
- // listingType: state.ListingType,
- token: state.LoginDetails.token,
- ProId: state.Promotion.id,
- ProName: state.Promotion.name,
- ChildProId: state.ChildPromotion.id,
- suburb: state.HotelDetails.suburb,
- area: state.HotelDetails.hotel.area,
+  // hotelId: state.HotelDetails.hotel.id,
+  // listingType: state.ListingType,
+  token: state.LoginDetails.token,
+  ProId: state.Promotion.id,
+  ProName: state.Promotion.name,
+  ChildProId: state.ChildPromotion.id,
+  suburb: state.HotelDetails.suburb,
+  area: state.HotelDetails.hotel.area,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setChildPromotion: (id , name) => {
-   const data = {
-     id: id,
-     name: name,
-   };
-   dispatch(setChildPromotion(data));
- },
- setFeedback: (msgTitle, msgBody, visible, mynav) => {
-  const data = {
-    msgTitle: msgTitle,
-    msgBody: msgBody,
-    visible: visible,
-    mynav: mynav
-  };
-  dispatch(setFeedback(data));
-},
+  setChildPromotion: (id, name) => {
+    const data = {
+      id: id,
+      name: name,
+    };
+    dispatch(setChildPromotion(data));
+  },
+  setFeedback: (msgTitle, msgBody, visible, mynav) => {
+    const data = {
+      msgTitle: msgTitle,
+      msgBody: msgBody,
+      visible: visible,
+      mynav: mynav,
+    };
+    dispatch(setFeedback(data));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

@@ -25,8 +25,8 @@ import BackgroundLayout from '../components/BackgroundLayout';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
-import { connect } from 'react-redux';
-import { setFeedback } from '../actions';
+import {connect} from 'react-redux';
+import {setFeedback} from '../actions';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -42,16 +42,15 @@ const SpecialBusiness = (props) => {
   const [visible, setVisible] = useState(false);
   const [confirmationcode, setConfirmationCode] = useState('');
 
-
   const containerStyle = {
     backgroundColor: 'white',
     paddingHorizontal: 20,
     paddingVertical: 30,
     marginHorizontal: 20,
   };
-  
+
   useEffect(() => {
-   setConfirmationCode(generateConfirmationCode(6));
+    setConfirmationCode(generateConfirmationCode(6));
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
 
@@ -84,31 +83,31 @@ const SpecialBusiness = (props) => {
 
   const handleChangeBill = (text) => {
     setBill(text);
-    if(text > 50){
+    if (text > 50) {
       let discounted_price;
       let original_price = text;
       let discount = props.route.params.discount;
       discounted_price = original_price - (original_price * discount) / 100;
       setNetAmount(discounted_price);
-    }else{
+    } else {
       setNetAmount(text);
     }
   };
 
   const handleVerifyCoupon = () => {
     if (bill === '') {
-      setMsgTitle('YourHotel');
+      setMsgTitle('MyApartment');
       setMsgBody('Please enter net amount value.');
       setVisible(true);
       return;
-    }else if(confirmationcode == ''){
-      setMsgTitle('YourHotel');
+    } else if (confirmationcode == '') {
+      setMsgTitle('MyApartment');
       setMsgBody("Please tap 'Verify' again to confirm your purchase");
       setVisible(true);
       return;
     }
     setLoader(true);
-    setMsgTitle('YourHotel');
+    setMsgTitle('MyApartment');
     setVisible(true);
     const url = `${apiActiveURL}/add_transaction`;
     let ApiParamForTransaction = {
@@ -133,18 +132,23 @@ const SpecialBusiness = (props) => {
         console.log(res, 'add_transaction');
         if (res.data.code === 200) {
           setLoader(false);
-          props.setFeedback('YourHotel', 'Coupon Verified Successfully!', true , 'Special Promotions');
+          props.setFeedback(
+            'MyApartment',
+            'Coupon Verified Successfully!',
+            true,
+            'Special Promotions',
+          );
         } else {
           setLoader(false);
-          props.setFeedback('YourHotel', 'No Data Found ...', true , '');
+          props.setFeedback('MyApartment', 'No Data Found ...', true, '');
         }
       })
       .catch((error) => {
         setLoader(false);
-        props.setFeedback('YourHotel', 'No Data Found ...', true , '');
+        props.setFeedback('MyApartment', 'No Data Found ...', true, '');
         console.log('how', error);
       });
-  }
+  };
 
   const showModal = () => {
     return (
@@ -164,14 +168,29 @@ const SpecialBusiness = (props) => {
               {msgTitle}
             </Title>
             {loader === true ? (
-              <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
                 <ActivityIndicator animating={true} color="#D3D3D3" />
               </View>
             ) : (
               <Text style={{textAlign: 'center'}}>{msgBody}</Text>
             )}
             <Dialog.Actions>
-              <Button onPress={() => {msgBody == "Please tap 'Verify' again to confirm your purchase" ? handleVerify() : hideModal()}}>{msgBody == "Please tap 'Verify' again to confirm your purchase" ? 'Verify' : 'OK'}</Button>
+              <Button
+                onPress={() => {
+                  msgBody ==
+                  "Please tap 'Verify' again to confirm your purchase"
+                    ? handleVerify()
+                    : hideModal();
+                }}>
+                {msgBody == "Please tap 'Verify' again to confirm your purchase"
+                  ? 'Verify'
+                  : 'OK'}
+              </Button>
             </Dialog.Actions>
           </ScrollView>
         </Modal>
@@ -183,7 +202,7 @@ const SpecialBusiness = (props) => {
   };
   const handleVerify = () => {
     setConfirmationCode(generateConfirmationCode(6));
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -224,27 +243,27 @@ COUPON`}
               AMOUNT PAYABLE
             </Text>
             <TextInput
-                style={{
-                  color: '#838e9d',
-                  backgroundColor: '#f0f3f7',
-                  marginTop: 6,
-                  borderRadius: 5,
-                  textAlign: 'center',
-                  marginBottom: 5,
-                }}
-                keyboardType='numeric'
-                maxLength={5}
-                onChangeText={(text) => handleChangeBill(text)}
-                value={bill}
-                placeholder="Enter Value"
-                placeholderTextColor="#838e9d"
-              />
- 
+              style={{
+                color: '#838e9d',
+                backgroundColor: '#f0f3f7',
+                marginTop: 6,
+                borderRadius: 5,
+                textAlign: 'center',
+                marginBottom: 5,
+              }}
+              keyboardType="numeric"
+              maxLength={5}
+              onChangeText={(text) => handleChangeBill(text)}
+              value={bill}
+              placeholder="Enter Value"
+              placeholderTextColor="#838e9d"
+            />
+
             <Text style={{textAlign: 'center', fontWeight: '700'}}>
               Show your 360 Coupon to your Server and then tap verify below
             </Text>
           </View>
-  
+
           <View
             style={{
               borderTopColor: '#edf0f5',
@@ -254,7 +273,7 @@ COUPON`}
           <View style={{flexDirection: 'row'}}>
             <View style={{width: '50%', paddingRight: 20}}>
               <Button
-              onPress={() => handleVerifyCoupon()}
+                onPress={() => handleVerifyCoupon()}
                 style={{
                   backgroundColor: '#D3D3D3',
                   height: 50,
@@ -313,7 +332,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },

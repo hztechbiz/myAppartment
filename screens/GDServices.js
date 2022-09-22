@@ -143,29 +143,21 @@ const GDServices = (props) => {
       .then((res) => {
         if (Object.values(res.data.data).length > 0) {
           console.log('render', res.data.data);
-          let sortServices = res.data.data.sort((a, b) => a.display_order - b.display_order);
+          let sortServices = res.data.data.sort(
+            (a, b) => a.display_order - b.display_order,
+          );
           setServices(sortServices);
           //props.setChildCategory(res.data.data[0].id, res.data.data[0].title);
           setLoader2(true);
           console.log(url, 'rest api 2');
         } else {
-          props.setFeedback(
-            'YourHotel',
-            'No Data Found...',
-            true,
-            'Me',
-          );
+          props.setFeedback('MyApartment', 'No Data Found...', true, 'Me');
           console.log(url, 'categories');
           setLoader2(false);
         }
       })
       .catch((error) => {
-        props.setFeedback(
-          'YourHotel',
-          'Something Went Wrong.',
-          true,
-          'Me',
-        );
+        props.setFeedback('MyApartment', 'Something Went Wrong.', true, 'Me');
 
         console.log(url, 'rest api');
       });
@@ -175,6 +167,91 @@ const GDServices = (props) => {
     let sliceData = Object.values(data);
     return sliceData;
   };
+
+  // const messageBtn = () => {
+  //   return (
+  //     <>
+  //       <View
+  //         style={{
+  //           flex: 1,
+  //           flexDirection: 'row',
+  //           //flexWrap: 'wrap',
+  //           marginBottom: 10,
+  //           //marginHorizontal: '5.55%'
+  //         }}>
+  //         <TouchableOpacity
+  //           style={{
+  //             backgroundColor: '#6697D2',
+  //             height: 60,
+  //             width: '31.5%',
+  //             borderRadius: 10,
+  //             //marginLeft: 5,
+  //             justifyContent: 'center',
+  //             alignItems: 'center',
+  //           }}
+  //           onPress={() => {
+  //             props.navigation.navigate('GDmessages');
+  //           }}>
+  //           <Text
+  //             style={{
+  //               paddingHorizontal: 5,
+  //               color: '#fff',
+  //               textAlign: 'center',
+  //               fontSize: 12,
+  //             }}>
+  //             Messages from Hotel
+  //           </Text>
+  //         </TouchableOpacity>
+  //         <TouchableOpacity
+  //           style={{
+  //             backgroundColor: '#6697D2',
+  //             height: 60,
+  //             width: '31.5%',
+  //             borderRadius: 10,
+  //             marginLeft: 5,
+  //             justifyContent: 'center',
+  //             alignItems: 'center',
+  //           }}
+  //           onPress={() => {
+  //             props.navigation.navigate('GDmessages');
+  //           }}>
+  //           <Text
+  //             style={{
+  //               paddingHorizontal: 5,
+  //               color: '#fff',
+  //               textAlign: 'center',
+  //               fontSize: 12,
+  //             }}>
+  //             Messages to Hotel
+  //           </Text>
+  //         </TouchableOpacity>
+  //         <TouchableOpacity
+  //           style={{
+  //             backgroundColor: '#6697D2',
+  //             height: 60,
+  //             width: '31.5%',
+  //             borderRadius: 10,
+  //             marginLeft: 5,
+  //             justifyContent: 'center',
+  //             alignItems: 'center',
+  //           }}
+  //           onPress={() => {
+  //             props.navigation.navigate('GDmessages');
+  //           }}>
+  //           <Text
+  //             style={{
+  //               paddingHorizontal: 5,
+  //               color: '#fff',
+  //               textAlign: 'center',
+  //               fontSize: 12,
+  //             }}>
+  //             Hotel Deals
+  //           </Text>
+  //         </TouchableOpacity>
+  //       </View>
+  //     </>
+  //   );
+  // };
 
   const messageBtn = () => {
     return (
@@ -198,9 +275,18 @@ const GDServices = (props) => {
               alignItems: 'center',
             }}
             onPress={() => {
-              props.navigation.navigate('GDmessages');
-            }}
-          >
+              //  handleAnalytics('Guest_Directory', {
+              //    userid: props?.userid,
+              //    topicName: 'Cafes & Restaurants',
+              //    hotelId: props?.hotelId,
+              //    hotelName: props?.hotelName,
+
+              //    area: props?.area,
+              //    suburb: props?.suburb,
+              //  });
+              //  addToLog('Cafes & Restaurants');
+              props.navigation.navigate('Restaurants');
+            }}>
             <Text
               style={{
                 paddingHorizontal: 5,
@@ -208,7 +294,7 @@ const GDServices = (props) => {
                 textAlign: 'center',
                 fontSize: 12,
               }}>
-              Messages from Hotel
+              Cafes & Restaurants
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -222,9 +308,18 @@ const GDServices = (props) => {
               alignItems: 'center',
             }}
             onPress={() => {
-              props.navigation.navigate('GDmessages');
-            }}
-          >
+              //  handleAnalytics('Guest_Directory', {
+              //    userid: props?.userid,
+              //    topicName: 'Whats On',
+              //    hotelId: props?.hotelId,
+              //    hotelName: props?.hotelName,
+
+              //    area: props?.area,
+              //    suburb: props?.suburb,
+              //  });
+              //  addToLog('Whats On');
+              props.navigation.navigate('WhatsOn');
+            }}>
             <Text
               style={{
                 paddingHorizontal: 5,
@@ -232,7 +327,7 @@ const GDServices = (props) => {
                 textAlign: 'center',
                 fontSize: 12,
               }}>
-              Messages to Hotel
+              What's On
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -246,9 +341,18 @@ const GDServices = (props) => {
               alignItems: 'center',
             }}
             onPress={() => {
-              props.navigation.navigate('GDmessages');
-            }}
-          >
+              //  handleAnalytics('Guest_Directory', {
+              //    userid: props?.userid,
+              //    topicName: 'Promotions & Offers',
+              //    hotelId: props?.hotelId,
+              //    hotelName: props?.hotelName,
+
+              //    area: props?.area,
+              //    suburb: props?.suburb,
+              //  });
+              //  addToLog('Promotions & Offers');
+              props.navigation.navigate('Promotions');
+            }}>
             <Text
               style={{
                 paddingHorizontal: 5,
@@ -256,7 +360,7 @@ const GDServices = (props) => {
                 textAlign: 'center',
                 fontSize: 12,
               }}>
-              Hotel Deals
+              Promotions & Offers
             </Text>
           </TouchableOpacity>
         </View>
@@ -288,6 +392,7 @@ const GDServices = (props) => {
       <FeedbackModal />
       <LogoBar title={props.hotelName} />
       <TitleBar title={`Property Information`} isGD={true} />
+
       <View
         style={{
           height: SView,

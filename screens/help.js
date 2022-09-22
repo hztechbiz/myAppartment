@@ -7,7 +7,7 @@ import {
   ScrollView,
   Keyboard,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import {
   ActivityIndicator,
@@ -25,7 +25,7 @@ import {useIsFocused} from '@react-navigation/native';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import {setFeedback,} from '../actions';
+import {setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import Pdf from 'react-native-pdf';
 
@@ -77,12 +77,12 @@ const Help = (props) => {
           setLoader(false);
         } else {
           console.log('faq', res);
-          props.setFeedback('YourHotel', 'No Data Found...', true , '');
+          props.setFeedback('MyApartment', 'No Data Found...', true, '');
           setLoader(false);
         }
       })
       .catch((error) => {
-        props.setFeedback('YourHotel', 'No Data Found...', true , '');
+        props.setFeedback('MyApartment', 'No Data Found...', true, '');
         setLoader(false);
         console.log('faq', error);
       });
@@ -106,11 +106,11 @@ const Help = (props) => {
           setHowToBtns(res.data.data);
         } else {
           console.log('how', res);
-          props.setFeedback('YourHotel', 'No Data Found...', true , '');
+          props.setFeedback('MyApartment', 'No Data Found...', true, '');
         }
       })
       .catch((error) => {
-        props.setFeedback('YourHotel', 'No Data Found...', true , '');
+        props.setFeedback('MyApartment', 'No Data Found...', true, '');
         console.log('how', error);
       });
   };
@@ -121,10 +121,13 @@ const Help = (props) => {
         style={{
           flexDirection: 'row',
           marginVertical: 10,
-          flexWrap: 'wrap'
+          flexWrap: 'wrap',
         }}>
         {howtobtns.map((howtobtn, index) => (
-          <TouchableOpacity key={index} style={styles.howtobtn} onPress={() => handleShowPDF(howtobtn.pdf_url, howtobtn.title)}>
+          <TouchableOpacity
+            key={index}
+            style={styles.howtobtn}
+            onPress={() => handleShowPDF(howtobtn.pdf_url, howtobtn.title)}>
             <Text style={styles.howtotext}>{howtobtn.title}</Text>
           </TouchableOpacity>
         ))}
@@ -149,19 +152,21 @@ const Help = (props) => {
                 key={index}
                 onPress={() => handleAnswer(faq.question, faq.answer)}
                 style={{
-                  flexDirection: "row",
+                  flexDirection: 'row',
                   paddingVertical: 15,
-                }}
-                >
+                }}>
                 <Text
                   style={{
                     fontSize: 17,
-                    
-                  }}
-                >
+                  }}>
                   {faq.question}
                 </Text>
-                <Icon_FA_5 name={'angle-right'} size={15} color="#000" style={{alignSelf:'center', right: 0, position: 'absolute'}} />
+                <Icon_FA_5
+                  name={'angle-right'}
+                  size={15}
+                  color="#000"
+                  style={{alignSelf: 'center', right: 0, position: 'absolute'}}
+                />
               </TouchableOpacity>
             ))}
           </View>
@@ -204,9 +209,9 @@ const Help = (props) => {
   const handleShowPDF = (url, title) => {
     setMsgTitle(title);
     setPdfLoader(true);
-    setPdfUri({uri:url, cache:true});
+    setPdfUri({uri: url, cache: true});
     setPdfModal(true);
-    setPdfLoader(false)
+    setPdfLoader(false);
   };
 
   const hideModalPDF = () => {
@@ -216,52 +221,53 @@ const Help = (props) => {
   const showPDF = () => {
     return (
       <Portal>
-      <Modal
-        visible={pdfmodal}
-        onDismiss={hideModalPDF}
-        contentContainerStyle={containerStyle}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-        <Title
-            style={{
-              fontSize: 18,
-              textAlign: 'center',
-              color: '#e57b0d',
-            }}>
-            {msgTitle}
-          </Title>
+        <Modal
+          visible={pdfmodal}
+          onDismiss={hideModalPDF}
+          contentContainerStyle={containerStyle}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <Title
+              style={{
+                fontSize: 18,
+                textAlign: 'center',
+                color: '#6697D2',
+              }}>
+              {msgTitle}
+            </Title>
 
-      {pdfloader === true ? (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <ActivityIndicator animating={true} color="#D3D3D3" />
-        </View>
-      ) : (
-        <Pdf
-        source={pdfuri}
-        onLoadComplete={(numberOfPages,filePath)=>{
-          console.log(`number of pages: ${numberOfPages}`);
-        }}
-        onPageChanged={(page,numberOfPages)=>{
-            console.log(`current page: ${page}`);
-        }}
-        onError={(error)=>{
-            console.log(error);
-        }}
-        onPressLink={(uri)=>{
-            console.log(`Link presse: ${uri}`)
-        }}
-        style={styles.pdf}/>
-      )}
-        </ScrollView>
-        <Dialog.Actions>  
-          <Button onPress={hideModalPDF}>Close</Button>
-        </Dialog.Actions>
-      </Modal>
-    </Portal>
+            {pdfloader === true ? (
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <ActivityIndicator animating={true} color="#D3D3D3" />
+              </View>
+            ) : (
+              <Pdf
+                source={pdfuri}
+                onLoadComplete={(numberOfPages, filePath) => {
+                  console.log(`number of pages: ${numberOfPages}`);
+                }}
+                onPageChanged={(page, numberOfPages) => {
+                  console.log(`current page: ${page}`);
+                }}
+                onError={(error) => {
+                  console.log(error);
+                }}
+                onPressLink={(uri) => {
+                  console.log(`Link presse: ${uri}`);
+                }}
+                style={styles.pdf}
+              />
+            )}
+          </ScrollView>
+          <Dialog.Actions>
+            <Button onPress={hideModalPDF}>Close</Button>
+          </Dialog.Actions>
+        </Modal>
+      </Portal>
     );
   };
 
@@ -336,19 +342,19 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 5
+    marginBottom: 5,
   },
   howtotext: {
     color: '#fff',
     fontSize: 12,
     textAlign: 'center',
     fontWeight: 'bold',
-    marginHorizontal: 5
+    marginHorizontal: 5,
   },
   pdf: {
-      // flex:1,
-      alignSelf: 'center',
-      width:Dimensions.get('window').width,
-      height:Dimensions.get('window').height * 0.6,
-  }
+    // flex:1,
+    alignSelf: 'center',
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height * 0.6,
+  },
 });

@@ -22,7 +22,7 @@ import {
   Modal,
   Portal,
   Provider,
-  Title
+  Title,
 } from 'react-native-paper';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -91,8 +91,8 @@ const Business = (props) => {
   const [isRequest, setIsRequest] = useState(true);
   const hideModalFeedback = () => setVisibleFeedback(false);
   const [address, setAddress] = useState('');
-  const [vaccine, setVaccine] = useState("");
-  const [menuURL, setMenuURL] = useState("");
+  const [vaccine, setVaccine] = useState('');
+  const [menuURL, setMenuURL] = useState('');
 
   const feedbackContainerStyle = {
     backgroundColor: 'white',
@@ -231,7 +231,7 @@ const Business = (props) => {
             let fricouponpercentage = parseCoupon.friday;
             setMonDiscount(moncouponpercentage);
             setFriDiscount(fricouponpercentage);
-            if (moncouponpercentage <= 0 && fricouponpercentage <= 0){
+            if (moncouponpercentage <= 0 && fricouponpercentage <= 0) {
               setIsRequest(false);
             }
             setCouponDetails({
@@ -252,21 +252,21 @@ const Business = (props) => {
           let vaccine_pass = res.data.data.service.meta.find(
             (o) => o.meta_key === 'vaccine_password',
           );
-          if(vaccine_pass){
-            if(vaccine_pass.meta_value == '1'){
+          if (vaccine_pass) {
+            if (vaccine_pass.meta_value == '1') {
               setVaccine(require('../images/vaccine_pass.jpg'));
-            }else if(vaccine_pass.meta_value == '0'){
+            } else if (vaccine_pass.meta_value == '0') {
               setVaccine(require('../images/vaccine_pass_cross.png'));
-            }else{
-              setVaccine("");
+            } else {
+              setVaccine('');
             }
           }
-          
+
           //hotel_menu_url work
           let hotel_menu_url = res.data.data.service.meta.find(
             (o) => o.meta_key === 'hotel_menu_url',
           );
-          if(hotel_menu_url){
+          if (hotel_menu_url) {
             setMenuURL(hotel_menu_url.meta_value);
           }
 
@@ -377,18 +377,18 @@ const Business = (props) => {
 
           setLoader(false);
         } else {
-          // setMsgTitle('YourHotel');
+          // setMsgTitle('MyApartment');
           // setMsgBody('No Data Found...');
           // setVisibleFeedback(true);
-          props.setFeedback('YourHotel', 'No Data Found...', true, '');
+          props.setFeedback('MyApartment', 'No Data Found...', true, '');
           setLoader(false);
         }
       })
       .catch((e) => {
-        // setMsgTitle('YourHotel');
+        // setMsgTitle('MyApartment');
         // setMsgBody('No Data Found...');
         // setVisibleFeedback(true);
-        props.setFeedback('YourHotel', 'No Data Found...', true, '');
+        props.setFeedback('MyApartment', 'No Data Found...', true, '');
         setLoader(false);
         console.log(e, 'service api');
       });
@@ -410,63 +410,66 @@ const Business = (props) => {
     console.log(mondiscount, fridiscount);
     if (mondiscount <= 0 && fridiscount <= 0) {
       props.setFeedback(
-        'YourHotel',
-        `360 Pass is the YourHotel loyalty program. Unfortunately, 360 Pass is not available at ${props.ServiceName}.`,
+        'MyApartment',
+        `360 Pass is the MyApartment loyalty program. Unfortunately, 360 Pass is not available at ${props.ServiceName}.`,
         true,
         '',
       );
       return;
     }
     setVisibleFeedback(true);
-  }
+  };
 
   const request360Modal = () => {
     return (
       <>
-       <Portal>
-        <Modal
-          visible={visiblefeedback}
-          onDismiss={hideModalFeedback}
-          contentContainerStyle={feedbackContainerStyle}>
-          <Title
-            style={{
-              fontSize: 18,
-              textAlign: 'center',
-              color: '#D3D3D3',
-              paddingBottom: 15,
-            }}>
-            YourHotel
-          </Title>
-          <Text style={{ textAlign: 'center' }}>{`360 Pass is the YourHotel loyalty program entitling you to a discount whenever you visit ${props.ServiceName}.`}</Text>
-          <Button
-            onPress={() => handleRequestPass()}
-            style={{
-              backgroundColor: '#D3D3D3',
-              height: 58,
-              //width: '48.5%',
-              borderRadius: 10,
-              marginTop: 10,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            labelStyle={{
-              color: '#fff',
-              textAlign: 'center',
-              fontSize: 10,
-            }}>
-            Request Now
-          </Button>
-        </Modal>
-      </Portal>
+        <Portal>
+          <Modal
+            visible={visiblefeedback}
+            onDismiss={hideModalFeedback}
+            contentContainerStyle={feedbackContainerStyle}>
+            <Title
+              style={{
+                fontSize: 18,
+                textAlign: 'center',
+                color: '#D3D3D3',
+                paddingBottom: 15,
+              }}>
+              MyApartment
+            </Title>
+            <Text
+              style={{
+                textAlign: 'center',
+              }}>{`360 Pass is the MyApartment loyalty program entitling you to a discount whenever you visit ${props.ServiceName}.`}</Text>
+            <Button
+              onPress={() => handleRequestPass()}
+              style={{
+                backgroundColor: '#D3D3D3',
+                height: 58,
+                //width: '48.5%',
+                borderRadius: 10,
+                marginTop: 10,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              labelStyle={{
+                color: '#fff',
+                textAlign: 'center',
+                fontSize: 10,
+              }}>
+              Request Now
+            </Button>
+          </Modal>
+        </Portal>
       </>
-    )
-  }
+    );
+  };
 
   const handleRequestPass = () => {
-    // props.setFeedback('YourHotel', 'Coupon added successfully', true);
+    // props.setFeedback('MyApartment', 'Coupon added successfully', true);
     // return;
     //console.log(props.servicedetailid, props.userid, coupondetails, confirmationcode, servicelatitude, servicelongitude);
-    setVisibleFeedback(false)
+    setVisibleFeedback(false);
     var stringifycoupondetails = JSON.stringify(coupondetails);
     const url = `${apiActiveURL}/coupon/add`;
     let ApiParamForAddCoupon = {
@@ -489,24 +492,24 @@ const Business = (props) => {
         //console.log(res, 'addcoupon');
         if (res.data.code === 200) {
           if (res.data.hasOwnProperty('data')) {
-            addToFavorite(false)
+            addToFavorite(false);
             if (mondiscount > 0 && fridiscount > 0) {
               props.setFeedback(
-                'YourHotel',
+                'MyApartment',
                 `Pass added to My Favourites. You can use 360 Pass at ${props.ServiceName} and enjoy a discount of ${mondiscount}% from Mon-Thurs and ${fridiscount}% from Fri-Sun.`,
                 true,
                 '',
               );
             } else if (mondiscount > 0 && fridiscount <= 0) {
               props.setFeedback(
-                'YourHotel',
+                'MyApartment',
                 `Pass added to My Favourites. You can use 360 Pass at ${props.ServiceName} and enjoy a discount of ${mondiscount}% from Mon-Thurs. Unfortunately, There is no discount from Fri-Sun.`,
                 true,
                 '',
               );
             } else if (mondiscount <= 0 && fridiscount > 0) {
               props.setFeedback(
-                'YourHotel',
+                'MyApartment',
                 `Pass added to My Favourites. You can use 360 Pass at ${props.ServiceName} and enjoy a discount of ${fridiscount}% from Fri-Sun. Unfortunately, There is no discount from Mon-Thurs.`,
                 true,
                 '',
@@ -516,7 +519,7 @@ const Business = (props) => {
             props.navigation.navigate('MyCoupons', {screen: 'My Pass'});
           } else {
             props.setFeedback(
-              'YourHotel',
+              'MyApartment',
               '360 Pass Coupon already exists',
               true,
               '',
@@ -527,18 +530,18 @@ const Business = (props) => {
           // props.navigation.navigate('MyCoupons');
         } else {
           console.log(res, 'addcoupon else');
-          props.setFeedback('YourHotel', 'Something Went Wrong', true, '');
-          // setMsgTitle('YourHotel');
+          props.setFeedback('MyApartment', 'Something Went Wrong', true, '');
+          // setMsgTitle('MyApartment');
           // setMsgBody('Something Went Wrong');
           // // alert('Something Went Wrong');
           // setVisibleFeedback(true);
         }
       })
       .catch((error) => {
-        // setMsgTitle('YourHotel');
+        // setMsgTitle('MyApartment');
         // setMsgBody('Something Went Wrong');
         // setVisibleFeedback(true);
-        props.setFeedback('YourHotel', 'Something Went Wrong', true, '');
+        props.setFeedback('MyApartment', 'Something Went Wrong', true, '');
         console.log(error, 'addcoupon');
       });
   };
@@ -554,7 +557,7 @@ const Business = (props) => {
       Linking.openURL(phoneNumber);
     } else {
       hideModal2();
-      props.setFeedback('YourHotel', 'Not Available', true, '');
+      props.setFeedback('MyApartment', 'Not Available', true, '');
     }
   };
 
@@ -563,7 +566,7 @@ const Business = (props) => {
       Linking.openURL(servicebookingurl);
     } else {
       hideModal2();
-      props.setFeedback('YourHotel', 'Not Available', true, '');
+      props.setFeedback('MyApartment', 'Not Available', true, '');
     }
   };
 
@@ -579,36 +582,38 @@ const Business = (props) => {
       url,
     };
     Axios(options)
-    .then(function (response) {
-      if(response.data.status){
-        if(isShow){
-          props.setFeedback(
-            'YourHotel',
-            `${props.ServiceName} has been Added to Favorites`,
-            true,
-            '',
-          );
-        }else{
-          console.log(`${props.ServiceName} has been Added to Favorites`);
+      .then(function (response) {
+        if (response.data.status) {
+          if (isShow) {
+            props.setFeedback(
+              'MyApartment',
+              `${props.ServiceName} has been Added to Favorites`,
+              true,
+              '',
+            );
+          } else {
+            console.log(`${props.ServiceName} has been Added to Favorites`);
+          }
+        } else {
+          if (isShow) {
+            props.setFeedback(
+              'MyApartment',
+              `${props.ServiceName} has already been Added to Favorites`,
+              true,
+              '',
+            );
+          } else {
+            console.log(
+              `${props.ServiceName} has already been Added to Favorites`,
+            );
+          }
         }
-      }else{
-        if(isShow){
-          props.setFeedback(
-            'YourHotel',
-            `${props.ServiceName} has already been Added to Favorites`,
-            true,
-            '',
-          );
-        }else{
-          console.log(`${props.ServiceName} has already been Added to Favorites`);
-        }
-      }
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   const showServiceDetail = () => {
     return (
@@ -720,8 +725,7 @@ const Business = (props) => {
                 alignItems: 'center',
               }}
               labelStyle={{color: '#fff', textAlign: 'center', fontSize: 11}}
-              onPress={() => addToFavorite(true)}
-            >
+              onPress={() => addToFavorite(true)}>
               <Text
                 style={{
                   color: '#fff',
@@ -766,7 +770,12 @@ const Business = (props) => {
                 textAlign: 'center',
               },
             }}
-            source={{html: servicedetail.description == '' ? '<p></p>' : servicedetail.description}}
+            source={{
+              html:
+                servicedetail.description == ''
+                  ? '<p></p>'
+                  : servicedetail.description,
+            }}
           />
           <View
             style={{
@@ -890,7 +899,7 @@ const Business = (props) => {
           <View style={{height: 200}}>
             {servicelatitude && servicelongitude ? (
               <MapView
-                mapType={Platform.OS == "android" ? "standard" : "standard"}
+                mapType={Platform.OS == 'android' ? 'standard' : 'standard'}
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
                 region={{
@@ -914,11 +923,14 @@ const Business = (props) => {
               </View>
             )}
           </View>
-          <Text style={{
-            textAlign: 'center',
-            marginVertical: 10,
-            marginHorizontal: '8%',
-          }}>{address}</Text>
+          <Text
+            style={{
+              textAlign: 'center',
+              marginVertical: 10,
+              marginHorizontal: '8%',
+            }}>
+            {address}
+          </Text>
 
           <Portal>
             <Modal
@@ -946,12 +958,13 @@ const Business = (props) => {
               </ScrollView>
             </Modal>
           </Portal>
-          <View style={{
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'center',
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'center',
               alignContent: 'center',
-          }}>
+            }}>
             <View
               style={{
                 // flex: 1,
@@ -964,7 +977,7 @@ const Business = (props) => {
                 style={{
                   backgroundColor: '#D3D3D3',
                   height: 60,
-                  
+
                   borderRadius: 10,
                   // marginTop: 10,
                   justifyContent: 'center',
@@ -975,35 +988,37 @@ const Business = (props) => {
                 onPress={showOffersModal}>
                 SPECIAL OFFERS
               </Button>
-              
             </View>
             {vaccine ? (
               <Image
-              source={vaccine}
-              style={{
-                height: 60,
-                width: 60,
-                resizeMode: 'contain',
-                alignSelf: 'center',
-                marginHorizontal: 5
-              }}
-              />
-            ) : (<></>)}
-              {menuURL ? (
-                <TouchableOpacity onPress={() => Linking.openURL(menuURL)}>
-                <Image
-                source={require('../images/menu_symbol.jpg')}
+                source={vaccine}
                 style={{
                   height: 60,
-                  width: 80,
+                  width: 60,
                   resizeMode: 'contain',
                   alignSelf: 'center',
-                  marginHorizontal: 5
+                  marginHorizontal: 5,
                 }}
+              />
+            ) : (
+              <></>
+            )}
+            {menuURL ? (
+              <TouchableOpacity onPress={() => Linking.openURL(menuURL)}>
+                <Image
+                  source={require('../images/menu_symbol.jpg')}
+                  style={{
+                    height: 60,
+                    width: 80,
+                    resizeMode: 'contain',
+                    alignSelf: 'center',
+                    marginHorizontal: 5,
+                  }}
                 />
               </TouchableOpacity>
-              ) : (<></>)}
-            
+            ) : (
+              <></>
+            )}
           </View>
         </ScrollView>
       </View>
@@ -1025,7 +1040,7 @@ const Business = (props) => {
       setVisible(true);
     } else {
       props.setFeedback(
-        'YourHotel',
+        'MyApartment',
         `${props.ServiceName} has no Special Offers at the moment`,
         true,
         '',

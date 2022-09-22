@@ -24,10 +24,10 @@ import {useIsFocused} from '@react-navigation/native';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import {setFeedback,} from '../actions';
+import {setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import Accordion from 'react-native-collapsible/Accordion';
-import Icon from 'react-native-vector-icons/AntDesign'; 
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const TermsConditions = (props) => {
   const [loader, setLoader] = useState(true);
@@ -62,12 +62,12 @@ const TermsConditions = (props) => {
           setLoader(false);
         } else {
           console.log('get_transaction', res);
-          props.setFeedback('YourHotel', 'No Data Found', true , '');
+          props.setFeedback('MyApartment', 'No Data Found', true, '');
           setLoader(false);
         }
       })
       .catch((error) => {
-        props.setFeedback('YourHotel', 'No Data Found', true , '');
+        props.setFeedback('MyApartment', 'No Data Found', true, '');
         setLoader(false);
         console.log('get_transaction', error);
       });
@@ -92,7 +92,12 @@ const TermsConditions = (props) => {
           </Text>
         </View>
         <View style={styles.item2}>
-          <Icon name="down" size={16} color="#5a5a5a" style={{textAlign: 'right'}}/>
+          <Icon
+            name="down"
+            size={16}
+            color="#5a5a5a"
+            style={{textAlign: 'right'}}
+          />
         </View>
       </View>
     );
@@ -152,7 +157,6 @@ const TermsConditions = (props) => {
       </View>
     );
   };
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -217,7 +221,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     padding: 10,
     borderBottomColor: '#f0f0f0',
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   textcontainer: {
     backgroundColor: '#fff',

@@ -1,4 +1,4 @@
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {
@@ -13,12 +13,20 @@ import {
   StatusBar,
   Keyboard,
 } from 'react-native';
-import {Button, Title, Text, TextInput, ActivityIndicator, Portal, Modal} from 'react-native-paper';
+import {
+  Button,
+  Title,
+  Text,
+  TextInput,
+  ActivityIndicator,
+  Portal,
+  Modal,
+} from 'react-native-paper';
 import Icon_FA from 'react-native-vector-icons/FontAwesome';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import { connect } from 'react-redux';
-import { setFeedback } from '../actions';
-import { apiActiveURL, appId } from '../ApiBaseURL';
+import {connect} from 'react-redux';
+import {setFeedback} from '../actions';
+import {apiActiveURL, appId} from '../ApiBaseURL';
 import FeedbackModal from '../components/FeedbackModal';
 
 const screenHeight = Dimensions.get('window').height;
@@ -43,31 +51,30 @@ const SignUpScreen = (props) => {
   const toggleEye = () => {
     setIsPress(!isPress);
     Keyboard.dismiss();
-  }
+  };
   const toggleEye2 = () => {
     setIsPress2(!isPress2);
     Keyboard.dismiss();
-  }
+  };
 
   useEffect(() => {
     if (!isFocused) {
       return;
     }
-    
   }, [props, isFocused]);
 
   useEffect(() => {
-     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
-     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
- 
-     // cleanup function
-     return () => {
-       Keyboard.removeListener('keyboardDidShow', _keyboardDidShow);
-       Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
-     };
-   }, []);
+    Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
 
-   const _keyboardDidShow = () => {
+    // cleanup function
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', _keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
+    };
+  }, []);
+
+  const _keyboardDidShow = () => {
     setSView('50%');
   };
 
@@ -77,10 +84,21 @@ const SignUpScreen = (props) => {
 
   const verificationText = (
     <>
-      <Text style={{textAlign: 'center'}}>Thank you for registering. We have sent an email to your email address requiring you to confirm your registration. Please open the email and click 'Verify'. As soon as you verify your email address you will be able to enjoy all the benefits of our App.{`\n`}</Text>
-      <Text style={{textAlign: 'center'}}>If you do not see the Verification Email in your Inbox after a couple of minutes, <Text style={{textDecorationLine: 'underline'}}>Please check your Junk or Spam Folder</Text></Text>
+      <Text style={{textAlign: 'center'}}>
+        Thank you for registering. We have sent an email to your email address
+        requiring you to confirm your registration. Please open the email and
+        click 'Verify'. As soon as you verify your email address you will be
+        able to enjoy all the benefits of our App.{`\n`}
+      </Text>
+      <Text style={{textAlign: 'center'}}>
+        If you do not see the Verification Email in your Inbox after a couple of
+        minutes,{' '}
+        <Text style={{textDecorationLine: 'underline'}}>
+          Please check your Junk or Spam Folder
+        </Text>
+      </Text>
     </>
-  )
+  );
 
   const feedbackContainerStyle = {
     backgroundColor: 'white',
@@ -92,27 +110,26 @@ const SignUpScreen = (props) => {
   const verificationModal = () => {
     return (
       <>
-       <Portal>
-        <Modal
-          visible={visiblefeedback}
-          onDismiss={hideModalFeedback}
-          contentContainerStyle={feedbackContainerStyle}>
-          <Title
-            style={{
-              fontSize: 18,
-              textAlign: 'center',
-              color: '#6697D2',
-              paddingBottom: 15,
-            }}>
-            Please verify your Email
-          </Title>
-          {verificationText}
-        </Modal>
-      </Portal>
+        <Portal>
+          <Modal
+            visible={visiblefeedback}
+            onDismiss={hideModalFeedback}
+            contentContainerStyle={feedbackContainerStyle}>
+            <Title
+              style={{
+                fontSize: 18,
+                textAlign: 'center',
+                color: '#6697D2',
+                paddingBottom: 15,
+              }}>
+              Please verify your Email
+            </Title>
+            {verificationText}
+          </Modal>
+        </Portal>
       </>
-    )
-  }
-
+    );
+  };
 
   const url = `${apiActiveURL}/registration_new`;
   const authenticate = () => {
@@ -135,26 +152,24 @@ const SignUpScreen = (props) => {
     axios(options)
       .then(function (response) {
         console.log(response);
-        
+
         if (response.data.status) {
           // props.setFeedback('Please verify your Email', {}, true , 'SignInScreen');
           setVisibleFeedback(true);
-          props.navigation.navigate('SignInScreen')
-        }else{
-          props.setFeedback('YourHotel', response.data.message, true , '');
+          props.navigation.navigate('SignInScreen');
+        } else {
+          props.setFeedback('MyApartment', response.data.message, true, '');
         }
         setLoader(false);
         //handleInput(response);
       })
       .catch(function (error) {
-        
-          props.setFeedback('YourHotel', 'Something went wrong...', true , '');
-          setLoader(false);
-        
+        props.setFeedback('MyApartment', 'Something went wrong...', true, '');
+        setLoader(false);
+
         console.log(error);
       });
-  }; 
-
+  };
 
   const pCheck = () => {
     if (value2 == value5) {
@@ -162,7 +177,7 @@ const SignUpScreen = (props) => {
       authenticate();
     } else {
       setLoader(false);
-      props.setFeedback('YourHotel', 'Confirm Password Incorrect', true , '');
+      props.setFeedback('MyApartment', 'Confirm Password Incorrect', true, '');
     }
   };
 
@@ -174,8 +189,8 @@ const SignUpScreen = (props) => {
         // justifyContent: 'center',
         backgroundColor: '#fff',
       }}>
-        <FeedbackModal/>
-        {verificationModal()}
+      <FeedbackModal />
+      {verificationModal()}
       <Image
         source={require('../images/Hotel360-assets/BG-SignIn.png')}
         style={styles.background_image}
@@ -206,9 +221,7 @@ const SignUpScreen = (props) => {
                 color: '#6a6a6b',
                 paddingHorizontal: 40,
                 fontSize: 11,
-              }}>
-              
-            </Text>
+              }}></Text>
             <TextInput
               style={styles.input}
               onChangeText={(text) => onChangeText3(text)}
@@ -256,7 +269,7 @@ const SignUpScreen = (props) => {
             <TextInput
               style={styles.input}
               onChangeText={(text) => onChangeMobile(text)}
-              keyboardType='numeric'
+              keyboardType="numeric"
               value={mobile}
               placeholder="MOBILE NUMBER"
               placeholderTextColor="#9ca5b1"
@@ -284,7 +297,7 @@ const SignUpScreen = (props) => {
               }
             />
             <TextInput
-              style={styles.input}  
+              style={styles.input}
               onChangeText={(text) => onChangeText5(text)}
               value={value5}
               secureTextEntry={isPress2 ? false : true}
@@ -303,26 +316,23 @@ const SignUpScreen = (props) => {
               }
             />
             <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              pCheck();
-              
-            }}>
-            {loader === true ? (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <ActivityIndicator animating={true} color="#FFF" />
-              </View>
-            ) : (
-              <Text style={{color: '#FFF'}}>CREATE ACCOUNT</Text>
-            )}
-          </TouchableOpacity>
-
-            
+              style={styles.btn}
+              onPress={() => {
+                pCheck();
+              }}>
+              {loader === true ? (
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <ActivityIndicator animating={true} color="#FFF" />
+                </View>
+              ) : (
+                <Text style={{color: '#FFF'}}>CREATE ACCOUNT</Text>
+              )}
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
@@ -341,7 +351,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },

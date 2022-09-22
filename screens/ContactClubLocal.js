@@ -25,13 +25,12 @@ import {useIsFocused} from '@react-navigation/native';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import {setFeedback,} from '../actions';
+import {setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import axios from 'axios';
 import Icon_FA from 'react-native-vector-icons/FontAwesome';
 
 const ContactClubLocal = (props) => {
-
   const [SView, setSView] = React.useState('50%');
   const [loader, setLoader] = React.useState(false);
   const [loader2, setLoader2] = React.useState(true);
@@ -49,20 +48,26 @@ const ContactClubLocal = (props) => {
 
   const handleContact = () => {
     setLoader(true);
-    let currentdate = new Date(); 
-    let datetime = currentdate.getFullYear() + "-" 
-                + (currentdate.getMonth()+1)  + "-" 
-                + currentdate.getDate() + " "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
+    let currentdate = new Date();
+    let datetime =
+      currentdate.getFullYear() +
+      '-' +
+      (currentdate.getMonth() + 1) +
+      '-' +
+      currentdate.getDate() +
+      ' ' +
+      currentdate.getHours() +
+      ':' +
+      currentdate.getMinutes() +
+      ':' +
+      currentdate.getSeconds();
     const url = `${apiActiveURL}/add_contact`;
     let ApiParamForContact = {
       user_id: props.userid,
       email: email,
       subject: subject,
       message: message,
-      date: datetime
+      date: datetime,
     };
     const options = {
       method: 'POST',
@@ -79,18 +84,23 @@ const ContactClubLocal = (props) => {
         console.log(res, 'Contact');
         if (res.data.code === 200) {
           setLoader(false);
-          props.setFeedback('YourHotel', 'Form Submission Successfully!!', true , '');
+          props.setFeedback(
+            'MyApartment',
+            'Form Submission Successfully!!',
+            true,
+            '',
+          );
           onChangeEmail('');
           onChangeSubject('');
           onChangeMesaage('');
         } else {
           setLoader(false);
-          props.setFeedback('YourHotel', 'No Data Found ... ', true , '');
+          props.setFeedback('MyApartment', 'No Data Found ... ', true, '');
         }
       })
       .catch((error) => {
         setLoader(false);
-        props.setFeedback('YourHotel', 'No Data Found ... ', true , '');
+        props.setFeedback('MyApartment', 'No Data Found ... ', true, '');
         console.log('how', error);
       });
   };
@@ -101,7 +111,7 @@ const ContactClubLocal = (props) => {
         style={{
           marginTop: 20,
           paddingHorizontal: '5.55%',
-          height:'50%'
+          height: '50%',
         }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <TextInput
@@ -111,7 +121,9 @@ const ContactClubLocal = (props) => {
             value={email}
             placeholder="EMAIL ADDRESS"
             placeholderTextColor="#838e9d"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
           />
           <TextInput
             style={[styles.input, {height: 50}]}
@@ -119,7 +131,9 @@ const ContactClubLocal = (props) => {
             value={subject}
             placeholder="SUBJECT"
             placeholderTextColor="#838e9d"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
           />
           <TextInput
             style={[styles.input, {paddingTop: 5}]}
@@ -127,10 +141,11 @@ const ContactClubLocal = (props) => {
             value={message}
             placeholder="MESSAGE"
             placeholderTextColor="#838e9d"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
             multiline={true}
             numberOfLines={7}
-            
           />
           <TouchableOpacity style={styles.btn} onPress={() => handleContact()}>
             {loader === true ? (
@@ -149,7 +164,7 @@ const ContactClubLocal = (props) => {
       </View>
     );
   };
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <FeedbackModal />
@@ -213,6 +228,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: 15
+    marginTop: 15,
   },
 });

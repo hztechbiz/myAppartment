@@ -9,9 +9,15 @@ import {
   Dimensions,
   SafeAreaView,
   StatusBar,
-  Keyboard
+  Keyboard,
 } from 'react-native';
-import {Button, Title, Text, TextInput, ActivityIndicator} from 'react-native-paper';
+import {
+  Button,
+  Title,
+  Text,
+  TextInput,
+  ActivityIndicator,
+} from 'react-native-paper';
 import Icon_FA from 'react-native-vector-icons/FontAwesome';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
 import {connect} from 'react-redux';
@@ -20,7 +26,7 @@ import axios from 'axios';
 import {apiActiveURL} from '../ApiBaseURL';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FeedbackModal from '../components/FeedbackModal';
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -36,49 +42,51 @@ const RenewPassword = (props) => {
   const toggleEye = () => {
     setIsPress(!isPress);
     Keyboard.dismiss();
-  }
+  };
   const toggleEye2 = () => {
     setIsPress2(!isPress2);
     Keyboard.dismiss();
-  }
+  };
 
   useEffect(() => {
     if (!isFocused) {
       return;
     }
-    
   }, [props, isFocused]);
- 
+
   const [loader, setLoader] = React.useState(false);
-  
+
   const authenticate = (password, cpassword) => {
-    if(password == cpassword){
+    if (password == cpassword) {
       const url = `${apiActiveURL}/change_password`;
       setLoader(true);
-    axios
-      .post(url, {
-        email: props.route.params.email,
-        password: password,
-        code: props.route.params.code
-      })
-      .then(function (response) {
-        if(response.data.code == 200){
-          props.setFeedback('YourHotel', 'Password Reset!', true , 'SignInScreen');
-        }else{
-          props.setFeedback('YourHotel', 'Something went Wrong', true , '');
-        }
-        setLoader(false);
-      })
-      .catch(function (error) {
-        setLoader(false);
-        console.log(error);
-        props.setFeedback('YourHotel', 'Something went Wrong', true , '');
-      });
-
-    }else{
-      props.setFeedback('YourHotel', "Passwords Don't Match", true , '');
+      axios
+        .post(url, {
+          email: props.route.params.email,
+          password: password,
+          code: props.route.params.code,
+        })
+        .then(function (response) {
+          if (response.data.code == 200) {
+            props.setFeedback(
+              'MyApartment',
+              'Password Reset!',
+              true,
+              'SignInScreen',
+            );
+          } else {
+            props.setFeedback('MyApartment', 'Something went Wrong', true, '');
+          }
+          setLoader(false);
+        })
+        .catch(function (error) {
+          setLoader(false);
+          console.log(error);
+          props.setFeedback('MyApartment', 'Something went Wrong', true, '');
+        });
+    } else {
+      props.setFeedback('MyApartment', "Passwords Don't Match", true, '');
     }
-    
   };
 
   return (
@@ -89,7 +97,7 @@ const RenewPassword = (props) => {
         justifyContent: 'center',
         backgroundColor: '#fff',
       }}>
-        <FeedbackModal/>
+      <FeedbackModal />
       <Image
         source={require('../images/Hotel360-assets/BG-SignIn.png')}
         style={styles.background_image}
@@ -114,44 +122,44 @@ const RenewPassword = (props) => {
           />
           <Title style={styles.heading}>Renew Password!</Title>
           <TextInput
-              style={styles.input}
-              onChangeText={(text) => onChangeText(text)}
-              value={value}
-              secureTextEntry={isPress ? false : true}
-              placeholder="PASSWORD"
-              placeholderTextColor="#9ca5b1"
-              theme={{
-                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
-              }}
-              right={
-                <TextInput.Icon
-                  name={() => (
-                    <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />
-                  )}
-                  onPress={toggleEye}
-                />
-              }
-            />
-            <TextInput
-              style={styles.input}  
-              onChangeText={(text) => onChangeText2(text)}
-              value={value2}
-              secureTextEntry={isPress2 ? false : true}
-              placeholder="CONFIRM PASSWORD"
-              placeholderTextColor="#9ca5b1"
-              theme={{
-                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
-              }}
-              right={
-                <TextInput.Icon
-                  name={() => (
-                    <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />
-                  )}
-                  onPress={toggleEye2}
-                />
-              }
-            />
-          
+            style={styles.input}
+            onChangeText={(text) => onChangeText(text)}
+            value={value}
+            secureTextEntry={isPress ? false : true}
+            placeholder="PASSWORD"
+            placeholderTextColor="#9ca5b1"
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
+            right={
+              <TextInput.Icon
+                name={() => (
+                  <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />
+                )}
+                onPress={toggleEye}
+              />
+            }
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => onChangeText2(text)}
+            value={value2}
+            secureTextEntry={isPress2 ? false : true}
+            placeholder="CONFIRM PASSWORD"
+            placeholderTextColor="#9ca5b1"
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
+            right={
+              <TextInput.Icon
+                name={() => (
+                  <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />
+                )}
+                onPress={toggleEye2}
+              />
+            }
+          />
+
           {/* <Button style={styles.btn} color="#fff" contentStyle={{}} onPress={() => navigation.navigate('Confirmation')}>
             SIGN IN
           </Button> */}
@@ -193,7 +201,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },
@@ -210,7 +218,7 @@ const styles = StyleSheet.create({
     height: '11%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20
+    marginTop: 20,
   },
 
   heading: {

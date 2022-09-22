@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   SafeAreaView,
@@ -6,12 +6,12 @@ import {
   ScrollView,
   Keyboard,
   Image,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import BackgroundLayout from '../components/BackgroundLayout';
 import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {
   ActivityIndicator,
   Modal,
@@ -21,10 +21,10 @@ import {
   Text,
 } from 'react-native-paper';
 import axios from 'axios';
-import { useIsFocused } from '@react-navigation/native';
-import { apiActiveURL, appKey, appId } from '../ApiBaseURL';
+import {useIsFocused} from '@react-navigation/native';
+import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import BigTile from '../components/BigTile';
-import { setFeedback } from '../actions';
+import {setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 
 const screenWidth = Dimensions.get('window').width;
@@ -78,7 +78,7 @@ const PopularServices = (props) => {
       headers: {
         AppKey: appKey,
         Token: props.token,
-        AppId: appId
+        AppId: appId,
       },
       url,
     };
@@ -90,16 +90,16 @@ const PopularServices = (props) => {
           setLoader(false);
         } else {
           console.log('popularservices', props.route.params.listingType, res);
-        //   setMsgTitle('ClubLocal');
-        props.setFeedback('YourHotel', 'No Data Found', true , '');
+          //   setMsgTitle('ClubLocal');
+          props.setFeedback('MyApartment', 'No Data Found', true, '');
           //props.navigation.goBack();
-        //   setVisible(true);
+          //   setVisible(true);
           setLoader(false);
         }
       })
       .catch((error) => {
         // setMsgTitle('ClubLocal');
-        props.setFeedback('YourHotel', 'Something Went Wrong...', true , '');
+        props.setFeedback('MyApartment', 'Something Went Wrong...', true, '');
         //props.navigation.goBack();
         // setVisible(true);
         setLoader(false);
@@ -107,27 +107,27 @@ const PopularServices = (props) => {
       });
   };
 
-//   const showMessageModal = () => {
-//     return (
-//       <Portal>
-//         <Modal
-//           visible={visible}
-//           onDismiss={hideModal}
-//           contentContainerStyle={containerStyle}>
-//           <Title
-//             style={{
-//               fontSize: 18,
-//               textAlign: 'center',
-//               color: props.theme.colors.accent,
-//               paddingBottom: 15,
-//             }}>
-//             {msgTitle}
-//           </Title>
-//           <Text style={{ textAlign: 'center' }}>{msgBody}</Text>
-//         </Modal>
-//       </Portal>
-//     );
-//   };
+  //   const showMessageModal = () => {
+  //     return (
+  //       <Portal>
+  //         <Modal
+  //           visible={visible}
+  //           onDismiss={hideModal}
+  //           contentContainerStyle={containerStyle}>
+  //           <Title
+  //             style={{
+  //               fontSize: 18,
+  //               textAlign: 'center',
+  //               color: props.theme.colors.accent,
+  //               paddingBottom: 15,
+  //             }}>
+  //             {msgTitle}
+  //           </Title>
+  //           <Text style={{ textAlign: 'center' }}>{msgBody}</Text>
+  //         </Modal>
+  //       </Portal>
+  //     );
+  //   };
 
   const showPopularServices = () => {
     return (
@@ -170,21 +170,21 @@ const PopularServices = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <FeedbackModal/>
+      <FeedbackModal />
       <BackgroundLayout />
       <LogoBar
         title={`360 PASS
 PARTNERS`}
       />
-      <TitleBar title={'Guest Directory'}/>
+      <TitleBar title={'Guest Directory'} />
 
       {loader === false ? (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
           <ActivityIndicator animating={true} color="#6697D2" />
         </View>
       ) : (
         showPopularServices()
-        )}
+      )}
     </SafeAreaView>
   );
 };
@@ -201,7 +201,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },

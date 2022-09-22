@@ -24,12 +24,11 @@ import {useIsFocused} from '@react-navigation/native';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import {setFeedback,} from '../actions';
+import {setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import axios from 'axios';
 
 const PrivacyPolicy = (props) => {
-
   const [SView, setSView] = React.useState('50%');
   const [loader, setLoader] = React.useState(true);
   const [msgTitle, setMsgTitle] = useState('');
@@ -66,13 +65,13 @@ const PrivacyPolicy = (props) => {
           setLoader(false);
         } else {
           console.log('PrivacyPolicy', res);
-          props.setFeedback('YourHotel', 'No Data Found', true , '');
+          props.setFeedback('MyApartment', 'No Data Found', true, '');
           setLoader(false);
         }
       })
       .catch((error) => {
-        setMsgTitle('YourHotel');
-        props.setFeedback('YourHotel', 'No Data Found', true , '');
+        // setMsgTitle('MyApartment');
+        props.setFeedback('MyApartment', 'No Data Found', true, '');
         console.log('PrivacyPolicy', error);
       });
   };
@@ -83,17 +82,15 @@ const PrivacyPolicy = (props) => {
         style={{
           marginTop: 20,
           paddingHorizontal: '5.55%',
-          height:'50%'
+          height: '50%',
         }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={{fontSize: 14, lineHeight: 20}}>
-            {privacypolicy}
-          </Text>
+          <Text style={{fontSize: 14, lineHeight: 20}}>{privacypolicy}</Text>
         </ScrollView>
       </View>
     );
   };
-  
+
   return (
     <SafeAreaView style={styles.container}>
       <FeedbackModal />

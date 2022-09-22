@@ -1,8 +1,8 @@
 import React from 'react';
-import { TouchableHighlight, Text } from 'react-native';
+import {TouchableHighlight, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const Tile = (props) => {
   var [isPress, setIsPress] = React.useState(false);
@@ -10,10 +10,10 @@ const Tile = (props) => {
 
   return (
     <LinearGradient
-    start={{x: 0, y: 0}}
-    end={{x: 1, y: 0}}
-      colors={['#D3D3D3', '#e57b0d']}
-      style={{ height: 90, width: 150, borderRadius: 10, marginRight: 10 }}>
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 0}}
+      colors={['#D3D3D3', '#6697D2']}
+      style={{height: 90, width: 150, borderRadius: 10, marginRight: 10}}>
       <TouchableHighlight
         style={isPress ? styles.tilePressed : styles.tileNormal}
         activeOpacity={1}
@@ -22,11 +22,13 @@ const Tile = (props) => {
           setIsPress(true);
           setTimeout(() => {
             setIsPress(false);
-            navigation.navigate('Promotions', { screen: 'Promotions', params: { screename: props.title, listingtype: props.listingtype } });
+            navigation.navigate('Promotions', {
+              screen: 'Promotions',
+              params: {screename: props.title, listingtype: props.listingtype},
+            });
           }, 0);
         }}>
-        <Text
-          style={isPress ? styles.tileTextPressed : styles.tileTextNormal}>
+        <Text style={isPress ? styles.tileTextPressed : styles.tileTextNormal}>
           {props.title}
         </Text>
       </TouchableHighlight>

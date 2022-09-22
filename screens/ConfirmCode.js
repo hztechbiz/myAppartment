@@ -1,4 +1,4 @@
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {
@@ -12,12 +12,18 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import {Button, Title, Text, TextInput, ActivityIndicator} from 'react-native-paper';
+import {
+  Button,
+  Title,
+  Text,
+  TextInput,
+  ActivityIndicator,
+} from 'react-native-paper';
 import Icon_FA from 'react-native-vector-icons/FontAwesome';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import { connect } from 'react-redux';
-import { setFeedback } from '../actions';
-import { apiActiveURL } from '../ApiBaseURL';
+import {connect} from 'react-redux';
+import {setFeedback} from '../actions';
+import {apiActiveURL} from '../ApiBaseURL';
 import FeedbackModal from '../components/FeedbackModal';
 
 const screenHeight = Dimensions.get('window').height;
@@ -45,7 +51,6 @@ const ConfirmCode = (props) => {
     const email = props.route.params.email;
     setLoader(true);
 
-
     const url = `${apiActiveURL}/verify_code?email=${email}&code=${code}`;
     const options = {
       method: 'GET',
@@ -53,20 +58,23 @@ const ConfirmCode = (props) => {
     };
     Axios(options)
       .then((res) => {
-        //props.setFeedback('YourHotel', 'Registration Successfully!', true , nav);
+        //props.setFeedback('MyApartment', 'Registration Successfully!', true , nav);
         //props.navigation.navigate('ConfirmCode', { email: email });
-        if(res.data.code == 200){
+        if (res.data.code == 200) {
           //props.navigation.navigate('ConfirmCode', { email: email });
-          props.navigation.navigate('RenewPassword', { email: email , code: code });
+          props.navigation.navigate('RenewPassword', {
+            email: email,
+            code: code,
+          });
           //console.log('You were right');
-        }else{
-          props.setFeedback('YourHotel', res.data.message, true , '');
+        } else {
+          props.setFeedback('MyApartment', res.data.message, true, '');
         }
-        
+
         setLoader(false);
       })
       .catch((error) => {
-        //props.setFeedback('YourHotel', 'Something Went Wrong!', true , '');
+        //props.setFeedback('MyApartment', 'Something Went Wrong!', true , '');
         console.log(error);
         setLoader(false);
       });
@@ -75,7 +83,7 @@ const ConfirmCode = (props) => {
     // }else{
     //   setLoader2(true);
     // }
-    
+
     // Axios
     //   .post(url, {
     //     email: props.route.params.email,
@@ -91,13 +99,13 @@ const ConfirmCode = (props) => {
     //     }else{
     //       setLoader2(false);
     //     }
-        
+
     //     if (response.data.status) {
-    //       props.setFeedback('YourHotel', 'Registration Successfully!', true , nav);
+    //       props.setFeedback('MyApartment', 'Registration Successfully!', true , nav);
     //     }else{
-    //       props.setFeedback('YourHotel', response.data.message, true , 'SignUpScreen');
+    //       props.setFeedback('MyApartment', response.data.message, true , 'SignUpScreen');
     //     }
-        
+
     //     //handleInput(response);
     //   })
     //   .catch(function (error) {
@@ -108,7 +116,7 @@ const ConfirmCode = (props) => {
     //     }
     //     console.log(error);
     //   });
-  }; 
+  };
 
   return (
     <SafeAreaView
@@ -118,71 +126,84 @@ const ConfirmCode = (props) => {
         justifyContent: 'center',
         backgroundColor: '#fff',
       }}>
-        <FeedbackModal/>
+      <FeedbackModal />
       <Image
         source={require('../images/Hotel360-assets/BG-SignIn.png')}
         style={styles.background_image}
       />
-      <View style={{height: '70%',  justifyContent: 'center'}}>
-      <ScrollView >
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            //minHeight: 550,
-            zIndex: 2,
+      <View style={{height: '70%', justifyContent: 'center'}}>
+        <ScrollView>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              //minHeight: 550,
+              zIndex: 2,
 
-            width: '100%',
-            //marginTop: 10,
-            //borderColor: '#f00', borderWidth: 1,
-            //marginTop: -80,
-          }}>
-          <Image
-            source={require('../images/Hotel360-assets/hotel-logo.png')}
-            style={{resizeMode: 'contain', width: '30%'}}
-          />
-          <Text style={{textAlign: 'center', color: '#6a6a6b', paddingHorizontal: 40, fontSize: 11}}>{"Got a Confirmation Code in Email?\n\nIf you didn't receive the verification email in your inbox please check you spam folder"}</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => onChangeText3(text)}
-            value={value3}
-            placeholder="Enter Your Confirmation Code Here:"
-            placeholderTextColor="#9ca5b1"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
-            right={
-              <TextInput.Icon
-                name={() => <Icon_FA name={'user'} size={15} color="#D3D3D3" />}
-              />
-            }
-          />
-          
-          {/* <Button style={styles.btn} color="#fff" contentStyle={{}} onPress={() => navigation.navigate('Username')}>
+              width: '100%',
+              //marginTop: 10,
+              //borderColor: '#f00', borderWidth: 1,
+              //marginTop: -80,
+            }}>
+            <Image
+              source={require('../images/Hotel360-assets/hotel-logo.png')}
+              style={{resizeMode: 'contain', width: '30%'}}
+            />
+            <Text
+              style={{
+                textAlign: 'center',
+                color: '#6a6a6b',
+                paddingHorizontal: 40,
+                fontSize: 11,
+              }}>
+              {
+                "Got a Confirmation Code in Email?\n\nIf you didn't receive the verification email in your inbox please check you spam folder"
+              }
+            </Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => onChangeText3(text)}
+              value={value3}
+              placeholder="Enter Your Confirmation Code Here:"
+              placeholderTextColor="#9ca5b1"
+              theme={{
+                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+              }}
+              right={
+                <TextInput.Icon
+                  name={() => (
+                    <Icon_FA name={'user'} size={15} color="#D3D3D3" />
+                  )}
+                />
+              }
+            />
+
+            {/* <Button style={styles.btn} color="#fff" contentStyle={{}} onPress={() => navigation.navigate('Username')}>
             SIGN IN
           </Button> */}
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              authenticate(value3);
-              
-            }}>
-            {loader === true ? (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <ActivityIndicator animating={true} color="#fff" />
-              </View>
-            ) : (
-              <Text style={{color: '#fff'}}>RESET PASSWORD</Text>
-            )}
-          </TouchableOpacity>
-          {/* <Button style={styles.btn2} color="#a1a3a6" contentStyle={{}} onPress={() => navigation.navigate('Confirmation')}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                authenticate(value3);
+              }}>
+              {loader === true ? (
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <ActivityIndicator animating={true} color="#fff" />
+                </View>
+              ) : (
+                <Text style={{color: '#fff'}}>RESET PASSWORD</Text>
+              )}
+            </TouchableOpacity>
+            {/* <Button style={styles.btn2} color="#a1a3a6" contentStyle={{}} onPress={() => navigation.navigate('Confirmation')}>
             LATER
           </Button> */}
-          {/* <TouchableOpacity
+            {/* <TouchableOpacity
             style={styles.btn2}
             onPress={() => {
               authenticate(value3, 'Account');
@@ -201,9 +222,8 @@ const ConfirmCode = (props) => {
               <Text style={{color: '#a1a3a6'}}>LATER</Text>
             )}
           </TouchableOpacity> */}
-          
-        </View>
-      </ScrollView>
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -220,7 +240,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },
@@ -238,7 +258,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    marginBottom: 5
+    marginBottom: 5,
   },
   btn2: {
     backgroundColor: '#e2e6ec',

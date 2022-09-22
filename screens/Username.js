@@ -1,4 +1,4 @@
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {
@@ -12,12 +12,18 @@ import {
   SafeAreaView,
   StatusBar,
 } from 'react-native';
-import {Button, Title, Text, TextInput, ActivityIndicator} from 'react-native-paper';
+import {
+  Button,
+  Title,
+  Text,
+  TextInput,
+  ActivityIndicator,
+} from 'react-native-paper';
 import Icon_FA from 'react-native-vector-icons/FontAwesome';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import { connect } from 'react-redux';
-import { setFeedback } from '../actions';
-import { apiActiveURL } from '../ApiBaseURL';
+import {connect} from 'react-redux';
+import {setFeedback} from '../actions';
+import {apiActiveURL} from '../ApiBaseURL';
 import FeedbackModal from '../components/FeedbackModal';
 
 const screenHeight = Dimensions.get('window').height;
@@ -42,49 +48,53 @@ const Username = (props) => {
   const [loader2, setLoader2] = React.useState(false);
 
   const url = `${apiActiveURL}/registration`;
-  const authenticate = (username , nav) => {
-    if(nav == 'SignUpScreen'){
+  const authenticate = (username, nav) => {
+    if (nav == 'SignUpScreen') {
       setLoader(true);
-    }else{
+    } else {
       setLoader2(true);
     }
-    
-    Axios
-      .post(url, {
-        email: props.route.params.email,
-        password: props.route.params.password,
-        firstname: props.route.params.fName,
-        lastname: props.route.params.lName,
-        username: username,
-        phone: props.route.params.phone,
-      })
+
+    Axios.post(url, {
+      email: props.route.params.email,
+      password: props.route.params.password,
+      firstname: props.route.params.fName,
+      lastname: props.route.params.lName,
+      username: username,
+      phone: props.route.params.phone,
+    })
       .then(function (response) {
         console.log(response);
-        if(nav == 'SignUpScreen'){
+        if (nav == 'SignUpScreen') {
           setLoader(false);
-        }else{
+        } else {
           setLoader2(false);
         }
-        
+
         if (response.data.status) {
-          props.setFeedback('YourHotel', 'Registration Successful!', true , nav);
-        }else{
-          props.setFeedback('YourHotel', response.data.message, true , '');
+          props.setFeedback(
+            'MyApartment',
+            'Registration Successful!',
+            true,
+            nav,
+          );
+        } else {
+          props.setFeedback('MyApartment', response.data.message, true, '');
         }
-        
+
         //handleInput(response);
       })
       .catch(function (error) {
-        if(nav == 'SignUpScreen'){
-          props.setFeedback('YourHotel', 'Something went wrong...', true , '');
+        if (nav == 'SignUpScreen') {
+          props.setFeedback('MyApartment', 'Something went wrong...', true, '');
           setLoader(false);
-        }else{
-          props.setFeedback('YourHotel', 'Something went wrong...', true , '');
+        } else {
+          props.setFeedback('MyApartment', 'Something went wrong...', true, '');
           setLoader2(false);
         }
         console.log(error);
       });
-  }; 
+  };
 
   return (
     <SafeAreaView
@@ -94,92 +104,102 @@ const Username = (props) => {
         justifyContent: 'center',
         backgroundColor: '#fff',
       }}>
-        <FeedbackModal/>
+      <FeedbackModal />
       <Image
         source={require('../images/Hotel360-assets/BG-SignIn.png')}
         style={styles.background_image}
       />
-      <View style={{height: '70%',  justifyContent: 'center'}}>
-      <ScrollView >
-        <View
-          style={{
-            flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
-            //minHeight: 550,
-            zIndex: 2,
+      <View style={{height: '70%', justifyContent: 'center'}}>
+        <ScrollView>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              //minHeight: 550,
+              zIndex: 2,
 
-            width: '100%',
-            //marginTop: 10,
-            //borderColor: '#f00', borderWidth: 1,
-            //marginTop: -80,
-          }}>
-          <Image
-            source={require('../images/Hotel360-assets/hotel-logo.png')}
-            style={{resizeMode: 'contain', width: '30%'}}
-          />
-          <Text style={{textAlign: 'center', color: '#6a6a6b', paddingHorizontal: 40, fontSize: 11}}>Lorem ipsum dolor amet consectetur adipiscing elit. Cras eget sodales odio.</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => onChangeText3(text)}
-            value={value3}
-            placeholder="YOUR USER NAME IS:"
-            placeholderTextColor="#9ca5b1"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
-            right={
-              <TextInput.Icon
-                name={() => <Icon_FA name={'user'} size={15} color="#D3D3D3" />}
-              />
-            }
-          />
-          
-          {/* <Button style={styles.btn} color="#fff" contentStyle={{}} onPress={() => navigation.navigate('Username')}>
+              width: '100%',
+              //marginTop: 10,
+              //borderColor: '#f00', borderWidth: 1,
+              //marginTop: -80,
+            }}>
+            <Image
+              source={require('../images/Hotel360-assets/hotel-logo.png')}
+              style={{resizeMode: 'contain', width: '30%'}}
+            />
+            <Text
+              style={{
+                textAlign: 'center',
+                color: '#6a6a6b',
+                paddingHorizontal: 40,
+                fontSize: 11,
+              }}>
+              Lorem ipsum dolor amet consectetur adipiscing elit. Cras eget
+              sodales odio.
+            </Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(text) => onChangeText3(text)}
+              value={value3}
+              placeholder="YOUR USER NAME IS:"
+              placeholderTextColor="#9ca5b1"
+              theme={{
+                colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+              }}
+              right={
+                <TextInput.Icon
+                  name={() => (
+                    <Icon_FA name={'user'} size={15} color="#D3D3D3" />
+                  )}
+                />
+              }
+            />
+
+            {/* <Button style={styles.btn} color="#fff" contentStyle={{}} onPress={() => navigation.navigate('Username')}>
             SIGN IN
           </Button> */}
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              authenticate(value3 , 'SignUpScreen');
-              
-            }}>
-            {loader === true ? (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <ActivityIndicator animating={true} color="#fff" />
-              </View>
-            ) : (
-              <Text style={{color: '#fff'}}>SIGN IN</Text>
-            )}
-          </TouchableOpacity>
-          {/* <Button style={styles.btn2} color="#a1a3a6" contentStyle={{}} onPress={() => navigation.navigate('Confirmation')}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                authenticate(value3, 'SignUpScreen');
+              }}>
+              {loader === true ? (
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <ActivityIndicator animating={true} color="#fff" />
+                </View>
+              ) : (
+                <Text style={{color: '#fff'}}>SIGN IN</Text>
+              )}
+            </TouchableOpacity>
+            {/* <Button style={styles.btn2} color="#a1a3a6" contentStyle={{}} onPress={() => navigation.navigate('Confirmation')}>
             LATER
           </Button> */}
-          <TouchableOpacity
-            style={styles.btn2}
-            onPress={() => {
-              authenticate(value3, 'Account');
-              
-            }}>
-            {loader2 === true ? (
-              <View
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}>
-                <ActivityIndicator animating={true} color="#fff" />
-              </View>
-            ) : (
-              <Text style={{color: '#a1a3a6'}}>LATER</Text>
-            )}
-          </TouchableOpacity>
-          
-        </View>
-      </ScrollView>
+            <TouchableOpacity
+              style={styles.btn2}
+              onPress={() => {
+                authenticate(value3, 'Account');
+              }}>
+              {loader2 === true ? (
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <ActivityIndicator animating={true} color="#fff" />
+                </View>
+              ) : (
+                <Text style={{color: '#a1a3a6'}}>LATER</Text>
+              )}
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
@@ -196,7 +216,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },
@@ -214,7 +234,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    marginBottom: 5
+    marginBottom: 5,
   },
   btn2: {
     backgroundColor: '#e2e6ec',

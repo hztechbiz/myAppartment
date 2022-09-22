@@ -3,10 +3,10 @@ import {TouchableHighlight, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import { connect } from 'react-redux';
-import { setServices } from '../actions';
+import {connect} from 'react-redux';
+import {setServices} from '../actions';
 import HTML from 'react-native-render-html';
-import { apiActiveURL, appId, appKey } from '../ApiBaseURL';
+import {apiActiveURL, appId, appKey} from '../ApiBaseURL';
 import Axios from 'axios';
 
 const Tile = (props) => {
@@ -35,32 +35,35 @@ const Tile = (props) => {
 
   return (
     <LinearGradient
-    start={{x: 0, y: 0}}
-    end={{x: 1, y: 0}}
-    colors={['#D3D3D3', '#e57b0d']}
-      style={{ borderRadius: 10, marginBottom: 15, marginRight: 10}}>
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 0}}
+      colors={['#D3D3D3', '#6697D2']}
+      style={{borderRadius: 10, marginBottom: 15, marginRight: 10}}>
       <TouchableHighlight
         style={isPress ? styles.tilePressed : styles.tileNormal}
         activeOpacity={1}
         underlayColor="#fff"
         //onHideUnderlay={() => setIsPress(false)}
         //onShowUnderlay={() => setIsPress(true)}
-        onPress={() =>
-          {
-            fetchServiceAddView(props.services.id);
-            setIsPress(true);
-            setTimeout(() => {
+        onPress={() => {
+          fetchServiceAddView(props.services.id);
+          setIsPress(true);
+          setTimeout(() => {
             setIsPress(false);
-            props.setServices(props.services.id , props.services.title);
+            props.setServices(props.services.id, props.services.title);
             navigation.navigate('Business');
-          }, 0)}}
-          >
+          }, 0);
+        }}>
         <View style={{paddingHorizontal: 5}}>
           <Text
             style={isPress ? styles.tileTextPressed : styles.tileTextNormal}>
             {props.services.title}
           </Text>
-          {props.suburb === '' ? <Text style={styles.suburbtext}>({props.services.subrub})</Text> : <></>}
+          {props.suburb === '' ? (
+            <Text style={styles.suburbtext}>({props.services.subrub})</Text>
+          ) : (
+            <></>
+          )}
 
           <HTML
             tagsStyles={{
@@ -80,7 +83,7 @@ const Tile = (props) => {
                   : props.services.short_description,
             }}
           />
-          
+
           {/* {props.services.short_description !== '' ? (
             <Text style={styles.desc}>{props.services.short_description}</Text>
           ) : (
@@ -111,7 +114,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tile);
 
-
 const styles = StyleSheet.create({
   tileNormal: {
     height: 140,
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 14,
     fontWeight: '700',
-    color: '#e57b0d',
+    color: '#6697D2',
   },
   tileTextPressed: {
     textAlign: 'center',
@@ -157,10 +159,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 12,
     fontWeight: '100',
-    color: '#000'
+    color: '#000',
   },
 });
-
 
 // import React from 'react';
 // import {TouchableHighlight, Text, View} from 'react-native';
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
 //     <LinearGradient
 //       start={{x: 0, y: 0}}
 //       end={{x: 1, y: 0}}
-//       colors={['#D3D3D3', '#e57b0d']}
+//       colors={['#D3D3D3', '#6697D2']}
 //       style={{height: 140, borderRadius: 10, marginBottom: 15}}>
 //       <TouchableHighlight
 //         style={isPress ? styles.tilePressed : styles.tileNormal}

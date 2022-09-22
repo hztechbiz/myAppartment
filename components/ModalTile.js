@@ -3,8 +3,13 @@ import {TouchableHighlight, Text, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {StyleSheet} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import { connect } from 'react-redux';
-import { setExperienceServices, setGDServices, setPromotionServices, setServices } from '../actions';
+import {connect} from 'react-redux';
+import {
+  setExperienceServices,
+  setGDServices,
+  setPromotionServices,
+  setServices,
+} from '../actions';
 import HTML from 'react-native-render-html';
 
 const Tile = (props) => {
@@ -12,25 +17,24 @@ const Tile = (props) => {
   //const navigation = useNavigation();
   return (
     <LinearGradient
-    start={{x: 0, y: 0}}
-    end={{x: 1, y: 0}}
-    colors={['#D3D3D3', '#e57b0d']}
-      style={{ borderRadius: 10, marginBottom: 15, marginRight: 10}}>
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 0}}
+      colors={['#D3D3D3', '#6697D2']}
+      style={{borderRadius: 10, marginBottom: 15, marginRight: 10}}>
       <TouchableHighlight
         style={isPress ? styles.tilePressed : styles.tileNormal}
         activeOpacity={1}
         underlayColor="#fff"
         //onHideUnderlay={() => setIsPress(false)}
         //onShowUnderlay={() => setIsPress(true)}
-        onPress={() =>
-          {
-            setIsPress(true);
-            setTimeout(() => {
+        onPress={() => {
+          setIsPress(true);
+          setTimeout(() => {
             setIsPress(false);
             //props.setGDServices(props.services.id , props.services.title);
             props.handleHideOffersModal(props.id, props.title);
-          }, 0)}}
-          >
+          }, 0);
+        }}>
         <View style={{paddingHorizontal: 5}}>
           <Text
             style={isPress ? styles.tileTextPressed : styles.tileTextNormal}>
@@ -71,7 +75,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tile);
 
-
 const styles = StyleSheet.create({
   tileNormal: {
     height: 140,
@@ -109,7 +112,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 // import React from 'react';
 // import {TouchableHighlight, Text, View} from 'react-native';
 // import LinearGradient from 'react-native-linear-gradient';
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
 //     <LinearGradient
 //       start={{x: 0, y: 0}}
 //       end={{x: 1, y: 0}}
-//       colors={['#D3D3D3', '#e57b0d']}
+//       colors={['#D3D3D3', '#6697D2']}
 //       style={{height: 140, borderRadius: 10, marginBottom: 15}}>
 //       <TouchableHighlight
 //         style={isPress ? styles.tilePressed : styles.tileNormal}

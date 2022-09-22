@@ -62,29 +62,28 @@ const verifyAccount = (props) => {
     };
     Axios(options)
       .then((res) => {
-        //props.setFeedback('YourHotel', 'Registration Successfully!', true , nav);
+        //props.setFeedback('MyApartment', 'Registration Successfully!', true , nav);
         //props.navigation.navigate('ConfirmCode', { email: email });
         if (res.data.code == 200) {
           props.setFeedback(
-            'YourHotel',
+            'MyApartment',
             'Verification Email Resend SuccessFul!',
             true,
             'SignInScreen',
           );
           //console.log('You were right');
         } else {
-          props.setFeedback('YourHotel', res.data.message, true, '');
+          props.setFeedback('MyApartment', res.data.message, true, '');
         }
 
         setLoader(false);
       })
       .catch((error) => {
-        //props.setFeedback('YourHotel', 'Something Went Wrong!', true , '');
+        //props.setFeedback('MyApartment', 'Something Went Wrong!', true , '');
         console.log(error);
         setLoader(false);
       });
-
-    };
+  };
 
   return (
     <SafeAreaView

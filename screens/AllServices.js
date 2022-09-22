@@ -7,21 +7,21 @@ import {
   ScrollView,
   Keyboard,
 } from 'react-native';
-import {ActivityIndicator} from 'react-native-paper'
+import {ActivityIndicator} from 'react-native-paper';
 import BackgroundLayout from '../components/BackgroundLayout';
 import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
 import BigTile from '../components/AllBigTile';
-import { connect } from 'react-redux';
-import { useIsFocused } from '@react-navigation/native';
-import { apiActiveURL, appKey, appId } from '../ApiBaseURL';
+import {connect} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
+import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
 import Tile from '../components/childCategoryTile';
-import { setChildCategory, setFeedback, setServices } from '../actions';
+import {setChildCategory, setFeedback, setServices} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 
 const Category = (props) => {
-  const { screenName } = props.route.params;
+  const {screenName} = props.route.params;
   // console.log(screenName);
   const [SView, setSView] = React.useState('50%');
 
@@ -111,17 +111,16 @@ const Category = (props) => {
   //           ))}
   //         </ScrollView>
   //       </View>
-        
+
   //     </>
   //   );
   // };
 
   const fetchServices = () => {
-    
     let url = '';
-    if(props.ChildCatId == 0){
+    if (props.ChildCatId == 0) {
       url = `${apiActiveURL}/services/${props.CatId}?subrub=${props.suburb}`;
-    }else{
+    } else {
       url = `${apiActiveURL}/services/${props.ChildCatId}?subrub=${props.suburb}`;
     }
     const options = {
@@ -129,7 +128,7 @@ const Category = (props) => {
       headers: {
         AppKey: appKey,
         Token: props.token,
-        AppId: appId
+        AppId: appId,
       },
       url,
     };
@@ -137,21 +136,32 @@ const Category = (props) => {
       .then((res) => {
         if (Object.values(res.data.data).length > 0) {
           console.log('render', res.data.data);
-          let sortServices = res.data.data.sort((a, b) => a.display_order - b.display_order);
+          let sortServices = res.data.data.sort(
+            (a, b) => a.display_order - b.display_order,
+          );
           setServices(sortServices);
           //props.setChildCategory(res.data.data[0].id, res.data.data[0].title);
           setLoader2(true);
           console.log(url, 'rest api');
         } else {
-          
-          props.setFeedback('YourHotel', 'No Data Found', true , 'Restaurants');
-          
+          props.setFeedback(
+            'MyApartment',
+            'No Data Found',
+            true,
+            'Restaurants',
+          );
+
           console.log(url, 'categories');
           setLoader2(false);
         }
       })
       .catch((error) => {
-        props.setFeedback('YourHotel', 'Something Went Wrong...', true , 'Restaurants');
+        props.setFeedback(
+          'MyApartment',
+          'Something Went Wrong...',
+          true,
+          'Restaurants',
+        );
         console.log(url, 'rest api');
       });
   };
@@ -164,7 +174,6 @@ const Category = (props) => {
   const showServices = () => {
     return (
       <>
-        
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
             {getServices(services).map((services, index) => (
@@ -176,14 +185,12 @@ const Category = (props) => {
             ))}
           </View>
         </ScrollView>
-        
-        
       </>
     );
   };
   return (
     <SafeAreaView style={styles.container}>
-      <FeedbackModal/>
+      <FeedbackModal />
       <BackgroundLayout />
       <LogoBar title={props.hotelName} />
       <TitleBar title={props.ChildCatName} sub={true} />
@@ -194,27 +201,34 @@ const Category = (props) => {
           paddingLeft: '5.55%',
           paddingRight: '5.55%',
         }}>
-          {/* {loader === false ? (
+        {/* {loader === false ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: 90, marginBottom: 10}}>
           <ActivityIndicator animating={true} color="#6697D2" />
         </View>
       ) : (
         showChildCategories()
       )} */}
-      {loader2 === false ? (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', height: 90, marginBottom: 10}}>
-          <ActivityIndicator animating={true} color="#6697D2" />
-        </View>
-      ) : (
-        showServices()
-      )}
+        {loader2 === false ? (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 90,
+              marginBottom: 10,
+            }}>
+            <ActivityIndicator animating={true} color="#6697D2" />
+          </View>
+        ) : (
+          showServices()
+        )}
       </View>
     </SafeAreaView>
   );
 };
 
 const mapStateToProps = (state) => ({
-   hotelName: state.HotelDetails.hotel.name,
+  hotelName: state.HotelDetails.hotel.name,
   // hotelId: state.HotelDetails.hotel.id,
   // listingType: state.ListingType,
   token: state.LoginDetails.token,
@@ -226,7 +240,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setChildCategory: (id , name) => {
+  setChildCategory: (id, name) => {
     const data = {
       id: id,
       name: name,
@@ -238,14 +252,13 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);
-
 
 const styles = StyleSheet.create({
   container: {

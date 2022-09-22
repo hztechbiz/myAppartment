@@ -1,4 +1,4 @@
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {
@@ -11,7 +11,7 @@ import {
   Image,
   ScrollView,
   Keyboard,
-  TextInput
+  TextInput,
 } from 'react-native';
 import {
   Title,
@@ -22,9 +22,9 @@ import {
   Dialog,
   Button,
 } from 'react-native-paper';
-import { connect } from 'react-redux';
-import { setFeedback } from '../actions';
-import { apiActiveURL, appId, appKey } from '../ApiBaseURL';
+import {connect} from 'react-redux';
+import {setFeedback} from '../actions';
+import {apiActiveURL, appId, appKey} from '../ApiBaseURL';
 import BackgroundLayout from '../components/BackgroundLayout';
 import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
@@ -36,7 +36,7 @@ const statusBar = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
 const PassBusiness = (props) => {
   const [SView, setSView] = React.useState('50%');
   const [bill, setBill] = useState('');
-  const [netamount, setNetAmount] = useState(0.00);
+  const [netamount, setNetAmount] = useState(0.0);
   const [msgTitle, setMsgTitle] = useState('');
   const [msgBody, setMsgBody] = useState('');
   const [loader, setLoader] = useState(false);
@@ -48,7 +48,6 @@ const PassBusiness = (props) => {
     if (!isFocused) {
       return;
     }
-    
   }, [props, isFocused]);
 
   const containerStyle = {
@@ -91,25 +90,25 @@ const PassBusiness = (props) => {
 
   const handleChangeBill = (text) => {
     setBill(text);
-    if(text > 50){
+    if (text > 50) {
       let discounted_price;
       let original_price = text;
       let discount = props.route.params.discount;
       discounted_price = original_price - (original_price * discount) / 100;
       setNetAmount(discounted_price);
-    }else{
+    } else {
       setNetAmount(text);
     }
   };
 
   const handleVerifyCoupon = () => {
     if (bill === '') {
-      setMsgTitle('YourHotel');
+      setMsgTitle('MyApartment');
       setMsgBody('Please enter bill value.');
       setVisible(true);
       return;
-    }else if(confirmationcode == ''){
-      setMsgTitle('YourHotel');
+    } else if (confirmationcode == '') {
+      setMsgTitle('MyApartment');
       setMsgBody("Please tap 'Verify' again to confirm your purchase");
       setVisible(true);
       return;
@@ -137,18 +136,23 @@ const PassBusiness = (props) => {
         console.log(res, 'add_transaction');
         if (res.data.code === 200) {
           setLoader(false);
-          props.setFeedback('YourHotel', 'Coupon Verified Successfully!', true , 'My Coupons');
+          props.setFeedback(
+            'MyApartment',
+            'Coupon Verified Successfully!',
+            true,
+            'My Coupons',
+          );
         } else {
           setLoader(false);
-          props.setFeedback('YourHotel', 'No Data Found ...', true , '');
+          props.setFeedback('MyApartment', 'No Data Found ...', true, '');
         }
       })
       .catch((error) => {
         setLoader(false);
-        props.setFeedback('YourHotel', 'No Data Found ...', true , '');
+        props.setFeedback('MyApartment', 'No Data Found ...', true, '');
         console.log('how', error);
       });
-  }
+  };
 
   const showModal = () => {
     return (
@@ -168,14 +172,29 @@ const PassBusiness = (props) => {
               {msgTitle}
             </Title>
             {loader === true ? (
-              <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
                 <ActivityIndicator animating={true} color="#D3D3D3" />
               </View>
             ) : (
               <Text style={{textAlign: 'center'}}>{msgBody}</Text>
             )}
             <Dialog.Actions>
-              <Button onPress={() => {msgBody == "Please tap 'Verify' again to confirm your purchase" ? handleVerify() : hideModal()}}>{msgBody == "Please tap 'Verify' again to confirm your purchase" ? 'Verify' : 'OK'}</Button>
+              <Button
+                onPress={() => {
+                  msgBody ==
+                  "Please tap 'Verify' again to confirm your purchase"
+                    ? handleVerify()
+                    : hideModal();
+                }}>
+                {msgBody == "Please tap 'Verify' again to confirm your purchase"
+                  ? 'Verify'
+                  : 'OK'}
+              </Button>
             </Dialog.Actions>
           </ScrollView>
         </Modal>
@@ -188,7 +207,7 @@ const PassBusiness = (props) => {
   const handleVerify = () => {
     setConfirmationCode(generateConfirmationCode(6));
     hideModal();
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -264,29 +283,37 @@ PASS`}
                 INSERT THE FULL{'\n'}VALUE OF YOUR BILL
               </Text>
 
-              <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                <Text style={{
-                  color: '#D3D3D3',
-                  fontSize: 20
-                }}>$ </Text>
-              <TextInput
+              <View
                 style={{
-                  color: '#D3D3D3',
-                  backgroundColor: '#f0f3f7',
-                  marginRight: 20,
-                  marginTop: 6,
-                  borderRadius: 5,
-                  textAlign: 'center',
-                  height: 45,
-                  width: '75%'
-                }}
-                keyboardType='numeric'
-                maxLength={5}
-                onChangeText={(text) => handleChangeBill(text)}
-                value={bill}
-                placeholder="Enter Value"
-                placeholderTextColor="#D3D3D3"
-              />
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text
+                  style={{
+                    color: '#D3D3D3',
+                    fontSize: 20,
+                  }}>
+                  ${' '}
+                </Text>
+                <TextInput
+                  style={{
+                    color: '#D3D3D3',
+                    backgroundColor: '#f0f3f7',
+                    marginRight: 20,
+                    marginTop: 6,
+                    borderRadius: 5,
+                    textAlign: 'center',
+                    height: 45,
+                    width: '75%',
+                  }}
+                  keyboardType="numeric"
+                  maxLength={5}
+                  onChangeText={(text) => handleChangeBill(text)}
+                  value={bill}
+                  placeholder="Enter Value"
+                  placeholderTextColor="#D3D3D3"
+                />
               </View>
             </View>
             <View style={{width: '50%'}}>
@@ -308,7 +335,7 @@ PASS`}
           <View style={{flexDirection: 'row'}}>
             <View style={{width: '50%', paddingRight: 20}}>
               <Button
-              onPress={() => handleVerifyCoupon()}
+                onPress={() => handleVerifyCoupon()}
                 style={{
                   backgroundColor: '#D3D3D3',
                   height: 50,
@@ -367,7 +394,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },

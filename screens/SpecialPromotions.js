@@ -98,14 +98,14 @@ const SpecialPromotions = (props) => {
           // setMsgTitle('ClubLocal');
           // setMsgBody('No Data Found...');
           // setVisible(true);
-          props.setFeedback('YourHotel', 'No Coupons Available', true, '');
+          props.setFeedback('MyApartment', 'No Coupons Available', true, '');
           setLoader(false);
         }
       })
       .catch((error) => {
         // setMsgTitle('ClubLocal');
         // setMsgBody('No Data Found...');
-        props.setFeedback('YourHotel', 'No Coupons Available', true, '');
+        props.setFeedback('MyApartment', 'No Coupons Available', true, '');
         // setVisible(true);
         setLoader(false);
         console.log(error, 'coupons api');
@@ -142,9 +142,9 @@ const SpecialPromotions = (props) => {
 
   const showPromotions = () => {
     return (
-      <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+      <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
         {promotions.map((promotion, index) => (
-          <View key={index} style={{ flexBasis: '50%', marginBottom: 8 }}>
+          <View key={index} style={{flexBasis: '50%', marginBottom: 8}}>
             <SpecialProTile
               id={promotion.id}
               title={handleTitle(promotion.coupon_details)}
@@ -165,7 +165,9 @@ const SpecialPromotions = (props) => {
       <BackgroundLayout />
       <LogoBar />
       <TitleBar
-        title={props.route.params !== undefined ? '360 Pass' : `Special Promotions`}
+        title={
+          props.route.params !== undefined ? '360 Pass' : `Special Promotions`
+        }
       />
       <View
         style={{

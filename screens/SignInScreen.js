@@ -9,9 +9,15 @@ import {
   Dimensions,
   SafeAreaView,
   StatusBar,
-  Keyboard
+  Keyboard,
 } from 'react-native';
-import {Button, Title, Text, TextInput, ActivityIndicator} from 'react-native-paper';
+import {
+  Button,
+  Title,
+  Text,
+  TextInput,
+  ActivityIndicator,
+} from 'react-native-paper';
 import Icon_FA from 'react-native-vector-icons/FontAwesome';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
 import {connect} from 'react-redux';
@@ -20,7 +26,7 @@ import axios from 'axios';
 import {apiActiveURL, appId} from '../ApiBaseURL';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FeedbackModal from '../components/FeedbackModal';
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -45,14 +51,14 @@ const SignInScreen = (props) => {
       if (parsed !== null) {
         parsed = JSON.parse(parsed.config.data);
         onChangeText(parsed.email);
-        console.log(parsed.email , 'parsed try');
+        console.log(parsed.email, 'parsed try');
       }
     } catch (e) {
       const loggedInUser = await AsyncStorage.getItem('user');
       console.log(loggedInUser, 'loggedInUser catch');
     }
   };
- 
+
   const [loader, setLoader] = React.useState(false);
   const [isPress, setIsPress] = React.useState(false);
   const handleInput = (data) => props.signIn(data);
@@ -76,12 +82,17 @@ const SignInScreen = (props) => {
       .then(function (response) {
         console.log(response);
         if (response.data.code == 200) {
-          //props.setFeedback('YourHotel', 'Registration Successfully!', true , nav);
-        }else if (response.data.code == 401) {
-          //props.setFeedback('YourHotel', 'Registration Successfully!', true , nav);
+          //props.setFeedback('MyApartment', 'Registration Successfully!', true , nav);
+        } else if (response.data.code == 401) {
+          //props.setFeedback('MyApartment', 'Registration Successfully!', true , nav);
           props.navigation.navigate('verifyAccount', {email: email});
-        }else{
-          props.setFeedback('YourHotel', "Incorrect username or password", true , '');
+        } else {
+          props.setFeedback(
+            'MyApartment',
+            'Incorrect username or password',
+            true,
+            '',
+          );
         }
         setLoader(false);
         saveData(response);
@@ -90,23 +101,28 @@ const SignInScreen = (props) => {
       .catch(function (error) {
         setLoader(false);
         console.log(error);
-        props.setFeedback('YourHotel', 'Something went Wrong', true , '');
+        props.setFeedback('MyApartment', 'Something went Wrong', true, '');
       });
   };
 
   const toggleEye = () => {
     setIsPress(!isPress);
     Keyboard.dismiss();
-  }
+  };
   const saveData = async (res) => {
     try {
       await AsyncStorage.setItem('user', JSON.stringify(res));
       await AsyncStorage.setItem('user2', JSON.stringify(res));
       console.log(res, 'success');
     } catch (e) {
-      props.setFeedback('YourHotel', 'Failed to save the data to the storage', true , '');
+      props.setFeedback(
+        'MyApartment',
+        'Failed to save the data to the storage',
+        true,
+        '',
+      );
     }
-  }
+  };
 
   return (
     <SafeAreaView
@@ -116,7 +132,7 @@ const SignInScreen = (props) => {
         justifyContent: 'center',
         backgroundColor: '#fff',
       }}>
-        <FeedbackModal/>
+      <FeedbackModal />
       <Image
         source={require('../images/Hotel360-assets/BG-SignIn.png')}
         style={styles.background_image}
@@ -146,14 +162,24 @@ const SignInScreen = (props) => {
             value={value}
             placeholder="USERNAME"
             placeholderTextColor="#9ca5b1"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
             right={
               <TextInput.Icon
                 name={() => <Icon_FA name={'user'} size={15} color="#D3D3D3" />}
               />
             }
           />
-          <Text style={{fontSize: 10, alignSelf: 'baseline', paddingLeft: '8%', color: '#9ca5b1'}}>(The Email Address used to register with Us)</Text>
+          <Text
+            style={{
+              fontSize: 10,
+              alignSelf: 'baseline',
+              paddingLeft: '8%',
+              color: '#9ca5b1',
+            }}>
+            (The Email Address used to register with Us)
+          </Text>
           <TextInput
             style={styles.input}
             onChangeText={(text) => onChangeText2(text)}
@@ -161,10 +187,14 @@ const SignInScreen = (props) => {
             placeholder="PASSWORD"
             secureTextEntry={isPress ? false : true}
             placeholderTextColor="#9ca5b1"
-            theme={{colors: {primary: '#D3D3D3', underlineColor: 'transparent'}}}
-            right={            
-                <TextInput.Icon
-                name={() => <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />}
+            theme={{
+              colors: {primary: '#D3D3D3', underlineColor: 'transparent'},
+            }}
+            right={
+              <TextInput.Icon
+                name={() => (
+                  <Icon_FA_5 name={'eye'} size={15} color="#D3D3D3" />
+                )}
                 onPress={toggleEye}
               />
             }
@@ -177,7 +207,8 @@ const SignInScreen = (props) => {
               marginBottom: 15,
             }}>
             <Text style={{fontSize: 12}}>Forgetten Your </Text>
-            <TouchableOpacity onPress={() => props.navigation.navigate('ConfirmEmail')}>
+            <TouchableOpacity
+              onPress={() => props.navigation.navigate('ConfirmEmail')}>
               <Text
                 style={{
                   color: '#D3D3D3',
@@ -243,7 +274,7 @@ const mapDispatchToProps = (dispatch) => ({
       msgTitle: msgTitle,
       msgBody: msgBody,
       visible: visible,
-      mynav: mynav
+      mynav: mynav,
     };
     dispatch(setFeedback(data));
   },

@@ -25,12 +25,11 @@ import {useIsFocused} from '@react-navigation/native';
 import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
 import Icon_FA_5 from 'react-native-vector-icons/FontAwesome5';
-import {setFeedback,} from '../actions';
+import {setFeedback} from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 import Pdf from 'react-native-pdf';
 
 const TermsConditions = (props) => {
-
   const [SView, setSView] = React.useState('50%');
   const [loader, setLoader] = React.useState(true);
   const [msgTitle, setMsgTitle] = useState('');
@@ -67,12 +66,12 @@ const TermsConditions = (props) => {
           setLoader(false);
         } else {
           console.log('TermsConditions', res);
-          props.setFeedback('YourHotel', 'No Data Found', true , '');
+          props.setFeedback('MyApartment', 'No Data Found', true, '');
           setLoader(false);
         }
       })
       .catch((error) => {
-        props.setFeedback('YourHotel', 'No Data Found', true , '');
+        props.setFeedback('MyApartment', 'No Data Found', true, '');
         setLoader(false);
         console.log('TermsConditions', error);
       });
@@ -84,12 +83,10 @@ const TermsConditions = (props) => {
         style={{
           marginTop: 20,
           paddingHorizontal: '5.55%',
-          height:'50%'
+          height: '50%',
         }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Text style={{fontSize: 14, lineHeight: 20}}>
-            {termsconditions}
-          </Text>
+          <Text style={{fontSize: 14, lineHeight: 20}}>{termsconditions}</Text>
         </ScrollView>
       </View>
     );
@@ -113,23 +110,24 @@ const TermsConditions = (props) => {
       ) : (
         // showTermsConditions()
         <>
-        <Pdf
-          source={require('./../assets/pdfs/YourHotel_Membership_Terms_and_Conditions.pdf')}
-          onLoadComplete={(numberOfPages,filePath)=>{
-            console.log(`number of pages: ${numberOfPages}`);
-          }}
-          onPageChanged={(page,numberOfPages)=>{
+          <Pdf
+            source={require('./../assets/pdfs/YourHotel_Membership_Terms_and_Conditions.pdf')}
+            onLoadComplete={(numberOfPages, filePath) => {
+              console.log(`number of pages: ${numberOfPages}`);
+            }}
+            onPageChanged={(page, numberOfPages) => {
               console.log(`current page: ${page}`);
-          }}
-          onError={(error)=>{
+            }}
+            onError={(error) => {
               console.log(error);
-          }}
-          onPressLink={(uri)=>{
-              console.log(`Link presse: ${uri}`)
-          }}
-          // singlePage={false}
-          // page={4}
-          style={styles.pdf}/>
+            }}
+            onPressLink={(uri) => {
+              console.log(`Link presse: ${uri}`);
+            }}
+            // singlePage={false}
+            // page={4}
+            style={styles.pdf}
+          />
         </>
       )}
     </SafeAreaView>
@@ -168,7 +166,7 @@ const styles = StyleSheet.create({
   pdf: {
     // flex:1,
     alignSelf: 'center',
-    width:Dimensions.get('window').width,
-    height:Dimensions.get('window').height * 0.67,
-  }
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height * 0.67,
+  },
 });
