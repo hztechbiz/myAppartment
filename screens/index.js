@@ -1,11 +1,11 @@
 import React from 'react';
-import {Image, Dimensions, KeyboardAvoidingView, StatusBar, AppState} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {connect, Provider} from 'react-redux';
+import { Image, Dimensions, KeyboardAvoidingView, StatusBar, AppState } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { connect, Provider } from 'react-redux';
 import store from '../store';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Me from './Me';
 import WhatsOn from './WhatsOn';
@@ -31,9 +31,9 @@ import ExBusiness from './ExBusiness';
 import GuestDirectory from './GuestDirectory';
 
 import RootStackScreen from './RootStackScreen';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {checkOut, signIn, signOut} from '../actions';
+import { checkOut, signIn, signOut } from '../actions';
 import childCategoriesGD from './childCategoriesGD';
 import GDServices from './GDServices';
 import GDBusiness from './GDBusiness';
@@ -101,7 +101,7 @@ const Index = (props) => {
     appState.current = nextAppState;
     setAppStateVisible(appState.current);
     console.log("AppState", appState.current);
-    if(appState.current == 'active'){
+    if (appState.current == 'active') {
       const loggedInUser = await AsyncStorage.getItem('user');
       let parsed = JSON.parse(loggedInUser);
       if (parsed !== null) {
@@ -121,7 +121,7 @@ const Index = (props) => {
             if (res.data.data) {
               // props.signIn(parsed);
               console.log(parsed, 'parsed try');
-            }else{
+            } else {
               handleLogout(parsed.data.data.user_id)
             }
           })
@@ -184,11 +184,11 @@ const Index = (props) => {
 
   return (
     <KeyboardAvoidingView
-      style={{flex: 1}}
+      style={{ flex: 1 }}
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS == 'ios' ? 20 : 20}
       enabled={Platform.OS === 'ios' ? false : false}
-      >
+    >
       <NavigationContainer>
         {props.isChecked ? (
           <Tab.Navigator
@@ -292,11 +292,11 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index);
 
-const ExtraStackScreen = ({navigation}) => {
+const ExtraStackScreen = ({ navigation }) => {
   return (
     <ExtraStack.Navigator headerMode="none" initialRouteName="Me">
       <ExtraStack.Screen name="Me" component={Me} />
-      
+
       <ExtraStack.Screen name="AllServices" component={AllServices} />
       <ExtraStack.Screen name="help" component={help} />
 
@@ -333,7 +333,7 @@ const ExtraStackScreen = ({navigation}) => {
   );
 };
 
-const MeStackScreen = ({navigation}) => {
+const MeStackScreen = ({ navigation }) => {
   return (
     <MeStack.Navigator headerMode="none">
       <MeStack.Screen name="MyAccount" component={MyAccount} />
@@ -346,7 +346,7 @@ const MeStackScreen = ({navigation}) => {
   );
 };
 
-const MyCouponsStackScreen = ({navigation}) => {
+const MyCouponsStackScreen = ({ navigation }) => {
   return (
     <MyCouponsStack.Navigator headerMode="none" initialRouteName="My Coupons">
       <MyCouponsStack.Screen name="My Coupons" component={MyCoupons} />
@@ -362,10 +362,10 @@ const MyCouponsStackScreen = ({navigation}) => {
   );
 };
 
-const PromotionsStackScreen = ({navigation}) => {
+const PromotionsStackScreen = ({ navigation }) => {
   return (
     <PromotionsStack.Navigator headerMode="none" initialRouteName="Promotions">
-      
+
       <PromotionsStack.Screen name="Promotions" component={Promotions} />
       <PromotionsStack.Screen name="PromoCategories" component={PromoCategories} />
       <PromotionsStack.Screen
@@ -385,12 +385,12 @@ const PromotionsStackScreen = ({navigation}) => {
   );
 };
 
-const RestaurantsStackScreen = ({navigation}) => {
+const RestaurantsStackScreen = ({ navigation }) => {
   return (
     <RestaurantsStack.Navigator
       headerMode="none"
-      initialRouteName="GetAll">
-        <RestaurantsStack.Screen name="GetAll" component={GetAll} />
+      initialRouteName="Restaurants">
+      {/* <RestaurantsStack.Screen name="Restaurants" component={GetAll} /> */}
       <RestaurantsStack.Screen name="Restaurants" component={Restaurants} />
       <RestaurantsStack.Screen
         name="ChildCategories"
@@ -406,7 +406,7 @@ const RestaurantsStackScreen = ({navigation}) => {
   );
 };
 
-const ExperiencesStackScreen = ({navigation}) => {
+const ExperiencesStackScreen = ({ navigation }) => {
   return (
     <ExperiencesStack.Navigator
       headerMode="none"
