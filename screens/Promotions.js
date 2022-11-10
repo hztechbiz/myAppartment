@@ -118,7 +118,7 @@ const Promotions = (props) => {
     featuredPromotion.length = 0;
     featuredserviceid.length = 0;
     featuredservicetitle.length = 0;
-    const url = `${apiActiveURL}/feature_promotion?area=${props.area}&subrub=${props.suburb}`;
+    const url = `${apiActiveURL}/feature_promotion?area=${props.area}&subrub=${props.suburb}&listing_type=7`;
     const options = {
       method: 'GET',
       headers: {

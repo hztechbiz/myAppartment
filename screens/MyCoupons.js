@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   SafeAreaView,
@@ -17,14 +17,14 @@ import {
   Text,
 } from 'react-native-paper';
 import BackgroundLayout from '../components/BackgroundLayout';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import axios from 'axios';
-import {useIsFocused} from '@react-navigation/native';
-import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
+import { useIsFocused } from '@react-navigation/native';
+import { apiActiveURL, appKey, appId } from '../ApiBaseURL';
 import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
 import Tile from '../components/VoucherTile';
-import {setFeedback} from '../actions';
+import { setFeedback } from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
 
 const MyCoupons = (props) => {
@@ -64,17 +64,20 @@ const MyCoupons = (props) => {
 
   const showCoupons = () => {
     return (
-      <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-        <View style={{width: '50%', marginBottom: 8}}>
+      <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+        <View style={{ width: '50%', marginBottom: 8 }}>
           <Tile title="MY FAVOURITES" nav="Discount Pass" />
         </View>
 
-        <View style={{width: '50%', marginBottom: 8}}>
-          <Tile title="SPECIAL PROMOTIONS" nav="Special Promotions"  />
+        <View style={{ width: '50%', marginBottom: 8 }}>
+          <Tile title="SPECIAL PROMOTIONS" nav="Special Promotions" />
         </View>
 
-        <View style={{width: '50%', marginBottom: 8}}>
-          <Tile title="MY 360 PASS COUPONS" nav="My Pass"  />
+        <View style={{ width: '50%', marginBottom: 8 }}>
+          <Tile title="MY 360 PASS COUPONS" nav="My Pass" />
+        </View>
+        <View style={{ width: '50%', marginBottom: 8 }}>
+          <Tile title="Treat Vouchers" nav="MyTreat Voucher" />
         </View>
       </View>
     );
@@ -98,7 +101,7 @@ COUPONS`}
           paddingRight: '5.55%',
         }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-        {showCoupons()}
+          {showCoupons()}
         </ScrollView>
       </View>
     </SafeAreaView>

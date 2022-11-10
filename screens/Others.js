@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -14,11 +14,11 @@ import {
 import BackgroundLayout from '../components/BackgroundLayout';
 import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
-import {connect} from 'react-redux';
-import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
+import { connect } from 'react-redux';
+import { apiActiveURL, appKey, appId } from '../ApiBaseURL';
 import Axios from 'axios';
-import {useIsFocused} from '@react-navigation/native';
-import {ActivityIndicator, Button} from 'react-native-paper';
+import { useIsFocused } from '@react-navigation/native';
+import { ActivityIndicator, Button } from 'react-native-paper';
 import ExTile from '../components/OthersTile';
 import {
   setCarouselCurrentIndexAll,
@@ -28,10 +28,10 @@ import {
   setFeedback,
 } from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
-import {SliderBox} from 'react-native-image-slider-box';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import { SliderBox } from 'react-native-image-slider-box';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 import HTML from 'react-native-render-html';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -51,10 +51,7 @@ const Others = (props) => {
 
   useEffect(() => {
     if (!isFocused) {
-      setSliderImages([]);
-      setFeaturedPromotion([]);
-      setFeaturedServiceId([]);
-      setFeaturedServiceTitle([]);
+
       return;
     }
     fetchCategories();
@@ -62,7 +59,7 @@ const Others = (props) => {
   }, [props]);
 
   useEffect(() => {
-    setCurrentIndex(props.carouselCurrentIndex);
+    setCurrentIndex(0);
     navigation.addListener('focus', async () => {
       if (!loader2) {
         setLoader2(true);
@@ -73,7 +70,7 @@ const Others = (props) => {
   }, [props]);
 
   const fetchCategories = () => {
-    const url = `${apiActiveURL}/categories?subrub=${props.suburb}&area=${props.area}&listing_type=9`;
+    const url = `${apiActiveURL}/categories?subrub=${props.suburb}&area=${props.area}&listing_type=11`;
     const options = {
       method: 'GET',
       headers: {
@@ -115,7 +112,8 @@ const Others = (props) => {
     featuredPromotion.length = 0;
     featuredserviceid.length = 0;
     featuredservicetitle.length = 0;
-    const url = `${apiActiveURL}/feature_promotion?area=${props.area}&subrub=${props.suburb}`;
+    const url = `${apiActiveURL}/feature_promotion?area=${props.area}&subrub=${props.suburb}&listing_type=11`;
+    console.log(url, 'url url')
     const options = {
       method: 'GET',
       headers: {
@@ -127,7 +125,7 @@ const Others = (props) => {
     };
     Axios(options)
       .then((res) => {
-        // console.log('featured_promotion', res.data.data);
+        console.log('featured_promotion ============', res.data.data);
         if (res.data.code === 200) {
           if (res.data.data.length > 0) {
             let sortedarr = res.data.data.sort(
@@ -137,11 +135,11 @@ const Others = (props) => {
             sortedarr.map((data, index) => {
               // console.log('featured_promotion', data);
               if (data.image_url) {
-                sliderImages.push({uri: data.image_url});
+                sliderImages.push({ uri: data.image_url });
                 featuredPromotion.push({
                   id: data?.service_id,
                   name: data?.name,
-                  image: {uri: data?.image_url},
+                  image: { uri: data?.image_url },
                   tagline: data?.tagline,
                   title: data?.service?.title,
                   iframe_url: data?.iframe_url,
@@ -239,7 +237,7 @@ const Others = (props) => {
     }
   };
 
-  const _renderItem = ({item, index}) => {
+  const _renderItem = ({ item, index }) => {
     return (
       <TouchableOpacity
         onPress={() =>
@@ -274,7 +272,7 @@ const Others = (props) => {
                   backgroundColor: 'rgba(000,000,000,0)',
                 },
               }}
-              source={{html: item?.tagline == '' ? '<p></p>' : item?.tagline}}
+              source={{ html: item?.tagline == '' ? '<p></p>' : item?.tagline }}
             />
           ) : (
             <Text
@@ -331,7 +329,7 @@ const Others = (props) => {
       <Pagination
         dotsLength={featuredPromotion.length}
         activeDotIndex={currentIndex}
-        containerStyle={{paddingVertical: 5}}
+        containerStyle={{ paddingVertical: 5 }}
         dotStyle={{
           width: 10,
           // height: 10,
@@ -384,7 +382,7 @@ const Others = (props) => {
           //   paddingRight: '5.55%',
         }}>
         <ScrollView>
-          <View style={{height: 90, marginTop: 20, paddingLeft: '5.55%'}}>
+          <View style={{ height: 90, marginTop: 20, paddingLeft: '5.55%' }}>
             {loader === false ? (
               <View
                 style={{
@@ -442,8 +440,9 @@ const Others = (props) => {
                 sliderWidth={screenWidth}
                 itemWidth={screenWidth}
                 renderItem={_renderItem}
+                firstItem={0}
                 initialScrollIndex={props.carouselCurrentIndex}
-                onScrollToIndexFailed={() => {}}
+                onScrollToIndexFailed={() => { }}
                 onSnapToItem={(index) => setCurrentIndex(index)}
               />
               <PaginationComp />

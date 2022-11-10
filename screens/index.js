@@ -61,6 +61,14 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useRef } from 'react';
 import Weather from './Weather';
+import Treats from './Treats';
+import TreatDetail from './TreatDetail';
+import TreatVoucher from './TreatVoucher';
+import MyTreatVoucher from './MyTreatVoucher';
+import Beauty from './Beauty';
+import childCategoriesBeauty from './childCategoriesBeauty';
+import BeautyServices from './BeautyServices';
+import BeautyBusiness from './BeautyBusiness';
 
 const MeStack = createStackNavigator();
 const MyCouponsStack = createStackNavigator();
@@ -303,7 +311,17 @@ const ExtraStackScreen = ({ navigation }) => {
       <ExtraStack.Screen name="GDServices" component={GDServices} />
       <ExtraStack.Screen name="GDBusiness" component={GDBusiness} />
       <ExtraStack.Screen name="GDmessages" component={GDmessages} />
+      <ExtraStack.Screen name="Treats" component={Treats} />
+      <ExtraStack.Screen name="TreatDetail" component={TreatDetail} />
+      <ExtraStack.Screen name="TreatVoucher" component={TreatVoucher} />
+      <ExtraStack.Screen name="Beauty" component={Beauty} />
 
+      <ExtraStack.Screen
+        name="childCategoriesBeauty"
+        component={childCategoriesBeauty}
+      />
+      <ExtraStack.Screen name="BeautyServices" component={BeautyServices} />
+      <ExtraStack.Screen name="BeautyBusiness" component={BeautyBusiness} />
       <ExtraStack.Screen name="WhatsOn" component={WhatsOn} />
       <ExtraStack.Screen
         name="childCategoriesWhatsOn"
@@ -354,6 +372,10 @@ const MyCouponsStackScreen = ({ navigation }) => {
       <MyCouponsStack.Screen
         name="Special Promotions"
         component={SpecialPromotions}
+      />
+      <MyCouponsStack.Screen
+        name="MyTreat Voucher"
+        component={MyTreatVoucher}
       />
       <MyCouponsStack.Screen name="Special Business" component={SpecialBusiness} />
       <MyCouponsStack.Screen name="My Pass" component={MyPass} />

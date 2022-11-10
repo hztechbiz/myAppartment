@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Image,
@@ -25,7 +25,7 @@ import {
 } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon5 from 'react-native-vector-icons/FontAwesome5';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import {
   checkOut,
   setIsAll,
@@ -33,8 +33,8 @@ import {
   setSuburb,
   signOut,
 } from '../actions';
-import {useIsFocused, CommonActions} from '@react-navigation/native';
-import {apiActiveURL, appId, appKey} from '../ApiBaseURL';
+import { useIsFocused, CommonActions } from '@react-navigation/native';
+import { apiActiveURL, appId, appKey } from '../ApiBaseURL';
 import Axios from 'axios';
 import Pdf from 'react-native-pdf';
 import PoweredBy from '../components/PoweredBy';
@@ -53,7 +53,7 @@ const Me = (props) => {
   const [suburbid, setSuburbID] = useState('');
   const isFocused = useIsFocused();
   const [visibleLogOut, setVisibleLogOut] = useState(false);
-  const [pdfuri, setPdfUri] = useState({uri: ''});
+  const [pdfuri, setPdfUri] = useState({ uri: '' });
   const [pdfmodal, setPdfModal] = useState(false);
   const [pdfloader, setPdfLoader] = useState(false);
 
@@ -146,14 +146,14 @@ const Me = (props) => {
               }}>
               Are You Sure You Want To LOGOUT?
             </Title>
-            <Dialog.Actions style={{marginBottom: -10}}>
+            <Dialog.Actions style={{ marginBottom: -10 }}>
               <Button onPress={() => hidelogOut()}>
-                <Text style={{color: '#D3D3D3', fontWeight: 'bold'}}>
+                <Text style={{ color: '#D3D3D3', fontWeight: 'bold' }}>
                   Cancel
                 </Text>
               </Button>
               <Button onPress={() => handleLogout()}>
-                <Text style={{color: '#D3D3D3', fontWeight: 'bold'}}>Yes</Text>
+                <Text style={{ color: '#D3D3D3', fontWeight: 'bold' }}>Yes</Text>
               </Button>
             </Dialog.Actions>
           </ScrollView>
@@ -165,7 +165,7 @@ const Me = (props) => {
   const handleNavigationGD = () => {
     props.navigation.dispatch(
       CommonActions.reset({
-        routes: [{name: 'GDServices'}],
+        routes: [{ name: 'GDServices' }],
       }),
     );
   };
@@ -173,17 +173,17 @@ const Me = (props) => {
     if (categoryname == 'Restaurants') {
       props.navigation.dispatch(
         CommonActions.reset({
-          routes: [{name: 'Restaurants', params: {screenName: 'GetAll'}}],
+          routes: [{ name: 'Restaurants', params: { screenName: 'GetAll' } }],
         }),
       );
     } else if (categoryname != 'PromoCategories') {
       props.navigation.dispatch(
         CommonActions.reset({
-          routes: [{name: categoryname}],
+          routes: [{ name: categoryname }],
         }),
       );
     } else {
-      props.navigation.navigate('Promotions', {screen: categoryname});
+      props.navigation.navigate('Promotions', { screen: categoryname });
     }
   };
 
@@ -211,7 +211,7 @@ const Me = (props) => {
         if (res.data.code === 200) {
           setMsgTitle('Select Suburb/Town');
           if (res.data.data) {
-            let defaultvalue = {All: 'All'};
+            let defaultvalue = { All: 'All' };
             let objset = Object.assign(defaultvalue, res.data.data);
             setSuburbs(objset);
           }
@@ -284,7 +284,7 @@ const Me = (props) => {
                         </TouchableOpacity>
                       ))
                   ) : (
-                    <Text style={{textAlign: 'center'}}>{msgBody}</Text>
+                    <Text style={{ textAlign: 'center' }}>{msgBody}</Text>
                   )}
                 </>
               )}
@@ -382,7 +382,7 @@ const Me = (props) => {
           <Image
             source={
               props.logo
-                ? {uri: props.logo}
+                ? { uri: props.logo }
                 : require('../images/Hotel360-assets/hotel-logo.png')
             }
             style={styles.logo_css}
@@ -486,7 +486,7 @@ const Me = (props) => {
                 }}
                 onPress={() => handleNavigation('help')}
                 color="#FFF"
-                labelStyle={{fontSize: 9, textAlign: 'center'}}>
+                labelStyle={{ fontSize: 9, textAlign: 'center' }}>
                 HELP
               </Button>
               <Button
@@ -499,7 +499,7 @@ const Me = (props) => {
                 }}
                 onPress={() => showlogOut()}
                 color="#000"
-                labelStyle={{fontSize: 9, textAlign: 'center'}}>
+                labelStyle={{ fontSize: 9, textAlign: 'center' }}>
                 LOGOUT
               </Button>
             </View>
@@ -524,12 +524,12 @@ const Me = (props) => {
           height: SView,
         }}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{flexDirection: 'row'}}>
+          <View style={{ flexDirection: 'row' }}>
             <View style={styles.contentScroll_view_1}>
               <TouchableOpacity
                 style={[
                   styles.touchableBox_left,
-                  {backgroundColor: '#6697D2', height: 40, marginTop: 0},
+                  { backgroundColor: '#6697D2', height: 40, marginTop: 0 },
                 ]}
                 onPress={() => {
                   props.navigation.navigate('Weather');
@@ -550,14 +550,14 @@ const Me = (props) => {
                 </Title>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.touchableBox_left, {marginTop: '10%'}]}
+                style={[styles.touchableBox_left, { marginTop: '10%' }]}
                 onPress={() => {
                   props.setListingType(10);
                   handleNavigationGD();
                 }}>
                 <Image
                   source={require('../images/Hotel360-assets/guest-directory-icon.png')}
-                  style={{height: '38.31%', resizeMode: 'contain'}}
+                  style={{ height: '38.31%', resizeMode: 'contain' }}
                 />
                 <Title
                   style={{
@@ -577,7 +577,7 @@ const Me = (props) => {
                 }}>
                 <Image
                   source={require('../images/Hotel360-assets/promotions.png')}
-                  style={{height: '38.31%', resizeMode: 'contain'}}
+                  style={{ height: '38.31%', resizeMode: 'contain' }}
                 />
                 <Title
                   style={{
@@ -616,7 +616,7 @@ const Me = (props) => {
                 }}>
                 <Image
                   source={require('../images/Hotel360-assets/whats-on.png')}
-                  style={{height: '38.31%', resizeMode: 'contain'}}
+                  style={{ height: '38.31%', resizeMode: 'contain' }}
                 />
                 <Title
                   style={{
@@ -628,6 +628,31 @@ const Me = (props) => {
                   What's on
                 </Title>
               </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.touchableBox_right}
+                onPress={() => {
+                  // props.setListingType(9);
+                  handleNavigation('Treats');
+                  // props.navigation.navigate('Treats')
+                  // handleNavigation('Treats');
+                }}>
+                <Image
+                  source={require('../images/Hotel360-assets/promotions.png')}
+                  style={{ height: '38.31%', resizeMode: 'contain' }}
+                />
+                <Title
+                  style={{
+                    fontSize: 14,
+                    lineHeight: 14,
+                    textAlign: 'center',
+                    marginTop: '8.42%',
+                    padding: 5,
+                  }}>
+                  Bag of Treats
+                </Title>
+              </TouchableOpacity>
+
               <TouchableOpacity
                 style={styles.touchableBox_left}
                 onPress={() => {
@@ -636,7 +661,7 @@ const Me = (props) => {
                 }}>
                 <Image
                   source={require('../images/Hotel360-assets/coupons.png')}
-                  style={{height: '38.31%', resizeMode: 'contain'}}
+                  style={{ height: '38.31%', resizeMode: 'contain' }}
                 />
                 <Title
                   style={{
@@ -667,7 +692,7 @@ const Me = (props) => {
                 }}>
                 <Image
                   source={require('../images/Hotel360-assets/restaurants-eaters.png')}
-                  style={{height: '38.31%', resizeMode: 'contain'}}
+                  style={{ height: '38.31%', resizeMode: 'contain' }}
                 />
                 <Title
                   style={{
@@ -687,7 +712,7 @@ const Me = (props) => {
                 }}>
                 <Image
                   source={require('../images/Hotel360-assets/experiences.png')}
-                  style={{height: '38.31%', resizeMode: 'contain'}}
+                  style={{ height: '38.31%', resizeMode: 'contain' }}
                 />
                 <Title
                   style={{
@@ -703,11 +728,11 @@ const Me = (props) => {
                 style={styles.touchableBox_right}
                 onPress={() => {
                   props.setListingType(9);
-                  handleNavigation('Others');
+                  handleNavigation('Beauty');
                 }}>
                 <Image
                   source={require('../images/Hotel360-assets/promotions.png')}
-                  style={{height: '38.31%', resizeMode: 'contain'}}
+                  style={{ height: '38.31%', resizeMode: 'contain' }}
                 />
                 <Title
                   style={{
@@ -716,7 +741,28 @@ const Me = (props) => {
                     textAlign: 'center',
                     marginTop: '8.42%',
                   }}>
-                  Beauty, Retail & Other
+                  Beauty & Retail
+                </Title>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.touchableBox_right}
+                onPress={() => {
+                  props.setListingType(11);
+                  handleNavigation('Others');
+                }}>
+                <Image
+                  source={require('../images/Hotel360-assets/promotions.png')}
+                  style={{ height: '38.31%', resizeMode: 'contain' }}
+                />
+                <Title
+                  style={{
+                    fontSize: 14,
+                    lineHeight: 14,
+                    textAlign: 'center',
+                    marginTop: '8.42%',
+                  }}>
+                  Other
                 </Title>
               </TouchableOpacity>
             </View>

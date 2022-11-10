@@ -160,6 +160,24 @@ export const setOthersServices = (data) => {
         payload: data
     };
 };
+export const setBeauty = (data) => {
+    return {
+        type: 'SET_BEAUTY',
+        payload: data
+    };
+};
+export const setChilDBeauty = (data) => {
+    return {
+        type: 'SET_CHILD_BEAUTY',
+        payload: data
+    };
+};
+export const setBeautyServices = (data) => {
+    return {
+        type: 'SET_BEAUTY_SERVICES',
+        payload: data
+    };
+};
 export const setCarouselTotalIndex = (data) => {
     return {
         type: 'SET_CAROUSEL_TOTAL_INDEX',
