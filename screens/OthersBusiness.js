@@ -681,7 +681,7 @@ const OthersBusiness = (props) => {
             <TouchableOpacity
               onPress={Requestmid}
               style={{
-                backgroundColor: isRequest ? '#D3D3D3' : '#f9bf80',
+                backgroundColor: isRequest ? '#6697D2' : '#6697D2',
                 height: 60,
                 width: '30%',
                 borderRadius: 10,

@@ -34,9 +34,10 @@ const childOthersTile = (props) => {
             setIsPress(false);
             props.setCarouselCurrentIndexAll();
             props.setChildOthers(props.id, props.title);
-            props.haschild === true
-              ? ''
-              : navigation.navigate('OthersServices');
+            // props.haschild === true
+            //   ? ''
+            //   :
+            navigation.navigate('OthersServices');
           }, 0);
         }}>
         <Text style={isPress ? styles.tileTextPressed : styles.tileTextNormal}>
