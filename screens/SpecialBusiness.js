@@ -250,6 +250,7 @@ COUPON`}
                 borderRadius: 5,
                 textAlign: 'center',
                 marginBottom: 5,
+                height: 45,
               }}
               keyboardType="numeric"
               maxLength={5}
@@ -270,6 +271,24 @@ COUPON`}
               borderTopWidth: 1,
               marginVertical: 15,
             }}></View>
+          <Text
+            style={{
+              textAlign: 'center',
+              fontWeight: '700',
+              paddingVertical: 5,
+            }}>
+            Terms & Conditions
+          </Text>
+          <Text
+            style={{
+              // textAlign: 'center',
+              paddingHorizontal: 15,
+              paddingVertical: 15,
+
+              color: '#6b6b6b',
+            }}>
+            {props.route.params.terms}
+          </Text>
           <View style={{flexDirection: 'row'}}>
             <View style={{width: '50%', paddingRight: 20}}>
               <Button
@@ -299,7 +318,7 @@ COUPON`}
               </Text>
             </View>
           </View>
-          <View style={{justifyContent: 'center', alignContent: 'center'}}>
+          <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
             <Button
               style={{
                 backgroundColor: '#D3D3D3',
@@ -314,6 +333,14 @@ COUPON`}
               labelStyle={{color: '#fff'}}>
               CLOSE
             </Button>
+            <View style={{flexDirection: 'column'}}>
+              <Text style={{marginTop: 20, textAlign: 'left', width: 150}}>
+                Expiry Date
+              </Text>
+              <Text style={{textAlign: 'left', width: 150, fontWeight: 'bold'}}>
+                {props.route.params.expiry}
+              </Text>
+            </View>
           </View>
         </ScrollView>
       </View>

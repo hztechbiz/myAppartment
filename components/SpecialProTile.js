@@ -28,6 +28,8 @@ const Tile = (props) => {
               discount: props.discount,
               minamount: props.minamount,
               details: props.details,
+              terms: props.terms,
+              expiry: props.expiry,
               route: props.route,
             });
           }, 0);

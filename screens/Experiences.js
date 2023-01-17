@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -14,11 +14,11 @@ import {
 import BackgroundLayout from '../components/BackgroundLayout';
 import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
-import { connect } from 'react-redux';
-import { apiActiveURL, appKey, appId } from '../ApiBaseURL';
+import {connect} from 'react-redux';
+import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
-import { useIsFocused } from '@react-navigation/native';
-import { ActivityIndicator, Button } from 'react-native-paper';
+import {useIsFocused} from '@react-navigation/native';
+import {ActivityIndicator, Button} from 'react-native-paper';
 import ExTile from '../components/ExTile';
 import {
   setCarouselCurrentIndexAll,
@@ -27,10 +27,10 @@ import {
   setFeedback,
 } from '../actions';
 import FeedbackModal from '../components/FeedbackModal';
-import { SliderBox } from 'react-native-image-slider-box';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import {SliderBox} from 'react-native-image-slider-box';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 import HTML from 'react-native-render-html';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import AllTile from '../components/AllTile';
 
 const screenHeight = Dimensions.get('window').height;
@@ -137,11 +137,11 @@ const Promotions = (props) => {
             sortedarr.map((data, index) => {
               // console.log('featured_promotion', data);
               if (data.image_url) {
-                sliderImages.push({ uri: data.image_url });
+                sliderImages.push({uri: data.image_url});
                 featuredPromotion.push({
                   id: data?.service_id,
                   name: data?.name,
-                  image: { uri: data?.image_url },
+                  image: {uri: data?.image_url},
                   tagline: data?.tagline,
                   title: data?.service?.title,
                   iframe_url: data?.iframe_url,
@@ -239,7 +239,7 @@ const Promotions = (props) => {
     }
   };
 
-  const _renderItem = ({ item, index }) => {
+  const _renderItem = ({item, index}) => {
     return (
       <TouchableOpacity
         onPress={() =>
@@ -274,7 +274,7 @@ const Promotions = (props) => {
                   backgroundColor: 'rgba(000,000,000,0)',
                 },
               }}
-              source={{ html: item?.tagline == '' ? '<p></p>' : item?.tagline }}
+              source={{html: item?.tagline == '' ? '<p></p>' : item?.tagline}}
             />
           ) : (
             <Text
@@ -331,7 +331,7 @@ const Promotions = (props) => {
       <Pagination
         dotsLength={featuredPromotion.length}
         activeDotIndex={currentIndex}
-        containerStyle={{ paddingVertical: 5 }}
+        containerStyle={{paddingVertical: 5}}
         dotStyle={{
           width: 10,
           // height: 10,
@@ -359,7 +359,6 @@ const Promotions = (props) => {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={16}>
-
           <AllTile
             title="All"
             nav="Experiences"
@@ -391,7 +390,7 @@ const Promotions = (props) => {
           //   paddingRight: '5.55%',
         }}>
         <ScrollView>
-          <View style={{ height: 90, marginTop: 20, paddingLeft: '5.55%' }}>
+          <View style={{height: 90, marginTop: 20, paddingLeft: '5.55%'}}>
             {loader === false ? (
               <View
                 style={{
@@ -450,7 +449,7 @@ const Promotions = (props) => {
                 itemWidth={screenWidth}
                 renderItem={_renderItem}
                 initialScrollIndex={props.carouselCurrentIndex}
-                onScrollToIndexFailed={() => { }}
+                onScrollToIndexFailed={() => {}}
                 onSnapToItem={(index) => setCurrentIndex(index)}
               />
               <PaginationComp />

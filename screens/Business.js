@@ -238,6 +238,8 @@ const Business = (props) => {
               coupon_name: parseCoupon.coupon_name,
               coupon_details: parseCoupon.coupon_details,
               coupon_percentage: couponpercentage,
+              terms: parseCoupon.term_conditions,
+              expiry_date: parseCoupon.expiry_date,
               min_amount: parseCoupon.min_amount,
             });
           }

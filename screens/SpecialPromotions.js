@@ -139,6 +139,18 @@ const SpecialPromotions = (props) => {
     let parsedcoupondetails = JSON.parse(coupondetails);
     return parsedcoupondetails.coupon_details;
   };
+  const handleTerms = (termsdetails) => {
+    console.log(termsdetails, 'termsdetails');
+
+    let parsedcoupondetails = JSON.parse(termsdetails);
+    return parsedcoupondetails.terms
+      ? parsedcoupondetails.terms
+      : parsedcoupondetails.term_conditions;
+  };
+  const handleExpiry = (expiry) => {
+    let parsedcoupondetails = JSON.parse(expiry);
+    return parsedcoupondetails.expiry_date;
+  };
 
   const showPromotions = () => {
     return (
@@ -151,6 +163,8 @@ const SpecialPromotions = (props) => {
               discount={handleDiscount(promotion.coupon_details)}
               minamount={handleminAmount(promotion.coupon_details)}
               details={handleDetails(promotion.coupon_details)}
+              terms={handleTerms(promotion.coupon_details)}
+              expiry={handleExpiry(promotion.coupon_details)}
               route={route}
             />
           </View>

@@ -204,6 +204,8 @@ const ExBusiness = (props) => {
             setCouponDetails({
               coupon_name: parseCoupon.coupon_name,
               coupon_details: parseCoupon.coupon_details,
+              terms: parseCoupon.term_conditions,
+              expiry_date: parseCoupon.expiry_date,
               coupon_percentage: couponpercentage,
             });
           }
