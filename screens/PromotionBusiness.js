@@ -35,6 +35,11 @@ const screenWidth = Dimensions.get('window').width;
 const Business = (props) => {
   const [SView, setSView] = React.useState('50%');
 
+  console.log(
+    props.route.params.couponStatus,
+    'props.route.params.couponStatus',
+  );
+
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
@@ -65,6 +70,7 @@ const Business = (props) => {
   const [promodetails, setPromoDetails] = useState();
   const [confirmationcode, setConfirmationCode] = useState('');
   const [address, setAddress] = useState('');
+  const [specialCoupon, setSpecialCoupon] = useState('0');
   const [featuredpromotion, setFeaturedPromotion] = useState(
     require('../images/Hotel360-assets/promotion-placeholder-2.png'),
   );
@@ -101,6 +107,56 @@ const Business = (props) => {
         setPromoDetails(res.data.data.promotions);
         setServiceDetail(res.data.data.service);
         if (Object.values(res.data.data).length > 0) {
+          //Special Promotion Coupon Worl
+          var show = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'show_coupon',
+          );
+          console.log(show, 'show');
+
+          //Special Promotion Coupon expiry
+
+          if (show != undefined) {
+            console.log(detail, 'detail');
+            setSpecialCoupon(show.meta_value);
+            // setWebsiteUrl(web_url.meta_value);
+            // console.log(web_url, 'web_url')
+          }
+
+          var exp = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'coupon_expiry',
+          );
+
+          if (exp != undefined) {
+            console.log(exp, 'exp');
+            var expValue = exp.meta_value;
+            // setWebsiteUrl(web_url.meta_value);
+            // console.log(web_url, 'web_url')
+          }
+          //Special Promotion Coupon detail
+
+          var detail = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'coupon_details',
+          );
+          if (detail != undefined) {
+            console.log(detail, 'detail');
+            var detailValue = detail.meta_value;
+
+            // setWebsiteUrl(web_url.meta_value);
+            // console.log(web_url, 'web_url')
+          }
+
+          //Special Promotion Coupon terms
+
+          var terms = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'coupon_terms',
+          );
+          if (terms != undefined) {
+            console.log(terms, 'terms');
+            var termsValue = terms.meta_value;
+            // setWebsiteUrl(web_url.meta_value);
+            // console.log(web_url, 'web_url')
+          }
+
           //coupon work
           let objCoupon = res.data.data.service.meta.find(
             (o) => o.meta_key === 'coupon',
@@ -122,9 +178,15 @@ const Business = (props) => {
               let couponpercentage = parseCoupon[daylist[day]];
               setCouponDetails({
                 coupon_name: parseCoupon.coupon_name,
-                coupon_details: parseCoupon.coupon_details,
-                terms: parseCoupon.term_conditions,
-                expiry_date: parseCoupon.expiry_date,
+                coupon_details: props.route.params.coupon_details
+                  ? props.route.params.coupon_details
+                  : detailValue,
+                terms: props.route.params.term_conditions
+                  ? props.route.params.term_conditions
+                  : termsValue,
+                expiry_date: props.route.params.expiry_date
+                  ? props.route.params.expiry_date
+                  : expValue,
                 coupon_percentage: couponpercentage,
               });
             }
@@ -263,12 +325,15 @@ const Business = (props) => {
               screen: 'Special Promotions',
             });
           } else {
-            props.setFeedback(
-              'MyApartment',
-              'Promotion already exists',
-              true,
-              '',
-            );
+            // props.setFeedback(
+            //   'MyApartment',
+            //   'Promotion already exists',
+            //   true,
+            //   '',
+            // );
+            props.navigation.navigate('MyCoupons', {
+              screen: 'Special Promotions',
+            });
           }
 
           // setVisible(true);
@@ -352,20 +417,30 @@ const Business = (props) => {
               onPress={showModal}>
               BOOK NOW
             </Button>
-            <Button
-              onPress={handleRequestPass}
-              style={{
-                backgroundColor: '#D3D3D3',
-                height: 60,
-                width: '46.5%',
-                borderRadius: 10,
-                marginLeft: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              labelStyle={{color: '#fff', textAlign: 'center', fontSize: 11}}>
-              GET YOUR COUPON
-            </Button>
+            {specialCoupon === '1' || props.route.params.couponStatus === 1 ? (
+              <>
+                <Button
+                  onPress={handleRequestPass}
+                  style={{
+                    backgroundColor: '#D3D3D3',
+                    height: 60,
+                    width: '46.5%',
+                    borderRadius: 10,
+                    marginLeft: 10,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                  labelStyle={{
+                    color: '#fff',
+                    textAlign: 'center',
+                    fontSize: 11,
+                  }}>
+                  GET YOUR COUPON
+                </Button>
+              </>
+            ) : (
+              <></>
+            )}
           </View>
           <HTML
             tagsStyles={{

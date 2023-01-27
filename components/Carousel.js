@@ -86,6 +86,9 @@ const CarouselData = (props) => {
                   tagline: data?.tagline,
                   title: data?.service?.title,
                   iframe_url: data?.iframe_url,
+                  term_conditions: data?.term_conditions,
+                  expiry: data?.expiry_date,
+                  coupon_details: data?.coupon_details,
                   status: true,
                 });
               } else {
@@ -150,6 +153,9 @@ const CarouselData = (props) => {
             promotitle: promotion.title,
             screen: 'promotion',
             couponStatus: promotion.coupon,
+            term_conditions: promotion.term_conditions,
+            expiry_date: promotion.expiry,
+            coupon_details: promotion.coupon_details,
           },
         });
       }
