@@ -741,7 +741,7 @@ const Me = (props) => {
                     textAlign: 'center',
                     marginTop: '8.42%',
                   }}>
-                  Beauty & Retail
+                  Beauty, Wellness & Retail
                 </Title>
               </TouchableOpacity>
 

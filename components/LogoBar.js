@@ -14,7 +14,7 @@ import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon5 from 'react-native-vector-icons/FontAwesome5';
 import Btn from './Btn';
-import { useNavigation, CommonActions } from '@react-navigation/native';
+import {useNavigation, CommonActions} from '@react-navigation/native';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -34,28 +34,24 @@ const LogoBar = (props) => {
       CommonActions.reset({
         index: 1,
         key: null,
-        routes: [
-          { name: 'Extra' }
-        ],
-      })
+        routes: [{name: 'Extra'}],
+      }),
     );
-  }
+  };
 
   const handleNavigateBack = () => {
-    if(navigation.canGoBack()){
-       navigation.dispatch(CommonActions.goBack());
-    }else{
+    if (navigation.canGoBack()) {
+      navigation.dispatch(CommonActions.goBack());
+    } else {
       navigation.dispatch(
         CommonActions.reset({
           index: 1,
           key: null,
-          routes: [
-            { name: 'Extra' }
-          ],
-        })
+          routes: [{name: 'Extra'}],
+        }),
       );
     }
-  }
+  };
   return (
     <View style={styles.logo_row}>
       <View style={styles.logo_row_col_1}>
@@ -66,7 +62,43 @@ const LogoBar = (props) => {
       </View>
       <View style={styles.logo_row_col_2}>
         <View style={styles.logo_row_col_2_view_1}>
-          <Text
+          {props.title == '360COUPON' ? (
+            <>
+              <View
+                style={{
+                  width: '35%',
+                  // marginTop: 15,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  // height: 40,
+                  // backgroundColor: 'red',
+                }}>
+                <Image
+                  source={require('../images/Hotel360-assets/teammarketlogo.png')}
+                  style={styles.logo_css}
+                />
+              </View>
+            </>
+          ) : (
+            <>
+              <Text
+                style={{
+                  fontWeight: '700',
+                  color: '#000',
+                  fontSize: 17,
+                  textAlign: props.borderWidth ? 'center' : 'right',
+                  textAlignVertical: 'center',
+                  borderWidth: props.borderWidth,
+                  borderColor: props.borderColor,
+                  color: props.color ? props.color : '#000',
+                  borderRadius: 10,
+                  textTransform: 'uppercase',
+                }}>
+                {props.title}
+              </Text>
+            </>
+          )}
+          {/* <Text
             style={{
               fontWeight: '700',
               color: '#000',
@@ -77,10 +109,10 @@ const LogoBar = (props) => {
               borderColor: props.borderColor,
               color: props.color ? props.color : '#000',
               borderRadius: 10,
-              textTransform: 'uppercase'
+              textTransform: 'uppercase',
             }}>
             {props.title}
-          </Text>
+          </Text> */}
         </View>
         <View style={styles.logo_row_col_2_view_2}>
           <View
@@ -90,7 +122,11 @@ const LogoBar = (props) => {
               flex: 1,
               justifyContent: 'flex-end',
             }}>
-            <Btn label="Home" style={{backgroundColor: '#6697D2'}} onPress={() => handleNavigateHome()} />
+            <Btn
+              label="Home"
+              style={{backgroundColor: '#6697D2'}}
+              onPress={() => handleNavigateHome()}
+            />
             <Btn
               label="Back"
               color={'#000'}

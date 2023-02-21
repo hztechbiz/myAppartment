@@ -125,6 +125,12 @@ const SpecialPromotions = (props) => {
     return parsedcoupondetails.coupon_name;
   };
 
+  const handleDescription = (coupondetails) => {
+    let parsedcoupondetails = JSON.parse(coupondetails);
+    console.log(parsedcoupondetails, 'description---------------');
+    return parsedcoupondetails.coupon_description;
+  };
+
   const handleDiscount = (coupondetails) => {
     let parsedcoupondetails = JSON.parse(coupondetails);
     return parsedcoupondetails.coupon_percentage;
@@ -154,13 +160,20 @@ const SpecialPromotions = (props) => {
 
   const showPromotions = () => {
     return (
-      <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          paddingVertical: 20,
+        }}>
         {promotions.map((promotion, index) => (
           <View key={index} style={{flexBasis: '50%', marginBottom: 8}}>
             <SpecialProTile
               id={promotion.id}
               title={handleTitle(promotion.coupon_details)}
               discount={handleDiscount(promotion.coupon_details)}
+              description={handleDescription(promotion.coupon_details)}
               minamount={handleminAmount(promotion.coupon_details)}
               details={handleDetails(promotion.coupon_details)}
               terms={handleTerms(promotion.coupon_details)}
@@ -180,7 +193,7 @@ const SpecialPromotions = (props) => {
       <LogoBar />
       <TitleBar
         title={
-          props.route.params !== undefined ? '360 Pass' : `Special Promotions`
+          props.route.params !== undefined ? '360 Pass' : `Promotional Coupons`
         }
       />
       <View

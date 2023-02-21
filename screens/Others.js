@@ -373,7 +373,7 @@ const Others = (props) => {
       <FeedbackModal />
       <BackgroundLayout />
       <LogoBar title={props.hotelName} />
-      <TitleBar title={`RETAIL & OTHER`} sub={true} />
+      <TitleBar title={`OTHERS`} sub={true} />
       <View
         style={{
           height: '55%',

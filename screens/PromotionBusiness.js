@@ -145,6 +145,22 @@ const Business = (props) => {
             // console.log(web_url, 'web_url')
           }
 
+          //Special Promotion Coupon Description
+
+          var short_description = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'coupon_short_description',
+          );
+          if (short_description != undefined) {
+            console.log(
+              short_description,
+              'coupon_short_description----------------',
+            );
+            var shortDescription = short_description.meta_value;
+
+            // setWebsiteUrl(web_url.meta_value);
+            // console.log(web_url, 'web_url')
+          }
+
           //Special Promotion Coupon terms
 
           var terms = res.data.data.service.meta.find(
@@ -181,6 +197,9 @@ const Business = (props) => {
                 coupon_details: props.route.params.coupon_details
                   ? props.route.params.coupon_details
                   : detailValue,
+                coupon_description: props.route.params.coupon_details
+                  ? props.route.params.tagline
+                  : shortDescription,
                 terms: props.route.params.term_conditions
                   ? props.route.params.term_conditions
                   : termsValue,

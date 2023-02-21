@@ -443,7 +443,7 @@ const Beauty = (props) => {
       <FeedbackModal />
       <BackgroundLayout />
       <LogoBar title={props.hotelName} />
-      <TitleBar title={`Beauty & Retail`} sub={true} />
+      <TitleBar title={`Beauty, Wellness & Retail`} sub={true} />
       <View
         style={{
           height: '62%',

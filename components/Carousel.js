@@ -156,6 +156,7 @@ const CarouselData = (props) => {
             term_conditions: promotion.term_conditions,
             expiry_date: promotion.expiry,
             coupon_details: promotion.coupon_details,
+            tagline: promotion.tagline,
           },
         });
       }

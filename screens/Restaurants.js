@@ -517,11 +517,7 @@ const Restaurants = (props) => {
       <FeedbackModal />
       <BackgroundLayout />
       <LogoBar title={props.hotelName} />
-      <TitleBar
-        title={`RESTAURANTS &
-EATERIES`}
-        sub={true}
-      />
+      <TitleBar title={`Restaurants, Bars & Eateries`} sub={true} />
 
       {loader === false ? (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

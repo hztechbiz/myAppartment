@@ -380,7 +380,7 @@ const Promotions = (props) => {
       <FeedbackModal />
       <BackgroundLayout />
       <LogoBar title={props.hotelName} />
-      <TitleBar title={`PROMOTIONS & OFFERS`} promo={true} />
+      <TitleBar title={`Experiences, Offer & Promotions`} promo={true} />
       <View
         style={{
           height: '55%',

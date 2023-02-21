@@ -27,6 +27,7 @@ import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
 import {connect} from 'react-redux';
 import {setFeedback} from '../actions';
+import HTML from 'react-native-render-html';
 
 const screenHeight = Dimensions.get('window').height;
 const screenWidth = Dimensions.get('window').width;
@@ -35,7 +36,7 @@ const statusBar = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
 const SpecialBusiness = (props) => {
   const [bill, setBill] = useState('');
   const [netamount, setNetAmount] = useState(0.0);
-  const [SView, setSView] = useState('50%');
+  const [SView, setSView] = useState('40%');
   const [msgTitle, setMsgTitle] = useState('');
   const [msgBody, setMsgBody] = useState('');
   const [loader, setLoader] = useState(false);
@@ -208,13 +209,48 @@ const SpecialBusiness = (props) => {
     <SafeAreaView style={styles.container}>
       <BackgroundLayout />
       <LogoBar
-        title={`360
-COUPON`}
+        title={`360COUPON`}
         color="#650d88"
         borderWidth={5}
         borderColor="#D3D3D3"
       />
       <TitleBar title={props.route.params.title} />
+      {props.route.params.description.includes('<p>') ? (
+        <>
+          <HTML
+            tagsStyles={{
+              p: {
+                // marginVertical: 20,
+                // marginHorizontal: '8%',
+                // textAlign: 'center',
+                paddingHorizontal: '5.55%',
+                fontSize: 14,
+                fontWeight: '700',
+              },
+            }}
+            source={{
+              html:
+                props.route.params.description == ''
+                  ? '<p></p>'
+                  : props.route.params.description,
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <Text
+            style={{
+              // textAlign: 'center',
+              paddingHorizontal: '5.55%',
+              fontSize: 14,
+              fontWeight: '700',
+              paddingVertical: 5,
+              // color: '#6b6b6b',
+            }}>
+            {props.route.params.description}
+          </Text>
+        </>
+      )}
       {showModal()}
       <View
         style={{
@@ -253,7 +289,7 @@ COUPON`}
                 height: 45,
               }}
               keyboardType="numeric"
-              maxLength={5}
+              // maxLength={5}
               onChangeText={(text) => handleChangeBill(text)}
               value={bill}
               placeholder="Enter Value"
@@ -261,7 +297,8 @@ COUPON`}
             />
 
             <Text style={{textAlign: 'center', fontWeight: '700'}}>
-              Show your 360 Coupon to your Server and then tap verify below
+              Show your TEAM Marketing coupon to your Server and then tap verify
+              below
             </Text>
           </View>
 
@@ -320,6 +357,9 @@ COUPON`}
           </View>
           <View style={{justifyContent: 'space-between', flexDirection: 'row'}}>
             <Button
+              onPress={() => {
+                props.navigation.goBack();
+              }}
               style={{
                 backgroundColor: '#D3D3D3',
                 height: 50,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,14 +7,14 @@ import {
   ScrollView,
   Keyboard,
 } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
+import {ActivityIndicator} from 'react-native-paper';
 import BackgroundLayout from '../components/BackgroundLayout';
 import LogoBar from '../components/LogoBar';
 import TitleBar from '../components/TitleBar';
 import BigTile from '../components/ExBigTile';
-import { connect } from 'react-redux';
-import { useIsFocused } from '@react-navigation/native';
-import { apiActiveURL, appKey, appId } from '../ApiBaseURL';
+import {connect} from 'react-redux';
+import {useIsFocused} from '@react-navigation/native';
+import {apiActiveURL, appKey, appId} from '../ApiBaseURL';
 import Axios from 'axios';
 import Tile from '../components/childCategoryTile';
 import {
@@ -123,15 +123,14 @@ const ExServices = (props) => {
   const fetchServices = () => {
     let url = '';
     if (props.route?.params?.isAll) {
-      console.log('All')
-      url = `${apiActiveURL}/all_services?area=${props.area}&listing_type=6`
-      console.log(url, 'url fetch')
-    } else
-      if (props.ChildCatId == 0) {
-        url = `${apiActiveURL}/services/${props.CatId}?listing_type=6&area=${props.area}`;
-      } else {
-        url = `${apiActiveURL}/services/${props.ChildCatId}?listing_type=6&area=${props.area}`;
-      }
+      console.log('All');
+      url = `${apiActiveURL}/all_services?area=${props.area}&listing_type=6`;
+      console.log(url, 'url fetch');
+    } else if (props.ChildCatId == 0) {
+      url = `${apiActiveURL}/services/${props.CatId}?listing_type=6&area=${props.area}`;
+    } else {
+      url = `${apiActiveURL}/services/${props.ChildCatId}?listing_type=6&area=${props.area}`;
+    }
 
     const options = {
       method: 'GET',
@@ -146,7 +145,9 @@ const ExServices = (props) => {
       .then((res) => {
         if (Object.values(res.data.data).length > 0) {
           console.log('render', res.data.data);
-          let sortServices = res.data.data.sort((a, b) => a.title.localeCompare(b.title));
+          let sortServices = res.data.data.sort((a, b) =>
+            a.title.localeCompare(b.title),
+          );
           setServices(sortServices);
           //props.setChildCategory(res.data.data[0].id, res.data.data[0].title);
           setLoader2(true);
@@ -183,11 +184,11 @@ const ExServices = (props) => {
     return (
       <>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
+          <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
             {getServices(services).map((services, index) => (
               <View
                 key={index}
-                style={{ flexBasis: '50%', paddingHorizontal: 0 }}>
+                style={{flexBasis: '50%', paddingHorizontal: 0}}>
                 <BigTile services={services} />
               </View>
             ))}
@@ -200,7 +201,7 @@ const ExServices = (props) => {
     <SafeAreaView style={styles.container}>
       <FeedbackModal />
       <BackgroundLayout />
-      <LogoBar title={props.hotelName} />
+      <LogoBar title="ALL" />
       <TitleBar title={props.ChildCatName} />
       <View
         style={{
