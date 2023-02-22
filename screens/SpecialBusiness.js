@@ -214,8 +214,8 @@ const SpecialBusiness = (props) => {
         borderWidth={5}
         borderColor="#D3D3D3"
       />
-      <TitleBar title={props.route.params.title} />
-      {props.route.params.description.includes('<p>') ? (
+      <TitleBar title={props?.route?.params?.title} />
+      {props?.route?.params?.description?.includes('<p>') ? (
         <>
           <HTML
             tagsStyles={{
@@ -230,9 +230,9 @@ const SpecialBusiness = (props) => {
             }}
             source={{
               html:
-                props.route.params.description == ''
+                props?.route?.params?.description == ''
                   ? '<p></p>'
-                  : props.route.params.description,
+                  : props?.route?.params?.description,
             }}
           />
         </>
@@ -247,7 +247,7 @@ const SpecialBusiness = (props) => {
               paddingVertical: 5,
               // color: '#6b6b6b',
             }}>
-            {props.route.params.description}
+            {props?.route?.params?.description}
           </Text>
         </>
       )}

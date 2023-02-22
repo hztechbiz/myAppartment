@@ -41,7 +41,7 @@ const Tile = (props) => {
             isPress ? styles.tileTextPressed : styles.tileTextNormal,
             styles.textColor,
           ]}>
-          {props.title}
+          {props?.title}
         </Text>
         {props?.description?.includes('<p>') ? (
           <>
