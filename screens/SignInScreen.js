@@ -51,6 +51,8 @@ const SignInScreen = (props) => {
       if (parsed !== null) {
         parsed = JSON.parse(parsed.config.data);
         onChangeText(parsed.email);
+        onChangeText2(parsed.password);
+        authenticate(parsed.email, parsed.password);
         console.log(parsed.email, 'parsed try');
       }
     } catch (e) {
