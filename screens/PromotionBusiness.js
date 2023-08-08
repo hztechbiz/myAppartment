@@ -74,6 +74,7 @@ const Business = (props) => {
   const [featuredpromotion, setFeaturedPromotion] = useState(
     require('../images/Hotel360-assets/promotion-placeholder-2.png'),
   );
+  const [bookingConfig, setBookingConfig] = useState('0');
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -252,6 +253,15 @@ const Business = (props) => {
             setServiceBookingURl(servicebookingurl.meta_value);
           }
 
+          // Call or Book Now
+          let booking = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'show_booking',
+          );
+
+          if (booking != undefined) {
+            setBookingConfig(booking.meta_value);
+          }
+
           //featured_promotion work
           let featuredImage = res.data.data.service.meta.find(
             (o) => o.meta_key === 'image',
@@ -422,20 +432,23 @@ const Business = (props) => {
               paddingHorizontal: '5.55%',
               marginTop: 20,
             }}>
-            <Button
-              style={{
-                backgroundColor: '#D3D3D3',
-                height: 60,
-                width: '46.5%',
-                borderRadius: 10,
-                marginRight: 10,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              labelStyle={{color: '#fff', textAlign: 'center', fontSize: 11}}
-              onPress={showModal}>
-              BOOK NOW
-            </Button>
+            {bookingConfig == '1' ? (
+              <Button
+                style={{
+                  backgroundColor: '#D3D3D3',
+                  height: 60,
+                  width: '46.5%',
+                  borderRadius: 10,
+                  marginRight: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                labelStyle={{color: '#fff', textAlign: 'center', fontSize: 11}}
+                onPress={showModal}>
+                BOOK NOW
+              </Button>
+            ) : null}
+
             {specialCoupon === '1' || props.route.params.couponStatus === 1 ? (
               <>
                 <Button

@@ -84,6 +84,7 @@ const WhatsOnBusiness = (props) => {
   const [address, setAddress] = useState('');
   const [vaccine, setVaccine] = useState('');
   const [menuURL, setMenuURL] = useState('');
+  const [bookingConfig, setBookingConfig] = useState('0');
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
@@ -309,6 +310,15 @@ const WhatsOnBusiness = (props) => {
             setServiceBookingURl(servicebookingurl.meta_value);
           }
 
+          // Call or Book Now
+          let booking = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'show_booking',
+          );
+
+          if (booking != undefined) {
+            setBookingConfig(booking.meta_value);
+          }
+
           //featured_promotion work
           let featuredImage = res.data.data.service.meta.find(
             (o) => o.meta_key === 'image',
@@ -518,21 +528,24 @@ const WhatsOnBusiness = (props) => {
               marginTop: 10,
               justifyContent: 'center',
             }}>
-            <Button
-              style={{
-                backgroundColor: '#D3D3D3',
-                height: 60,
-                width: '48.5%',
-                borderRadius: 10,
-                marginRight: 5,
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginBottom: 10,
-              }}
-              labelStyle={{color: '#fff', textAlign: 'center', fontSize: 11}}
-              onPress={showModal2}>
-              BOOK NOW
-            </Button>
+            {bookingConfig == '1' ? (
+              <Button
+                style={{
+                  backgroundColor: '#D3D3D3',
+                  height: 60,
+                  width: '48.5%',
+                  borderRadius: 10,
+                  marginRight: 5,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  marginBottom: 10,
+                }}
+                labelStyle={{color: '#fff', textAlign: 'center', fontSize: 11}}
+                onPress={showModal2}>
+                BOOK NOW
+              </Button>
+            ) : null}
+
             {/* <Button
               onPress={handleRequestPass}
                 style={{

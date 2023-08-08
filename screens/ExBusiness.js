@@ -89,6 +89,7 @@ const ExBusiness = (props) => {
   const [address, setAddress] = useState('');
   const [vaccine, setVaccine] = useState('');
   const [menuURL, setMenuURL] = useState('');
+  const [bookingConfig, setBookingConfig] = useState('0');
 
   const feedbackContainerStyle = {
     backgroundColor: 'white',
@@ -323,6 +324,15 @@ const ExBusiness = (props) => {
           );
           if (servicebookingurl != undefined) {
             setServiceBookingURl(servicebookingurl.meta_value);
+          }
+
+          // Call or Book Now
+          let booking = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'show_booking',
+          );
+
+          if (booking != undefined) {
+            setBookingConfig(booking.meta_value);
           }
 
           //featured_promotion work
@@ -632,29 +642,32 @@ const ExBusiness = (props) => {
               marginTop: 10,
               justifyContent: 'center',
             }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: '#D3D3D3',
-                height: 60,
-                width: '30%',
-                borderRadius: 10,
-                marginRight: 5,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-              labelStyle={{color: '#fff', textAlign: 'center', fontSize: 11}}
-              onPress={showModal2}>
-              <Text
+            {bookingConfig == '1' ? (
+              <TouchableOpacity
                 style={{
-                  color: '#fff',
-                  fontSize: 12,
-                  textTransform: 'uppercase',
-                  fontWeight: 'bold',
-                  textAlign: 'center',
-                }}>
-                BOOK NOW
-              </Text>
-            </TouchableOpacity>
+                  backgroundColor: '#D3D3D3',
+                  height: 60,
+                  width: '30%',
+                  borderRadius: 10,
+                  marginRight: 5,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                labelStyle={{color: '#fff', textAlign: 'center', fontSize: 11}}
+                onPress={showModal2}>
+                <Text
+                  style={{
+                    color: '#fff',
+                    fontSize: 12,
+                    textTransform: 'uppercase',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                  }}>
+                  BOOK NOW
+                </Text>
+              </TouchableOpacity>
+            ) : null}
+
             <TouchableOpacity
               style={{
                 backgroundColor: '#7e7e7e',
