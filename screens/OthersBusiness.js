@@ -90,6 +90,8 @@ const OthersBusiness = (props) => {
   const [vaccine, setVaccine] = useState('');
   const [menuURL, setMenuURL] = useState('');
   const [bookingConfig, setBookingConfig] = useState('0');
+  const [tripAdvisorUrl, setTripAdvisorUrl] = useState('');
+  const [facebookUrl, setFacebookUrl] = useState('');
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
@@ -346,6 +348,32 @@ const OthersBusiness = (props) => {
             setFeaturedPromotion(
               require('../images/Hotel360-assets/promotion-placeholder-2.png'),
             );
+          }
+
+          // Tripadvisor reviews url
+          let tripadvisor_url = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'trip_advisor_url',
+          );
+
+          let show_tripadvisor = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'show_trip_advisor',
+          );
+
+          if (show_tripadvisor?.meta_value == '1') {
+            setTripAdvisorUrl(tripadvisor_url?.meta_value);
+          }
+
+          // Facebook url
+          let facebook_url = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'facebook_url',
+          );
+
+          let show_facebook = res.data.data.service.meta.find(
+            (o) => o.meta_key === 'show_facebook',
+          );
+
+          if (show_facebook?.meta_value == '1') {
+            setFacebookUrl(facebook_url?.meta_value);
           }
 
           setConfirmationCode(generateConfirmationCode(6));
@@ -915,49 +943,38 @@ const OthersBusiness = (props) => {
           </Portal>
           <View
             style={{
-              flex: 1,
               flexDirection: 'row',
-              justifyContent: 'center',
-              alignContent: 'center',
+              paddingHorizontal: '5.55%',
+              marginVertical: 10,
+              marginTop: 10,
+              justifyContent: 'flex-start',
+              flexWrap: 'wrap',
             }}>
-            <View
+            <TouchableOpacity
               style={{
-                // flex: 1,
+                backgroundColor: '#D3D3D3',
+                height: 60,
+                width: '22%',
+                borderRadius: 10,
+                marginHorizontal: 3,
+                paddingHorizontal: 5,
                 justifyContent: 'center',
-                alignContent: 'center',
-                flexBasis: '48.5%',
-                // flexDirection: 'row'
-              }}>
-              <Button
+                alignItems: 'center',
+                marginBottom: 5,
+              }}
+              onPress={showOffersModal}>
+              <Text
                 style={{
-                  backgroundColor: '#D3D3D3',
-                  height: 60,
-
-                  borderRadius: 10,
-                  // marginTop: 10,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  // alignSelf: 'center',
-                }}
-                labelStyle={{color: '#fff', textAlign: 'center', fontSize: 11}}
-                onPress={showOffersModal}>
+                  color: '#fff',
+                  fontSize: 10,
+                  textTransform: 'uppercase',
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                }}>
                 SPECIAL OFFERS
-              </Button>
-            </View>
-            {vaccine ? (
-              <Image
-                source={vaccine}
-                style={{
-                  height: 60,
-                  width: 60,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                  marginHorizontal: 5,
-                }}
-              />
-            ) : (
-              <></>
-            )}
+              </Text>
+            </TouchableOpacity>
+
             {menuURL ? (
               <TouchableOpacity onPress={() => Linking.openURL(menuURL)}>
                 <Image
@@ -971,6 +988,79 @@ const OthersBusiness = (props) => {
                   }}
                 />
               </TouchableOpacity>
+            ) : (
+              <></>
+            )}
+
+            {tripAdvisorUrl ? (
+              <TouchableOpacity
+                style={{
+                  backgroundColor: '#02aef6',
+                  height: 60,
+                  width: '22%',
+                  borderRadius: 10,
+                  marginHorizontal: 3,
+                  paddingHorizontal: 5,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                onPress={() => Linking.openURL(tripAdvisorUrl)}>
+                <Text
+                  style={{
+                    color: '#fff',
+                    fontSize: 8,
+                    textTransform: 'uppercase',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                  }}>
+                  TRIPADVISOR{`\n`}Reviews
+                </Text>
+              </TouchableOpacity>
+            ) : null}
+
+            {facebookUrl ? (
+              <TouchableOpacity
+                style={{
+                  backgroundColor: '#04ac95',
+                  height: 60,
+                  width: '22%',
+                  borderRadius: 10,
+                  marginHorizontal: 3,
+                  paddingHorizontal: 5,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+                onPress={() => Linking.openURL(facebookUrl)}>
+                <Text
+                  style={{
+                    color: '#fff',
+                    fontSize: 8,
+                    textTransform: 'uppercase',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                  }}>
+                  Like us on
+                </Text>
+                <Icon
+                  name="facebook"
+                  size={17}
+                  color="#fff"
+                  style={{marginTop: 4}}
+                />
+              </TouchableOpacity>
+            ) : null}
+
+            {vaccine ? (
+              <Image
+                source={vaccine}
+                style={{
+                  height: 60,
+                  width: 60,
+                  resizeMode: 'contain',
+                  alignSelf: 'center',
+                  marginHorizontal: 5,
+                }}
+              />
             ) : (
               <></>
             )}
